@@ -731,3 +731,41 @@ AttributeError: 'ProgressManager' object has no attribute 'session_start_time'
 2026-04-30 00:24:41 - VocabularyTester - INFO - 应用程序正在关闭
 2026-04-30 00:24:42 - VocabularyTester - INFO - 学习会话结束: 20 单词, 0.0% 准确率
 2026-04-30 00:24:42 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-30 20:54:29 - VocabularyTester - INFO - 配置加载成功: 31 项
+2026-04-30 20:54:29 - VocabularyTester - INFO - 收藏加载成功: 0 个
+2026-04-30 20:54:29 - VocabularyTester - INFO - 自动选择 TTS 引擎: espeak
+2026-04-30 20:54:29 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-30 20:54:29 - VocabularyTester - INFO - 学习进度加载成功: 9 会话, 32 单词
+2026-04-30 20:54:29 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 20:54:29 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-30 20:54:29 - VocabularyTester - INFO - 应用程序启动
+2026-04-30 20:54:31 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-30 20:57:13 - VocabularyTester - INFO - 配置加载成功: 31 项
+2026-04-30 20:57:13 - VocabularyTester - INFO - 收藏加载成功: 0 个
+2026-04-30 20:57:13 - VocabularyTester - INFO - 自动选择 TTS 引擎: espeak
+2026-04-30 20:57:13 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-30 20:57:13 - VocabularyTester - INFO - 学习进度加载成功: 9 会话, 32 单词
+2026-04-30 20:57:13 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 20:57:13 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-30 20:57:13 - VocabularyTester - INFO - 应用程序启动
+2026-04-30 20:57:15 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-30 20:57:15 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-30 20:57:18 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-30 20:57:19 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 20:57:20 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-30 20:57:21 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-30 20:57:32 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-30 20:57:32 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 20:57:34 - VocabularyTester - INFO - 词库加载成功: 51 个单词
+2026-04-30 20:57:37 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 20:57:37 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 20:57:38 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-30 20:57:39 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-30 20:57:39 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 20:57:40 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-30 20:57:40 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 20:57:40 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 20:57:41 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 20:57:41 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 20:57:42 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-30 20:57:43 - VocabularyTester - INFO - 应用程序正常退出
