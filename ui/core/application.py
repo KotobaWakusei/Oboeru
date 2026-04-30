@@ -303,8 +303,13 @@ class Application:
         
         # 中间 - 导航按钮（居中）
         center_frame = tk.Frame(navbar, bg=colors["bg_secondary"])
-        center_frame.grid(row=0, column=1, sticky="", pady=8)
-        
+        center_frame.grid(row=0, column=1, sticky="nsew", pady=8)
+        center_frame.columnconfigure(0, weight=1)
+
+        # 内部容器用于水平居中按钮组
+        center_inner = tk.Frame(center_frame, bg=colors["bg_secondary"])
+        center_inner.pack(expand=True)
+
         self._nav_buttons = {}
         nav_items = [
             ("home", "🏠 首页"),
@@ -313,15 +318,15 @@ class Application:
             ("statistics", "📊 统计"),
             ("settings", "⚙️ 设置"),
         ]
-        
+
         for page_id, text in nav_items:
             btn = ttk.Button(
-                center_frame,
+                center_inner,
                 text=text,
                 command=lambda pid=page_id: self.navigate_to(pid),
                 style="Nav.TButton"
             )
-            btn.pack(side=tk.LEFT, padx=2)
+            btn.pack(side=tk.LEFT, padx=6)
             self._nav_buttons[page_id] = btn
         
         # 右侧 - 收藏数

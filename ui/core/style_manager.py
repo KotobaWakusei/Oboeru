@@ -257,6 +257,10 @@ class StyleManager:
             background=[
                 ("active", colors["accent_hover"]),
                 ("pressed", colors["accent"])
+            ],
+            foreground=[
+                ("active", "#ffffff"),
+                ("pressed", "#ffffff")
             ]
         )
         
@@ -292,6 +296,10 @@ class StyleManager:
             background=[
                 ("active", colors["bg_card"]),
                 ("pressed", colors["accent"])
+            ],
+            foreground=[
+                ("active", colors["fg_primary"]),
+                ("pressed", "#ffffff")
             ]
         )
         

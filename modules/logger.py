@@ -39,6 +39,15 @@ class Logger:
     
     def _setup_handlers(self) -> None:
         """设置日志处理器"""
+        # 确保日志目录存在
+        dir_name = os.path.dirname(self.log_file)
+        if dir_name and not os.path.exists(dir_name):
+            try:
+                os.makedirs(dir_name, exist_ok=True)
+            except Exception:
+                # 如果无法创建目录，则继续（FileHandler 在无法写入时会抛出错误）
+                pass
+
         # 文件处理器
         file_handler = logging.FileHandler(self.log_file, encoding='utf-8')
         file_handler.setLevel(logging.DEBUG)
