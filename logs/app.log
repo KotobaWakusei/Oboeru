@@ -1,0 +1,733 @@
+2026-04-15 21:24:13 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 21:24:13 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-15 21:24:13 - VocabularyTester - INFO - 应用程序启动
+2026-04-15 21:24:16 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-15 21:24:16 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-15 21:24:17 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-15 21:25:33 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 21:25:33 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-15 21:25:33 - VocabularyTester - INFO - 应用程序启动
+2026-04-15 21:25:35 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-15 21:25:36 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 21:25:36 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-15 21:25:37 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-15 21:25:38 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-15 21:25:39 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-15 21:37:40 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 21:37:40 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-15 21:37:40 - VocabularyTester - INFO - 应用程序启动
+2026-04-15 21:51:11 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 21:51:11 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-15 21:51:11 - VocabularyTester - INFO - 应用程序启动
+2026-04-15 21:51:13 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-15 21:51:14 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-15 21:51:15 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-15 21:51:18 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 21:51:20 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-15 21:51:26 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-15 21:51:29 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 21:51:30 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-15 21:51:31 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-15 21:51:32 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-15 21:51:37 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-15 21:51:38 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-15 23:20:58 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-15 23:21:36 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-15 23:21:36 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 23:21:36 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-15 23:21:36 - VocabularyTester - INFO - 应用程序启动
+2026-04-15 23:22:19 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-15 23:22:19 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 23:22:19 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-15 23:22:19 - VocabularyTester - INFO - 应用程序启动
+2026-04-15 23:22:20 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-15 23:22:21 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-15 23:22:21 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-15 23:22:22 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-15 23:22:28 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-15 23:22:29 - VocabularyTester - ERROR - 退出时发生错误: 'ProgressManager' object has no attribute 'session_start_time'
+Traceback (most recent call last):
+  File "/mnt/data/桌面/oboeru/ui/core/application.py", line 495, in _on_closing
+    if self._progress_manager.session_start_time is not None:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ProgressManager' object has no attribute 'session_start_time'
+2026-04-15 23:31:45 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-15 23:31:45 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 23:31:45 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-15 23:31:45 - VocabularyTester - INFO - 应用程序启动
+2026-04-15 23:31:49 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-15 23:32:02 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-15 23:32:02 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 23:32:02 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-15 23:32:02 - VocabularyTester - INFO - 应用程序启动
+2026-04-15 23:32:04 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-15 23:37:43 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-15 23:37:43 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 23:37:43 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-15 23:37:43 - VocabularyTester - INFO - 应用程序启动
+2026-04-15 23:37:44 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-15 23:37:55 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 23:37:58 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-15 23:38:05 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-15 23:38:05 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-15 23:38:07 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-15 23:38:08 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-15 23:43:30 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-15 23:43:30 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 23:43:30 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-15 23:43:30 - VocabularyTester - INFO - 应用程序启动
+2026-04-15 23:43:32 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-15 23:44:24 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-15 23:44:25 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-15 23:44:28 - VocabularyTester - INFO - 配置加载成功: 27 项
+2026-04-15 23:44:28 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-15 23:44:28 - VocabularyTester - INFO - 导航到页面: home
+2026-04-15 23:44:28 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-15 23:44:28 - VocabularyTester - INFO - 应用程序启动
+2026-04-15 23:44:30 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-15 23:44:39 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-15 23:44:40 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 11:08:00 - VocabularyTester - INFO - 配置加载成功: 27 项
+2026-04-16 11:08:00 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-16 11:08:01 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 11:08:01 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 11:08:01 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 11:08:04 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 11:08:05 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 11:08:19 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 11:08:20 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 11:13:50 - VocabularyTester - INFO - 配置加载成功: 27 项
+2026-04-16 11:13:50 - VocabularyTester - INFO - 配置加载成功: 28 项
+2026-04-16 11:18:21 - VocabularyTester - INFO - 配置加载成功: 27 项
+2026-04-16 11:18:21 - VocabularyTester - INFO - AI 已启用，模型: lite
+2026-04-16 11:20:37 - VocabularyTester - INFO - 配置加载成功: 27 项
+2026-04-16 11:20:37 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-16 11:20:37 - VocabularyTester - INFO - AI 已启用，模型: lite
+2026-04-16 11:20:37 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 11:20:37 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 11:20:37 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 11:20:39 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 11:21:38 - VocabularyTester - INFO - AI 已启用，模型: lite
+2026-04-16 11:21:39 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 11:21:40 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 11:31:13 - VocabularyTester - INFO - 配置加载成功: 26 项
+2026-04-16 11:31:13 - VocabularyTester - INFO - AI 已启用，模型: lite
+2026-04-16 11:47:42 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 11:47:42 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 11:47:58 - VocabularyTester - INFO - AI 已启用: 自定义, 模型: my-custom-model
+2026-04-16 06:04:46 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 06:05:18 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 06:05:18 - VocabularyTester - WARNING - espeak 未安装，尝试使用 gtts
+2026-04-16 06:05:18 - VocabularyTester - WARNING - gtts 未安装，TTS 功能不可用
+2026-04-16 06:05:18 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:05:18 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 06:05:18 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 06:05:18 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 06:05:21 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 06:05:59 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 06:06:00 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 06:06:00 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 06:06:02 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 06:06:08 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 06:06:35 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:06:38 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:06:39 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:06:43 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:06:43 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:06:46 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 06:06:46 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 06:06:47 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 06:06:48 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 06:06:48 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 06:07:10 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 06:07:11 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 06:07:22 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 06:07:22 - VocabularyTester - WARNING - espeak 未安装，尝试使用 gtts
+2026-04-16 06:07:22 - VocabularyTester - WARNING - gtts 未安装，TTS 功能不可用
+2026-04-16 06:07:22 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:07:23 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 06:07:23 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 06:07:23 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 06:07:36 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 06:07:40 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 06:07:41 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 06:09:10 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 06:09:10 - VocabularyTester - WARNING - espeak 未安装，尝试使用 gtts
+2026-04-16 06:09:10 - VocabularyTester - WARNING - gtts 未安装，TTS 功能不可用
+2026-04-16 06:09:10 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:09:11 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 06:09:11 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 06:09:11 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 06:09:13 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 06:09:28 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:09:39 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:09:40 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 06:09:41 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 06:09:41 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 06:10:13 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 06:10:15 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 06:10:15 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 06:10:26 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:10:27 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 06:10:27 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 06:11:07 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 06:11:10 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 06:11:11 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 06:11:12 - VocabularyTester - INFO - 学习会话结束: 20 单词, 100.0% 准确率
+2026-04-16 06:11:12 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 06:28:05 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 06:28:05 - VocabularyTester - WARNING - espeak 未安装，尝试使用 gtts
+2026-04-16 06:28:05 - VocabularyTester - WARNING - gtts 未安装，TTS 功能不可用
+2026-04-16 06:28:05 - VocabularyTester - INFO - 学习进度加载成功: 1 会话, 2 单词
+2026-04-16 06:28:05 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:28:06 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 06:28:06 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 06:28:06 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 06:28:09 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 06:28:21 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 06:28:22 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 06:28:23 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 06:28:24 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 06:28:25 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 06:28:30 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 06:28:31 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 06:28:32 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 06:28:37 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 06:28:38 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 06:28:39 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 06:28:40 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 06:28:42 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 06:28:43 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 06:28:44 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 07:28:18 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 07:28:18 - VocabularyTester - WARNING - espeak 未安装，尝试使用 gtts
+2026-04-16 07:28:18 - VocabularyTester - WARNING - gtts 未安装，TTS 功能不可用
+2026-04-16 07:28:18 - VocabularyTester - INFO - 学习进度加载成功: 1 会话, 2 单词
+2026-04-16 07:28:18 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 07:28:22 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 07:28:22 - VocabularyTester - WARNING - espeak 未安装，尝试使用 gtts
+2026-04-16 07:28:22 - VocabularyTester - WARNING - gtts 未安装，TTS 功能不可用
+2026-04-16 07:28:22 - VocabularyTester - INFO - 学习进度加载成功: 1 会话, 2 单词
+2026-04-16 07:28:22 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 07:28:23 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 07:28:23 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 07:28:23 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 07:28:27 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 07:28:54 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 07:28:55 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 07:28:56 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 07:29:06 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 07:29:24 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 07:29:25 - VocabularyTester - INFO - 学习会话结束: 20 单词, 0.0% 准确率
+2026-04-16 07:29:25 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 07:48:09 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 07:48:09 - VocabularyTester - WARNING - espeak 未安装，尝试使用 gtts
+2026-04-16 07:48:09 - VocabularyTester - WARNING - gtts 未安装，TTS 功能不可用
+2026-04-16 07:48:09 - VocabularyTester - INFO - 学习进度加载成功: 2 会话, 2 单词
+2026-04-16 07:48:09 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 07:48:10 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 07:48:10 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 07:48:10 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 07:50:13 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 07:50:13 - VocabularyTester - WARNING - espeak 未安装，尝试使用 gtts
+2026-04-16 07:50:13 - VocabularyTester - WARNING - gtts 未安装，TTS 功能不可用
+2026-04-16 07:50:13 - VocabularyTester - INFO - 学习进度加载成功: 2 会话, 2 单词
+2026-04-16 07:50:13 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 07:50:14 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 07:50:14 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 07:50:14 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 08:12:24 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 08:12:40 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 08:12:42 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 08:12:42 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 08:12:49 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 08:12:50 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 08:12:50 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 08:12:51 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 08:12:52 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 08:13:11 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000c30ba@dx19d9559e5c4b894812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 08:13:11 - VocabularyTester - WARNING - AI 生成失败: flower - HTTP 500: {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000c30ba@dx19d9559e5c4b894812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 08:13:11 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 08:13:11 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c30bd@dx19d9559e66db894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:11 - VocabularyTester - WARNING - AI 生成失败: printer - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c30bd@dx19d9559e66db894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:11 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000b4145@dx19d9559e6f4b8f3812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 08:13:11 - VocabularyTester - WARNING - AI 生成失败: sun - HTTP 500: {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000b4145@dx19d9559e6f4b8f3812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 08:13:11 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b4147@dx19d9559e759b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:11 - VocabularyTester - WARNING - AI 生成失败: beautiful - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b4147@dx19d9559e759b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:12 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000b4155@dx19d9559eb32b8f3812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 08:13:12 - VocabularyTester - WARNING - AI 生成失败: flower - HTTP 500: {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000b4155@dx19d9559eb32b8f3812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 08:13:12 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b3231@dx19d9559ebfab8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:12 - VocabularyTester - WARNING - AI 生成失败: mother - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b3231@dx19d9559ebfab8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:12 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b4156@dx19d9559ec36b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:12 - VocabularyTester - WARNING - AI 生成失败: ocean - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b4156@dx19d9559ec36b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:13 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c30cf@dx19d9559ed6cb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:13 - VocabularyTester - WARNING - AI 生成失败: happy - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c30cf@dx19d9559ed6cb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:14 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c30df@dx19d9559f1ddb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:14 - VocabularyTester - WARNING - AI 生成失败: mother - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c30df@dx19d9559f1ddb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:14 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c30e1@dx19d9559f24fb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:14 - VocabularyTester - WARNING - AI 生成失败: flower - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c30e1@dx19d9559f24fb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:14 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b323d@dx19d9559f2cab8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:14 - VocabularyTester - WARNING - AI 生成失败: printer - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b323d@dx19d9559f2cab8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:14 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b3241@dx19d9559f3beb8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:14 - VocabularyTester - WARNING - AI 生成失败: sun - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b3241@dx19d9559f3beb8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:13:24 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 08:13:25 - VocabularyTester - INFO - 学习会话结束: 20 单词, 0.0% 准确率
+2026-04-16 08:13:25 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 08:14:07 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 08:14:07 - VocabularyTester - WARNING - espeak 未安装，尝试使用 gtts
+2026-04-16 08:14:07 - VocabularyTester - WARNING - gtts 未安装，TTS 功能不可用
+2026-04-16 08:14:07 - VocabularyTester - INFO - 学习进度加载成功: 3 会话, 2 单词
+2026-04-16 08:14:07 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 08:14:08 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 08:14:08 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 08:14:08 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 08:14:09 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 08:14:10 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 08:14:11 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 08:14:12 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 08:14:12 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 08:14:23 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 08:14:24 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 08:36:24 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 08:36:24 - VocabularyTester - WARNING - espeak 未安装，尝试使用 gtts
+2026-04-16 08:36:24 - VocabularyTester - WARNING - gtts 未安装，TTS 功能不可用
+2026-04-16 08:36:24 - VocabularyTester - INFO - 学习进度加载成功: 3 会话, 2 单词
+2026-04-16 08:36:24 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 08:36:24 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 08:36:24 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 08:36:24 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 08:36:33 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 08:36:33 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 08:36:39 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b5fa0@dx19d956f6226b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:36:44 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b5fd5@dx19d956f777ab8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:36:56 - VocabularyTester - INFO - 预加载完成: 8/15 个例句
+2026-04-16 08:37:05 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b6087@dx19d956fc6bfb8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:05 - VocabularyTester - WARNING - AI 生成失败: study - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b6087@dx19d956fc6bfb8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:05 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b6089@dx19d956fc76db8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:05 - VocabularyTester - WARNING - AI 生成失败: swim - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b6089@dx19d956fc76db8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:05 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c5f52@dx19d956fc7d1b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:05 - VocabularyTester - WARNING - AI 生成失败: bread - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c5f52@dx19d956fc7d1b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:05 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c5f55@dx19d956fc84bb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:05 - VocabularyTester - WARNING - AI 生成失败: fly - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c5f55@dx19d956fc84bb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:05 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c5f59@dx19d956fc908b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:05 - VocabularyTester - WARNING - AI 生成失败: sad - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c5f59@dx19d956fc908b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:07 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c5f6b@dx19d956fcf82b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:07 - VocabularyTester - WARNING - AI 生成失败: fly - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c5f6b@dx19d956fcf82b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:07 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b6095@dx19d956fd00cb8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:07 - VocabularyTester - WARNING - AI 生成失败: bread - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b6095@dx19d956fd00cb8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:07 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c5f6e@dx19d956fd099b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:07 - VocabularyTester - WARNING - AI 生成失败: swim - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c5f6e@dx19d956fd099b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:07 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000c5f6f@dx19d956fd11eb894812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 08:37:07 - VocabularyTester - WARNING - AI 生成失败: study - HTTP 500: {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000c5f6f@dx19d956fd11eb894812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 08:37:07 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b7142@dx19d956fd190b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:07 - VocabularyTester - WARNING - AI 生成失败: ocean - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b7142@dx19d956fd190b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:37:54 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 08:38:20 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 08:39:13 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 08:39:15 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 08:39:16 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 08:39:23 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b6493@dx19d9571e3f5b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:39:23 - VocabularyTester - WARNING - AI 生成失败: bread - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b6493@dx19d9571e3f5b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:39:23 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b7550@dx19d9571e42ab8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:39:23 - VocabularyTester - WARNING - AI 生成失败: fly - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b7550@dx19d9571e42ab8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:39:24 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c639a@dx19d9571e661b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:39:24 - VocabularyTester - WARNING - AI 生成失败: keyboard - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c639a@dx19d9571e661b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 08:39:31 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 08:40:00 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 08:40:02 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 08:40:02 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 08:40:02 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 08:40:03 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 08:40:03 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 08:40:03 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 08:40:04 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 08:40:04 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 08:40:06 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 08:40:30 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 08:40:31 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 08:40:31 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 08:40:32 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 08:40:38 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 08:40:39 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 08:40:39 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 08:40:40 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 08:40:43 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 08:40:44 - VocabularyTester - INFO - 学习会话结束: 20 单词, 66.7% 准确率
+2026-04-16 08:40:44 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 09:05:01 - VocabularyTester - INFO - 学习进度加载成功: 4 会话, 4 单词
+2026-04-16 09:05:19 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 09:05:19 - VocabularyTester - WARNING - espeak 未安装，尝试使用 gtts
+2026-04-16 09:05:19 - VocabularyTester - WARNING - gtts 未安装，TTS 功能不可用
+2026-04-16 09:05:19 - VocabularyTester - INFO - 学习进度加载成功: 4 会话, 4 单词
+2026-04-16 09:05:19 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 09:05:19 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 09:05:19 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 09:05:19 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 09:08:21 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 09:08:22 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 09:08:23 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 09:29:21 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 09:29:25 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 09:29:25 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 09:29:26 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 09:29:26 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 09:29:28 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 09:29:28 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 09:29:40 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000cc93b@dx19d959feaecb894812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 09:29:40 - VocabularyTester - WARNING - AI 生成失败: cherry - HTTP 500: {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000cc93b@dx19d959feaecb894812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 09:29:43 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000cc953@dx19d959ff91cb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:43 - VocabularyTester - WARNING - AI 生成失败: brother - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000cc953@dx19d959ff91cb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:44 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca2e@dx19d959ffc53b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:44 - VocabularyTester - WARNING - AI 生成失败: meat - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca2e@dx19d959ffc53b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:44 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca30@dx19d959ffcd3b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:44 - VocabularyTester - WARNING - AI 生成失败: milk - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca30@dx19d959ffcd3b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:44 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bd9cb@dx19d959ffd65b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:44 - VocabularyTester - WARNING - AI 生成失败: fly - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bd9cb@dx19d959ffd65b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:44 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca32@dx19d959ffe04b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:44 - VocabularyTester - WARNING - AI 生成失败: bike - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca32@dx19d959ffe04b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:45 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000cc96d@dx19d95a000afb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:45 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca37@dx19d95a000a3b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:45 - VocabularyTester - WARNING - AI 生成失败: meat - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca37@dx19d95a000a3b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:45 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca39@dx19d95a0011fb8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:45 - VocabularyTester - WARNING - AI 生成失败: cherry - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca39@dx19d95a0011fb8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:47 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bd9e5@dx19d95a00878b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:47 - VocabularyTester - WARNING - AI 生成失败: milk - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bd9e5@dx19d95a00878b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:47 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca45@dx19d95a00912b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:47 - VocabularyTester - WARNING - AI 生成失败: fly - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca45@dx19d95a00912b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:48 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca52@dx19d95a00db1b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:48 - VocabularyTester - WARNING - AI 生成失败: laptop - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca52@dx19d95a00db1b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:49 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000cc985@dx19d95a00e54b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:49 - VocabularyTester - WARNING - AI 生成失败: moon - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000cc985@dx19d95a00e54b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:49 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bd9f3@dx19d95a010d2b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:49 - VocabularyTester - WARNING - AI 生成失败: ship - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bd9f3@dx19d95a010d2b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:49 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bd9f5@dx19d95a01178b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:49 - VocabularyTester - WARNING - AI 生成失败: mother - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bd9f5@dx19d95a01178b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:50 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000cc98b@dx19d95a0128db894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:50 - VocabularyTester - WARNING - AI 生成失败: tree - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000cc98b@dx19d95a0128db894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:50 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca59@dx19d95a01317b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:50 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca5b@dx19d95a01319b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:50 - VocabularyTester - WARNING - AI 生成失败: teacher - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca5b@dx19d95a01319b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:50 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca5e@dx19d95a01572b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:50 - VocabularyTester - WARNING - AI 生成失败: flower - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca5e@dx19d95a01572b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:52 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000cc998@dx19d95a01a01b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:52 - VocabularyTester - WARNING - AI 生成失败: teacher - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000cc998@dx19d95a01a01b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:52 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca6c@dx19d95a01afcb8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:52 - VocabularyTester - WARNING - AI 生成失败: tree - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca6c@dx19d95a01afcb8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:52 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bda05@dx19d95a01cc3b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:52 - VocabularyTester - WARNING - AI 生成失败: ship - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bda05@dx19d95a01cc3b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:53 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca73@dx19d95a01e43b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:53 - VocabularyTester - WARNING - AI 生成失败: difficult - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca73@dx19d95a01e43b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:53 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca74@dx19d95a01f22b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:29:53 - VocabularyTester - WARNING - AI 生成失败: moon - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bca74@dx19d95a01f22b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:30:00 - VocabularyTester - INFO - 学习会话结束: 20 单词, 0.0% 准确率
+2026-04-16 09:30:01 - VocabularyTester - INFO - 预加载完成: 8/10 个例句
+2026-04-16 09:30:03 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bcaab@dx19d95a045e1b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:30:03 - VocabularyTester - WARNING - AI 生成失败: teacher - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bcaab@dx19d95a045e1b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 09:30:10 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 09:30:11 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 09:30:11 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 09:30:13 - VocabularyTester - INFO - 学习会话结束: 20 单词, 0.0% 准确率
+2026-04-16 09:30:13 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 22:53:24 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 22:53:24 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-16 22:53:24 - VocabularyTester - INFO - 学习进度加载成功: 6 会话, 4 单词
+2026-04-16 22:53:24 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 22:53:24 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 22:53:24 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 22:53:24 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 22:53:26 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 22:54:48 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 22:55:03 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 22:55:04 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 22:55:06 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 22:55:12 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 22:55:13 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 22:55:17 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 22:55:23 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 22:55:25 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 22:55:27 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 22:55:28 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 22:55:28 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 22:55:28 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 22:55:40 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bdeda@dx19d96ca679cb8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 22:55:40 - VocabularyTester - WARNING - AI 生成失败: flower - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bdeda@dx19d96ca679cb8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 22:55:40 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bdedb@dx19d96ca681eb8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 22:55:40 - VocabularyTester - WARNING - AI 生成失败: star - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bdedb@dx19d96ca681eb8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 22:55:40 - VocabularyTester - INFO - 预加载完成: 10/10 个例句
+2026-04-16 23:01:13 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 23:01:14 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 23:01:15 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:01:16 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:01:18 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 23:01:19 - VocabularyTester - INFO - 学习会话结束: 20 单词, 0.0% 准确率
+2026-04-16 23:01:19 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 23:08:48 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 23:08:48 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-16 23:08:48 - VocabularyTester - INFO - 学习进度加载成功: 7 会话, 4 单词
+2026-04-16 23:08:48 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 23:08:49 - VocabularyTester - WARNING - pystray 或 PIL 未安装，系统托盘功能不可用
+2026-04-16 23:08:49 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:08:49 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 23:08:49 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 23:08:52 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 23:08:52 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:08:57 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:09:04 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:09:09 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:09:10 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:09:11 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:09:19 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bf12f@dx19d96d6e80fb8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:09:19 - VocabularyTester - WARNING - AI 生成失败: laptop - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bf12f@dx19d96d6e80fb8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:09:29 - VocabularyTester - INFO - 预加载完成: 10/10 个例句
+2026-04-16 23:09:47 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:09:52 - VocabularyTester - INFO - 学习进度已清除
+2026-04-16 23:09:53 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:09:58 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 23:12:59 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 23:12:59 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-16 23:12:59 - VocabularyTester - INFO - 学习进度加载成功: 0 会话, 0 单词
+2026-04-16 23:12:59 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 23:12:59 - VocabularyTester - WARNING - pystray 或 PIL 未安装，系统托盘功能不可用
+2026-04-16 23:12:59 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:12:59 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 23:12:59 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 23:13:02 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:13:03 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 23:13:04 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:13:07 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:13:09 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 23:16:32 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 23:16:32 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-16 23:16:32 - VocabularyTester - INFO - 学习进度加载成功: 0 会话, 0 单词
+2026-04-16 23:16:32 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 23:16:32 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:16:32 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 23:16:32 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 23:16:35 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:16:44 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 23:16:44 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 23:16:46 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:16:49 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:16:49 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 23:16:49 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:16:50 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:16:56 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:16:56 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:16:57 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:17:16 - VocabularyTester - INFO - 预加载完成: 10/10 个例句
+2026-04-16 23:17:22 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000ce97d@dx19d96de45cdb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:17:22 - VocabularyTester - WARNING - AI 生成失败: keyboard - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000ce97d@dx19d96de45cdb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:17:23 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bea9d@dx19d96de47f2b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:17:23 - VocabularyTester - WARNING - AI 生成失败: eat - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bea9d@dx19d96de47f2b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:17:27 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000beab2@dx19d96de58a7b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:17:27 - VocabularyTester - WARNING - AI 生成失败: house - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000beab2@dx19d96de58a7b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:18:08 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:18:08 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 23:18:09 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:19:40 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 23:19:42 - VocabularyTester - INFO - 学习会话结束: 20 单词, 87.5% 准确率
+2026-04-16 23:19:42 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 23:19:44 - VocabularyTester - INFO - 配置加载成功: 30 项
+2026-04-16 23:19:44 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-16 23:19:44 - VocabularyTester - INFO - 学习进度加载成功: 1 会话, 7 单词
+2026-04-16 23:19:44 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 23:19:44 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:19:44 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 23:19:44 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 23:19:48 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:19:48 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:19:50 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 23:19:50 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 23:19:51 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:19:51 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:19:52 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:19:54 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 23:19:55 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:19:56 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 23:19:58 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:19:59 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:20:03 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:20:04 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 23:20:04 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 23:20:05 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 23:20:05 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:20:06 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 23:20:06 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 23:20:07 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:20:07 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:20:09 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 23:20:09 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:20:29 - VocabularyTester - INFO - 预加载完成: 10/10 个例句
+2026-04-16 23:20:39 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 23:20:40 - VocabularyTester - INFO - 学习会话结束: 20 单词, 0.0% 准确率
+2026-04-16 23:20:40 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 23:30:59 - VocabularyTester - INFO - 配置加载成功: 31 项
+2026-04-16 23:30:59 - VocabularyTester - INFO - 收藏加载成功: 0 个
+2026-04-16 23:30:59 - VocabularyTester - INFO - 自动选择 TTS 引擎: espeak
+2026-04-16 23:30:59 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-16 23:30:59 - VocabularyTester - INFO - 学习进度加载成功: 2 会话, 7 单词
+2026-04-16 23:30:59 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 23:30:59 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:30:59 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 23:30:59 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 23:31:03 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 23:31:04 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 23:31:04 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:31:06 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:31:06 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:31:06 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:31:06 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:31:06 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:31:13 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:31:14 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 23:31:14 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:31:18 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b0d12@dx19d96eb05dfb8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:31:18 - VocabularyTester - WARNING - AI 生成失败: software - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b0d12@dx19d96eb05dfb8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:31:21 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b0d26@dx19d96eb114db8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:31:21 - VocabularyTester - WARNING - AI 生成失败: happy - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b0d26@dx19d96eb114db8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:31:21 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b0d27@dx19d96eb1245b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:31:21 - VocabularyTester - WARNING - AI 生成失败: milk - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b0d27@dx19d96eb1245b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:31:22 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000bfdec@dx19d96eb1728b8f2812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 23:31:22 - VocabularyTester - WARNING - AI 生成失败: keyboard - HTTP 500: {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000bfdec@dx19d96eb1728b8f2812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 23:31:22 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bfded@dx19d96eb1736b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:31:22 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b0d2e@dx19d96eb179eb8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:31:22 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000cfce3@dx19d96eb1802b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:31:22 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bfdef@dx19d96eb1875b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:31:22 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000cfce4@dx19d96eb1876b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:31:22 - VocabularyTester - WARNING - AI 生成失败: walk - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000cfce4@dx19d96eb1876b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:31:26 - VocabularyTester - INFO - 预加载完成: 6/10 个例句
+2026-04-16 23:31:40 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 23:31:42 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:31:45 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 23:31:46 - VocabularyTester - INFO - 学习会话结束: 20 单词, 0.0% 准确率
+2026-04-16 23:31:46 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 23:35:33 - VocabularyTester - INFO - 配置加载成功: 31 项
+2026-04-16 23:35:33 - VocabularyTester - INFO - 收藏加载成功: 0 个
+2026-04-16 23:35:33 - VocabularyTester - INFO - 自动选择 TTS 引擎: espeak
+2026-04-16 23:35:33 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-16 23:35:33 - VocabularyTester - INFO - 学习进度加载成功: 3 会话, 7 单词
+2026-04-16 23:35:33 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 23:35:33 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:35:33 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 23:35:33 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 23:35:34 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 23:35:34 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:35:38 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c01d0@dx19d96ef002fb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:35:38 - VocabularyTester - WARNING - AI 生成失败: printer - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000c01d0@dx19d96ef002fb894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:35:39 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000b02d3@dx19d96ef037db8f2812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 23:35:39 - VocabularyTester - WARNING - AI 生成失败: teacher - HTTP 500: {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000b02d3@dx19d96ef037db8f2812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 23:35:49 - VocabularyTester - INFO - 预加载完成: 10/10 个例句
+2026-04-16 23:43:56 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b1f87@dx19d96f698a6b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:43:56 - VocabularyTester - WARNING - AI 生成失败: grape - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b1f87@dx19d96f698a6b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:43:56 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b1f88@dx19d96f69934b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:43:56 - VocabularyTester - WARNING - AI 生成失败: train - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b1f88@dx19d96f69934b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:43:56 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b0f59@dx19d96f699afb8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:43:56 - VocabularyTester - WARNING - AI 生成失败: important - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b0f59@dx19d96f699afb8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:43:57 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b1f89@dx19d96f69ab8b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:43:57 - VocabularyTester - WARNING - AI 生成失败: rice - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000b1f89@dx19d96f69ab8b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-16 23:43:59 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-16 23:44:00 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-16 23:44:01 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 23:44:02 - VocabularyTester - INFO - 学习会话结束: 20 单词, 0.0% 准确率
+2026-04-16 23:44:02 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-16 23:52:57 - VocabularyTester - INFO - 配置加载成功: 31 项
+2026-04-16 23:52:57 - VocabularyTester - INFO - 收藏加载成功: 0 个
+2026-04-16 23:52:57 - VocabularyTester - INFO - 自动选择 TTS 引擎: espeak
+2026-04-16 23:52:57 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-16 23:52:57 - VocabularyTester - INFO - 学习进度加载成功: 4 会话, 7 单词
+2026-04-16 23:52:57 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-16 23:52:57 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:52:57 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-16 23:52:57 - VocabularyTester - INFO - 应用程序启动
+2026-04-16 23:53:01 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:53:03 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:53:05 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-16 23:53:05 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-16 23:53:20 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000b29d1@dx19d96ff3428b8f3812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 23:53:22 - VocabularyTester - INFO - 预加载完成: 9/10 个例句
+2026-04-16 23:53:28 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000b29f7@dx19d96ff50b6b8f3812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 23:53:28 - VocabularyTester - WARNING - AI 生成失败: tree - HTTP 500: {"error":{"message":"AppIdConcurrencyOverFlowError (sid: cha000b29f7@dx19d96ff50b6b8f3812)","type":"api_error","param":null,"code":"11203"}}
+2026-04-16 23:54:06 - VocabularyTester - INFO - 学习会话结束: 20 单词, 100.0% 准确率
+2026-04-16 23:54:09 - VocabularyTester - INFO - 导航到页面: home
+2026-04-16 23:54:13 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-16 23:54:16 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-16 23:54:17 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-18 19:54:31 - VocabularyTester - INFO - 配置加载成功: 31 项
+2026-04-18 19:54:31 - VocabularyTester - INFO - 收藏加载成功: 0 个
+2026-04-18 19:54:31 - VocabularyTester - INFO - 自动选择 TTS 引擎: espeak
+2026-04-18 19:54:31 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-18 19:54:31 - VocabularyTester - INFO - 学习进度加载成功: 5 会话, 8 单词
+2026-04-18 19:54:31 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-18 19:54:31 - VocabularyTester - INFO - 导航到页面: home
+2026-04-18 19:54:31 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-18 19:54:31 - VocabularyTester - INFO - 应用程序启动
+2026-04-18 19:54:34 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-18 19:54:34 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-18 19:54:35 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-18 19:54:37 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-18 20:01:05 - VocabularyTester - INFO - 导航到页面: home
+2026-04-18 20:01:06 - VocabularyTester - INFO - 词库加载成功: 81 个单词
+2026-04-18 20:01:06 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-18 20:01:10 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000ca0f2@dx19da0775c90b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-18 20:01:10 - VocabularyTester - WARNING - AI 生成失败: teacher - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000ca0f2@dx19da0775c90b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-18 20:01:10 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000ba1fe@dx19da0775d33b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-18 20:01:10 - VocabularyTester - WARNING - AI 生成失败: mango - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000ba1fe@dx19da0775d33b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-18 20:01:10 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000ba20c@dx19da0775e47b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-18 20:01:10 - VocabularyTester - WARNING - AI 生成失败: ship - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000ba20c@dx19da0775e47b8f2812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-18 20:01:15 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000ca146@dx19da077706db894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-18 20:01:15 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bb3c1@dx19da0777086b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-18 20:01:15 - VocabularyTester - WARNING - AI 生成失败: ship - HTTP 500: {"error":{"message":"AppIdQpsOverFlowError (sid: cha000bb3c1@dx19da0777086b8f3812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-18 20:01:15 - VocabularyTester - ERROR - AI API HTTP 错误: 500 - {"error":{"message":"AppIdQpsOverFlowError (sid: cha000ca149@dx19da07770f4b894812)","type":"api_error","param":null,"code":"11202"}}
+2026-04-18 20:01:17 - VocabularyTester - INFO - 预加载完成: 8/10 个例句
+2026-04-18 20:01:27 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-18 20:01:28 - VocabularyTester - INFO - 学习会话结束: 20 单词, 0.0% 准确率
+2026-04-18 20:01:28 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-18 20:04:27 - VocabularyTester - INFO - 配置加载成功: 31 项
+2026-04-18 20:04:27 - VocabularyTester - INFO - 收藏加载成功: 0 个
+2026-04-18 20:04:27 - VocabularyTester - INFO - 自动选择 TTS 引擎: espeak
+2026-04-18 20:04:27 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-18 20:04:27 - VocabularyTester - INFO - 学习进度加载成功: 6 会话, 8 单词
+2026-04-18 20:04:27 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-18 20:04:28 - VocabularyTester - INFO - 导航到页面: home
+2026-04-18 20:04:28 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-18 20:04:28 - VocabularyTester - INFO - 应用程序启动
+2026-04-18 20:04:31 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-18 20:04:41 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-18 20:04:42 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-18 20:04:55 - VocabularyTester - INFO - 词库加载成功: 51 个单词
+2026-04-18 20:05:09 - VocabularyTester - INFO - 预加载完成: 10/10 个例句
+2026-04-18 20:06:08 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-18 20:06:12 - VocabularyTester - INFO - 导航到页面: home
+2026-04-18 20:06:13 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-18 20:06:20 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-18 20:06:27 - VocabularyTester - INFO - AI 已启用: 讯飞星火 Lite, 模型: lite
+2026-04-18 20:06:28 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-18 20:23:26 - VocabularyTester - INFO - 学习会话结束: 3 单词, 87.5% 准确率
+2026-04-18 20:33:42 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-18 20:33:43 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-18 20:33:43 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-18 20:33:43 - VocabularyTester - INFO - 导航到页面: statistics
+2026-04-18 20:33:46 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-18 20:33:48 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-18 20:33:49 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-18 20:33:50 - VocabularyTester - INFO - 导航到页面: favorites
+2026-04-18 20:33:50 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-18 20:33:56 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-18 20:33:57 - VocabularyTester - INFO - 学习会话结束: 20 单词, 80.0% 准确率
+2026-04-18 20:33:57 - VocabularyTester - INFO - 应用程序正常退出
+2026-04-30 00:24:05 - VocabularyTester - INFO - 配置加载成功: 31 项
+2026-04-30 00:24:05 - VocabularyTester - INFO - 收藏加载成功: 0 个
+2026-04-30 00:24:05 - VocabularyTester - INFO - 自动选择 TTS 引擎: espeak
+2026-04-30 00:24:05 - VocabularyTester - INFO - TTS 引擎初始化: espeak
+2026-04-30 00:24:05 - VocabularyTester - INFO - 学习进度加载成功: 8 会话, 32 单词
+2026-04-30 00:24:05 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 00:24:05 - VocabularyTester - INFO - 应用程序初始化完成
+2026-04-30 00:24:05 - VocabularyTester - INFO - 应用程序启动
+2026-04-30 00:24:08 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-30 00:24:15 - VocabularyTester - INFO - 导航到页面: home
+2026-04-30 00:24:16 - VocabularyTester - INFO - 词库加载成功: 51 个单词
+2026-04-30 00:24:16 - VocabularyTester - INFO - 导航到页面: learning
+2026-04-30 00:24:29 - VocabularyTester - INFO - 导航到页面: settings
+2026-04-30 00:24:41 - VocabularyTester - INFO - 应用程序正在关闭
+2026-04-30 00:24:42 - VocabularyTester - INFO - 学习会话结束: 20 单词, 0.0% 准确率
+2026-04-30 00:24:42 - VocabularyTester - INFO - 应用程序正常退出

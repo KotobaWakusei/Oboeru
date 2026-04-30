@@ -1,0 +1,10 @@
+import tkinter as tk
+print("导入Tkinter成功")
+root = tk.Tk()
+root.title("测试")
+root.geometry("300x200")
+label = tk.Label(root, text="Tkinter测试成功！")
+label.pack(pady=50)
+print("创建窗口成功")
+root.mainloop()
+print("程序退出")

@@ -1,0 +1,1513 @@
+[
+    {
+        "label": "OrderedDict",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "OrderedDict",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "defaultdict",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Iterator",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Iterator",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "TYPE_CHECKING",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "TYPE_CHECKING",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "TYPE_CHECKING",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "TYPE_CHECKING",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Type",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "TYPE_CHECKING",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "wraps",
+        "importPath": "functools",
+        "description": "functools",
+        "isExtraImport": true,
+        "detail": "functools",
+        "documentation": {}
+    },
+    {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "contextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.request",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.request",
+        "description": "urllib.request",
+        "detail": "urllib.request",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.error",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.error",
+        "description": "urllib.error",
+        "detail": "urllib.error",
+        "documentation": {}
+    },
+    {
+        "label": "ThreadPoolExecutor",
+        "importPath": "concurrent.futures",
+        "description": "concurrent.futures",
+        "isExtraImport": true,
+        "detail": "concurrent.futures",
+        "documentation": {}
+    },
+    {
+        "label": "ThreadPoolExecutor",
+        "importPath": "concurrent.futures",
+        "description": "concurrent.futures",
+        "isExtraImport": true,
+        "detail": "concurrent.futures",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "field",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "asdict",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "asdict",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "tkinter",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "filedialog",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "messagebox",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "messagebox",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "filedialog",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "simpledialog",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "filedialog",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "messagebox",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "difflib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "difflib",
+        "description": "difflib",
+        "detail": "difflib",
+        "documentation": {}
+    },
+    {
+        "label": "MainController",
+        "importPath": "ui.controllers.main_controller",
+        "description": "ui.controllers.main_controller",
+        "isExtraImport": true,
+        "detail": "ui.controllers.main_controller",
+        "documentation": {}
+    },
+    {
+        "label": "ConfigManager",
+        "importPath": "modules.config_manager",
+        "description": "modules.config_manager",
+        "isExtraImport": true,
+        "detail": "modules.config_manager",
+        "documentation": {}
+    },
+    {
+        "label": "VocabularyManager",
+        "importPath": "modules.vocabulary_manager",
+        "description": "modules.vocabulary_manager",
+        "isExtraImport": true,
+        "detail": "modules.vocabulary_manager",
+        "documentation": {}
+    },
+    {
+        "label": "FavoritesManager",
+        "importPath": "modules.favorites_manager",
+        "description": "modules.favorites_manager",
+        "isExtraImport": true,
+        "detail": "modules.favorites_manager",
+        "documentation": {}
+    },
+    {
+        "label": "AIManager",
+        "importPath": "modules.ai_manager",
+        "description": "modules.ai_manager",
+        "isExtraImport": true,
+        "detail": "modules.ai_manager",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "importPath": "modules.logger",
+        "description": "modules.logger",
+        "isExtraImport": true,
+        "detail": "modules.logger",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "importPath": "modules.logger",
+        "description": "modules.logger",
+        "isExtraImport": true,
+        "detail": "modules.logger",
+        "documentation": {}
+    },
+    {
+        "label": "ABC",
+        "importPath": "abc",
+        "description": "abc",
+        "isExtraImport": true,
+        "detail": "abc",
+        "documentation": {}
+    },
+    {
+        "label": "abstractmethod",
+        "importPath": "abc",
+        "description": "abc",
+        "isExtraImport": true,
+        "detail": "abc",
+        "documentation": {}
+    },
+    {
+        "label": "BasePage",
+        "importPath": "ui.core.base_page",
+        "description": "ui.core.base_page",
+        "isExtraImport": true,
+        "detail": "ui.core.base_page",
+        "documentation": {}
+    },
+    {
+        "label": "BasePage",
+        "importPath": "ui.core.base_page",
+        "description": "ui.core.base_page",
+        "isExtraImport": true,
+        "detail": "ui.core.base_page",
+        "documentation": {}
+    },
+    {
+        "label": "BasePage",
+        "importPath": "ui.core.base_page",
+        "description": "ui.core.base_page",
+        "isExtraImport": true,
+        "detail": "ui.core.base_page",
+        "documentation": {}
+    },
+    {
+        "label": "BasePage",
+        "importPath": "ui.core.base_page",
+        "description": "ui.core.base_page",
+        "isExtraImport": true,
+        "detail": "ui.core.base_page",
+        "documentation": {}
+    },
+    {
+        "label": "BasePage",
+        "importPath": "ui.core.base_page",
+        "description": "ui.core.base_page",
+        "isExtraImport": true,
+        "detail": "ui.core.base_page",
+        "documentation": {}
+    },
+    {
+        "label": "Application",
+        "importPath": "ui.core.application",
+        "description": "ui.core.application",
+        "isExtraImport": true,
+        "detail": "ui.core.application",
+        "documentation": {}
+    },
+    {
+        "label": "LRUCache",
+        "kind": 6,
+        "importPath": "modules.utils.cache_utils",
+        "description": "modules.utils.cache_utils",
+        "peekOfCode": "class LRUCache:\n    \"\"\"\n    LRU (Least Recently Used) 缓存实现\n    自动淘汰最久未使用的缓存项，防止内存无限增长。\n    \"\"\"\n    def __init__(self, max_size: int = 100):\n        \"\"\"\n        初始化 LRU 缓存\n        Args:\n            max_size: 最大缓存数量",
+        "detail": "modules.utils.cache_utils",
+        "documentation": {}
+    },
+    {
+        "label": "TTLCache",
+        "kind": 6,
+        "importPath": "modules.utils.cache_utils",
+        "description": "modules.utils.cache_utils",
+        "peekOfCode": "class TTLCache(LRUCache):\n    \"\"\"\n    带 TTL (Time To Live) 的 LRU 缓存\n    缓存项在指定时间后自动过期。\n    \"\"\"\n    def __init__(self, max_size: int = 100, ttl_seconds: int = 3600):\n        super().__init__(max_size)\n        self._ttl = ttl_seconds\n    def get(self, key: Any) -> Optional[Any]:\n        import time",
+        "detail": "modules.utils.cache_utils",
+        "documentation": {}
+    },
+    {
+        "label": "lru_cache_method",
+        "kind": 2,
+        "importPath": "modules.utils.cache_utils",
+        "description": "modules.utils.cache_utils",
+        "peekOfCode": "def lru_cache_method(max_size: int = 100):\n    \"\"\"\n    方法级 LRU 缓存装饰器\n    为实例方法提供缓存功能，缓存在实例上。\n    Args:\n        max_size: 最大缓存数量\n    Usage:\n        class MyClass:\n            @lru_cache_method(max_size=50)\n            def expensive_computation(self, key):",
+        "detail": "modules.utils.cache_utils",
+        "documentation": {}
+    },
+    {
+        "label": "Constants",
+        "kind": 6,
+        "importPath": "modules.utils.constants",
+        "description": "modules.utils.constants",
+        "peekOfCode": "class Constants:\n    \"\"\"应用常量\"\"\"\n    # 自动保存间隔（毫秒）\n    AUTO_SAVE_INTERVAL = 30000  # 30秒\n    # 缓存配置\n    SIMILAR_WORDS_CACHE_SIZE = 100\n    AI_SENTENCE_CACHE_SIZE = 200\n    AI_CACHE_TTL_SECONDS = 3600  # 1小时\n    # 备份配置\n    MAX_BACKUPS = 5",
+        "detail": "modules.utils.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DirtyTracker",
+        "kind": 6,
+        "importPath": "modules.utils.dirty_tracker",
+        "description": "modules.utils.dirty_tracker",
+        "peekOfCode": "class DirtyTracker:\n    \"\"\"\n    脏数据追踪器\n    追踪数据是否被修改，支持自动保存。\n    \"\"\"\n    def __init__(\n        self,\n        save_callback: Callable[[], bool],\n        auto_save_interval: int = 30000\n    ):",
+        "detail": "modules.utils.dirty_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "safe_save_file",
+        "kind": 2,
+        "importPath": "modules.utils.file_utils",
+        "description": "modules.utils.file_utils",
+        "peekOfCode": "def safe_save_file(\n    file_path: str,\n    content: str,\n    encoding: str = 'utf-8',\n    create_backup: bool = False,\n    backup_dir: Optional[str] = None\n) -> Tuple[bool, str]:\n    \"\"\"\n    安全保存文件（原子写入）\n    使用临时文件 + 重命名策略，确保写入操作的原子性。",
+        "detail": "modules.utils.file_utils",
+        "documentation": {}
+    },
+    {
+        "label": "atomic_write",
+        "kind": 2,
+        "importPath": "modules.utils.file_utils",
+        "description": "modules.utils.file_utils",
+        "peekOfCode": "def atomic_write(\n    file_path: str,\n    write_func: Callable[[str], None],\n    encoding: str = 'utf-8'\n) -> Tuple[bool, str]:\n    \"\"\"\n    原子写入（使用回调函数）\n    Args:\n        file_path: 目标文件路径\n        write_func: 写入函数，接收文件路径作为参数",
+        "detail": "modules.utils.file_utils",
+        "documentation": {}
+    },
+    {
+        "label": "temp_file_context",
+        "kind": 2,
+        "importPath": "modules.utils.file_utils",
+        "description": "modules.utils.file_utils",
+        "peekOfCode": "def temp_file_context(suffix: str = '.tmp', delete: bool = True):\n    \"\"\"\n    临时文件上下文管理器\n    确保临时文件在使用后被清理。\n    \"\"\"\n    fd, path = tempfile.mkstemp(suffix=suffix)\n    try:\n        os.close(fd)\n        yield path\n    finally:",
+        "detail": "modules.utils.file_utils",
+        "documentation": {}
+    },
+    {
+        "label": "ensure_directory",
+        "kind": 2,
+        "importPath": "modules.utils.file_utils",
+        "description": "modules.utils.file_utils",
+        "peekOfCode": "def ensure_directory(file_path: str) -> bool:\n    \"\"\"确保文件所在目录存在\"\"\"\n    try:\n        dir_path = os.path.dirname(file_path)\n        if dir_path and not os.path.exists(dir_path):\n            os.makedirs(dir_path)\n        return True\n    except Exception:\n        return False",
+        "detail": "modules.utils.file_utils",
+        "documentation": {}
+    },
+    {
+        "label": "AIManager",
+        "kind": 6,
+        "importPath": "modules.ai_manager",
+        "description": "modules.ai_manager",
+        "peekOfCode": "class AIManager:\n    \"\"\"\n    AI 例句生成管理器\n    支持：\n    - 多种 OpenAI 兼容 API（讯飞星火、OpenAI、DeepSeek 等）\n    - 自定义 API 端点\n    - 多语言例句生成\n    - 例句难度等级\n    - 预加载队列\n    - 请求版本控制（防竞态）",
+        "detail": "modules.ai_manager",
+        "documentation": {}
+    },
+    {
+        "label": "detect_language",
+        "kind": 2,
+        "importPath": "modules.ai_manager",
+        "description": "modules.ai_manager",
+        "peekOfCode": "def detect_language(word: str, meaning: str = \"\") -> str:\n    \"\"\"\n    检测单词语言\n    Args:\n        word: 单词文本\n        meaning: 中文意思\n    Returns:\n        str: 语言代码 (en, zh, ja, ko, fr, de, es)\n    \"\"\"\n    if not word:",
+        "detail": "modules.ai_manager",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CONFIGS",
+        "kind": 5,
+        "importPath": "modules.ai_manager",
+        "description": "modules.ai_manager",
+        "peekOfCode": "LANGUAGE_CONFIGS = {\n    \"en\": {\n        \"name\": \"英语\",\n        \"prompt_template\": \"\"\"You are an English teaching assistant. Generate an example sentence for the English word \"{word}\" (meaning: {meaning}).\nCRITICAL REQUIREMENTS:\n1. The example sentence MUST be written in ENGLISH (not Chinese or other languages)\n2. The sentence MUST contain the exact word \"{word}\" - this is mandatory\n3. Difficulty level: {difficulty_name} ({vocab_level})\n4. Sentence characteristics: {description}\n5. Maximum length: {max_words} words",
+        "detail": "modules.ai_manager",
+        "documentation": {}
+    },
+    {
+        "label": "BaseWord",
+        "kind": 6,
+        "importPath": "modules.base_word",
+        "description": "modules.base_word",
+        "peekOfCode": "class BaseWord:\n    \"\"\"\n    单词基类\n    提供单词的基本属性和序列化方法。\n    \"\"\"\n    word: str\n    pos: str  # 词性\n    meaning: str\n    distractors: List[str] = field(default_factory=list)\n    def to_dict(self) -> Dict[str, Any]:",
+        "detail": "modules.base_word",
+        "documentation": {}
+    },
+    {
+        "label": "VocabularyWord",
+        "kind": 6,
+        "importPath": "modules.base_word",
+        "description": "modules.base_word",
+        "peekOfCode": "class VocabularyWord(BaseWord):\n    \"\"\"词库单词类（用于学习）\"\"\"\n    pass\n@dataclass\nclass FavoriteWord(BaseWord):\n    \"\"\"\n    收藏单词类\n    扩展基础单词，添加收藏相关属性。\n    \"\"\"\n    fav_time: str = \"\"",
+        "detail": "modules.base_word",
+        "documentation": {}
+    },
+    {
+        "label": "FavoriteWord",
+        "kind": 6,
+        "importPath": "modules.base_word",
+        "description": "modules.base_word",
+        "peekOfCode": "class FavoriteWord(BaseWord):\n    \"\"\"\n    收藏单词类\n    扩展基础单词，添加收藏相关属性。\n    \"\"\"\n    fav_time: str = \"\"\n    learn_count: int = 0\n    mastered: bool = False\n    def __post_init__(self):\n        \"\"\"初始化后处理\"\"\"",
+        "detail": "modules.base_word",
+        "documentation": {}
+    },
+    {
+        "label": "ConfigManager",
+        "kind": 6,
+        "importPath": "modules.config_manager",
+        "description": "modules.config_manager",
+        "peekOfCode": "class ConfigManager:\n    \"\"\"配置管理器\"\"\"\n    def __init__(self, config_file: str = Constants.DEFAULT_CONFIG_FILE):\n        self._config_file = config_file\n        self._config: Dict[str, Any] = {}\n        # 使用脏数据追踪器\n        self._dirty_tracker = DirtyTracker(\n            save_callback=self._do_save,\n            auto_save_interval=Constants.AUTO_SAVE_INTERVAL\n        )",
+        "detail": "modules.config_manager",
+        "documentation": {}
+    },
+    {
+        "label": "FavoritesManager",
+        "kind": 6,
+        "importPath": "modules.favorites_manager",
+        "description": "modules.favorites_manager",
+        "peekOfCode": "class FavoritesManager:\n    \"\"\"\n    收藏管理器\n    使用 OrderedDict 同时支持快速查找和有序存储，\n    避免重复存储同一数据。\n    \"\"\"\n    def __init__(\n        self,\n        favorites_file: str = Constants.DEFAULT_FAVORITES_FILE,\n        backup_dir: str = Constants.BACKUP_DIR,",
+        "detail": "modules.favorites_manager",
+        "documentation": {}
+    },
+    {
+        "label": "Logger",
+        "kind": 6,
+        "importPath": "modules.logger",
+        "description": "modules.logger",
+        "peekOfCode": "class Logger:\n    \"\"\"日志管理器\"\"\"\n    _instance = None\n    _initialized = False\n    def __new__(cls):\n        if cls._instance is None:\n            cls._instance = super().__new__(cls)\n        return cls._instance\n    def __init__(self, log_file: str = \"logs/app.log\", log_level: str = \"INFO\"):\n        \"\"\"",
+        "detail": "modules.logger",
+        "documentation": {}
+    },
+    {
+        "label": "get_logger",
+        "kind": 2,
+        "importPath": "modules.logger",
+        "description": "modules.logger",
+        "peekOfCode": "def get_logger() -> Logger:\n    \"\"\"获取全局日志实例\"\"\"\n    return logger\nif __name__ == \"__main__\":\n    print(\"日志管理器测试\")\n    log = Logger(\"test.log\")\n    log.debug(\"这是一条调试信息\")\n    log.info(\"这是一条一般信息\")\n    log.warning(\"这是一条警告信息\")\n    log.error(\"这是一条错误信息\")",
+        "detail": "modules.logger",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "modules.logger",
+        "description": "modules.logger",
+        "peekOfCode": "logger = Logger()\ndef get_logger() -> Logger:\n    \"\"\"获取全局日志实例\"\"\"\n    return logger\nif __name__ == \"__main__\":\n    print(\"日志管理器测试\")\n    log = Logger(\"test.log\")\n    log.debug(\"这是一条调试信息\")\n    log.info(\"这是一条一般信息\")\n    log.warning(\"这是一条警告信息\")",
+        "detail": "modules.logger",
+        "documentation": {}
+    },
+    {
+        "label": "StudySession",
+        "kind": 6,
+        "importPath": "modules.progress_manager",
+        "description": "modules.progress_manager",
+        "peekOfCode": "class StudySession:\n    \"\"\"学习会话\"\"\"\n    date: str\n    words_studied: int\n    words_mastered: int\n    words_reviewed: int\n    study_duration: int  # 秒\n    accuracy_rate: float\n    def to_dict(self) -> Dict[str, Any]:\n        return asdict(self)",
+        "detail": "modules.progress_manager",
+        "documentation": {}
+    },
+    {
+        "label": "WordProgress",
+        "kind": 6,
+        "importPath": "modules.progress_manager",
+        "description": "modules.progress_manager",
+        "peekOfCode": "class WordProgress:\n    \"\"\"单词学习进度\"\"\"\n    word: str\n    total_study_count: int      # 总学习次数（包括测试）\n    correct_count: int          # 正确次数\n    wrong_count: int             # 错误次数\n    last_study_date: str        # 最后学习日期\n    mastery_level: int           # 掌握等级 0-5\n    next_review_date: str       # 下次复习日期\n    review_count: int = 0       # 有效复习次数（>=80%准确率）",
+        "detail": "modules.progress_manager",
+        "documentation": {}
+    },
+    {
+        "label": "ProgressManager",
+        "kind": 6,
+        "importPath": "modules.progress_manager",
+        "description": "modules.progress_manager",
+        "peekOfCode": "class ProgressManager:\n    \"\"\"学习进度管理器\"\"\"\n    def __init__(self, progress_file: str = Constants.DEFAULT_PROGRESS_FILE):\n        self._progress_file = progress_file\n        self._study_sessions: List[StudySession] = []\n        self._word_progress: Dict[str, WordProgress] = {}\n        self._current_session: Optional[StudySession] = None\n        self._session_start_time: Optional[float] = None\n        self._session_correct_count = 0\n        self._session_wrong_count = 0",
+        "detail": "modules.progress_manager",
+        "documentation": {}
+    },
+    {
+        "label": "TTSManager",
+        "kind": 6,
+        "importPath": "modules.tts_manager",
+        "description": "modules.tts_manager",
+        "peekOfCode": "class TTSManager:\n    \"\"\"文本转语音管理器 - 支持多种高质量引擎\"\"\"\n    # 引擎优先级（从高到低）\n    ENGINE_PRIORITY = [\"edge_tts\", \"gtts\", \"espeak\"]\n    def __init__(self, engine: str = \"auto\"):\n        \"\"\"\n        初始化TTS管理器\n        Args:\n            engine: TTS引擎，支持 \"auto\", \"edge_tts\", \"gtts\", \"espeak\"\n        \"\"\"",
+        "detail": "modules.tts_manager",
+        "documentation": {}
+    },
+    {
+        "label": "StyleManager",
+        "kind": 6,
+        "importPath": "modules.ui_components",
+        "description": "modules.ui_components",
+        "peekOfCode": "class StyleManager:\n    \"\"\"样式管理器\"\"\"\n    def __init__(self, theme: str = \"default\", font_size: int = 14):\n        self.theme = theme\n        self.font_size = font_size\n        self.style = ttk.Style()\n        self.theme_changed_callback = None\n    def set_theme(self, theme: str) -> None:\n        \"\"\"设置主题\"\"\"\n        self.theme = theme",
+        "detail": "modules.ui_components",
+        "documentation": {}
+    },
+    {
+        "label": "Dialogs",
+        "kind": 6,
+        "importPath": "modules.ui_components",
+        "description": "modules.ui_components",
+        "peekOfCode": "class Dialogs:\n    \"\"\"对话框集合\"\"\"\n    @staticmethod\n    def show_info(parent: tk.Tk, title: str, message: str) -> None:\n        \"\"\"显示信息对话框\"\"\"\n        messagebox.showinfo(title, message, parent=parent)\n    @staticmethod\n    def show_warning(parent: tk.Tk, title: str, message: str) -> None:\n        \"\"\"显示警告对话框\"\"\"\n        messagebox.showwarning(title, message, parent=parent)",
+        "detail": "modules.ui_components",
+        "documentation": {}
+    },
+    {
+        "label": "RecitationCompleteDialog",
+        "kind": 6,
+        "importPath": "modules.ui_components",
+        "description": "modules.ui_components",
+        "peekOfCode": "class RecitationCompleteDialog:\n    \"\"\"背诵完成选择对话框\"\"\"\n    def __init__(self, parent: tk.Tk, word_count: int,\n                on_review: Callable, on_skip: Callable):\n        self.parent = parent\n        self.word_count = word_count\n        self.on_review = on_review\n        self.on_skip = on_skip\n        self.dialog = None\n        self.show()",
+        "detail": "modules.ui_components",
+        "documentation": {}
+    },
+    {
+        "label": "TestCompleteDialog",
+        "kind": 6,
+        "importPath": "modules.ui_components",
+        "description": "modules.ui_components",
+        "peekOfCode": "class TestCompleteDialog:\n    \"\"\"测试完成选择对话框\"\"\"\n    def __init__(self, parent: tk.Tk, remaining_count: int,\n                on_continue: Callable, on_finish: Callable):\n        self.parent = parent\n        self.remaining_count = remaining_count\n        self.on_continue = on_continue\n        self.on_finish = on_finish\n        self.dialog = None\n        self.show()",
+        "detail": "modules.ui_components",
+        "documentation": {}
+    },
+    {
+        "label": "AllMasteredDialog",
+        "kind": 6,
+        "importPath": "modules.ui_components",
+        "description": "modules.ui_components",
+        "peekOfCode": "class AllMasteredDialog:\n    \"\"\"全部掌握庆祝对话框\"\"\"\n    def __init__(self, parent: tk.Tk, on_close: Callable):\n        self.parent = parent\n        self.on_close = on_close\n        self.dialog = None\n        self.show()\n    def show(self) -> None:\n        \"\"\"显示对话框\"\"\"\n        self.dialog = tk.Toplevel(self.parent)",
+        "detail": "modules.ui_components",
+        "documentation": {}
+    },
+    {
+        "label": "FavoritesManagerDialog",
+        "kind": 6,
+        "importPath": "modules.ui_components",
+        "description": "modules.ui_components",
+        "peekOfCode": "class FavoritesManagerDialog:\n    \"\"\"收藏词库管理对话框\"\"\"\n    def __init__(self, parent: tk.Tk, favorites_manager, \n                on_learn: Callable, on_delete: Callable):\n        self.parent = parent\n        self.favorites_manager = favorites_manager\n        self.on_learn = on_learn\n        self.on_delete = on_delete\n        self.dialog = None\n        self.show()",
+        "detail": "modules.ui_components",
+        "documentation": {}
+    },
+    {
+        "label": "FileDialogs",
+        "kind": 6,
+        "importPath": "modules.ui_components",
+        "description": "modules.ui_components",
+        "peekOfCode": "class FileDialogs:\n    \"\"\"文件对话框集合\"\"\"\n    @staticmethod\n    def ask_open_file(parent: tk.Tk, title: str = \"选择文件\",\n                     filetypes: List[tuple] = None) -> Optional[str]:\n        \"\"\"打开文件对话框\"\"\"\n        if filetypes is None:\n            filetypes = [(\"文本文件\", \"*.txt\"), (\"所有文件\", \"*.*\")]\n        file_path = filedialog.askopenfilename(\n            title=title,",
+        "detail": "modules.ui_components",
+        "documentation": {}
+    },
+    {
+        "label": "VocabularyManager",
+        "kind": 6,
+        "importPath": "modules.vocabulary_manager",
+        "description": "modules.vocabulary_manager",
+        "peekOfCode": "class VocabularyManager:\n    \"\"\"\n    词库管理器\n    使用 LRU 缓存优化相似词查找性能。\n    \"\"\"\n    def __init__(self):\n        self._vocabulary: List[VocabularyWord] = []\n        self._current_index = 0\n        # 使用 LRU 缓存替代无限制字典\n        self._similar_words_cache = LRUCache(",
+        "detail": "modules.vocabulary_manager",
+        "documentation": {}
+    },
+    {
+        "label": "root",
+        "kind": 5,
+        "importPath": "tests.test_tkinter",
+        "description": "tests.test_tkinter",
+        "peekOfCode": "root = tk.Tk()\nroot.title(\"测试\")\nroot.geometry(\"300x200\")\nlabel = tk.Label(root, text=\"Tkinter测试成功！\")\nlabel.pack(pady=50)\nprint(\"创建窗口成功\")\nroot.mainloop()\nprint(\"程序退出\")",
+        "detail": "tests.test_tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "label",
+        "kind": 5,
+        "importPath": "tests.test_tkinter",
+        "description": "tests.test_tkinter",
+        "peekOfCode": "label = tk.Label(root, text=\"Tkinter测试成功！\")\nlabel.pack(pady=50)\nprint(\"创建窗口成功\")\nroot.mainloop()\nprint(\"程序退出\")",
+        "detail": "tests.test_tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "NavBar",
+        "kind": 6,
+        "importPath": "ui.components.navbar",
+        "description": "ui.components.navbar",
+        "peekOfCode": "class NavBar(tk.Frame):\n    \"\"\"顶部导航栏组件\"\"\"\n    def __init__(\n        self,\n        parent: tk.Widget,\n        style_manager: \"StyleManager\",\n        on_navigate: Callable[[str], None],\n        items: List[Dict[str, str]],\n        **kwargs\n    ):",
+        "detail": "ui.components.navbar",
+        "documentation": {}
+    },
+    {
+        "label": "ProgressIndicator",
+        "kind": 6,
+        "importPath": "ui.components.progress_indicator",
+        "description": "ui.components.progress_indicator",
+        "peekOfCode": "class ProgressIndicator(tk.Frame):\n    \"\"\"进度指示器组件\"\"\"\n    def __init__(\n        self,\n        parent: tk.Widget,\n        style_manager: \"StyleManager\",\n        **kwargs\n    ):\n        super().__init__(parent, **kwargs)\n        self._style_manager = style_manager",
+        "detail": "ui.components.progress_indicator",
+        "documentation": {}
+    },
+    {
+        "label": "WordCard",
+        "kind": 6,
+        "importPath": "ui.components.word_card",
+        "description": "ui.components.word_card",
+        "peekOfCode": "class WordCard(tk.Frame):\n    \"\"\"单词显示卡片组件\"\"\"\n    def __init__(\n        self,\n        parent: tk.Widget,\n        style_manager: \"StyleManager\",\n        on_click: Optional[callable] = None,\n        **kwargs\n    ):\n        super().__init__(parent, **kwargs)",
+        "detail": "ui.components.word_card",
+        "documentation": {}
+    },
+    {
+        "label": "Application",
+        "kind": 6,
+        "importPath": "ui.core.application",
+        "description": "ui.core.application",
+        "peekOfCode": "class Application:\n    \"\"\"应用程序核心类\"\"\"\n    def __init__(self, root: Optional[tk.Tk] = None):\n        # 初始化根窗口\n        self._root = root or tk.Tk()\n        # 核心组件\n        self._config = ConfigManager()\n        self._style_manager = StyleManager(\n            self._config.get(\"theme\", \"dark\")\n        )",
+        "detail": "ui.core.application",
+        "documentation": {}
+    },
+    {
+        "label": "BasePage",
+        "kind": 6,
+        "importPath": "ui.core.base_page",
+        "description": "ui.core.base_page",
+        "peekOfCode": "class BasePage(ABC, tk.Frame):\n    \"\"\"页面基类，所有页面都需要继承此类\"\"\"\n    # 页面标识符\n    page_id: str = \"base\"\n    page_title: str = \"基础页面\"\n    page_icon: str = \"\"\n    def __init__(self, parent: tk.Widget, app: \"Application\"):\n        super().__init__(parent)\n        self._app = app\n        self._style_manager: \"StyleManager\" = app.style_manager",
+        "detail": "ui.core.base_page",
+        "documentation": {}
+    },
+    {
+        "label": "PageManager",
+        "kind": 6,
+        "importPath": "ui.core.page_manager",
+        "description": "ui.core.page_manager",
+        "peekOfCode": "class PageManager:\n    \"\"\"页面管理器，负责页面的注册、创建和切换\"\"\"\n    def __init__(self, app: \"Application\"):\n        self._app = app\n        self._pages: Dict[str, Type[\"BasePage\"]] = {}\n        self._instances: Dict[str, \"BasePage\"] = {}\n        self._navigation_history: deque = deque(maxlen=20)\n        self._current_page: Optional[\"BasePage\"] = None\n        self._page_kwargs: Dict[str, dict] = {}\n    def register(self, page_class: Type[\"BasePage\"]):",
+        "detail": "ui.core.page_manager",
+        "documentation": {}
+    },
+    {
+        "label": "StyleManager",
+        "kind": 6,
+        "importPath": "ui.core.style_manager",
+        "description": "ui.core.style_manager",
+        "peekOfCode": "class StyleManager:\n    \"\"\"现代化样式管理器，支持多主题切换\"\"\"\n    # 预定义主题\n    THEMES = {\n        \"default\": {\n            \"name\": \"默认主题\",\n            \"bg_primary\": \"#1a1a2e\",\n            \"bg_secondary\": \"#16213e\",\n            \"bg_card\": \"#0f3460\",\n            \"fg_primary\": \"#e8e8e8\",",
+        "detail": "ui.core.style_manager",
+        "documentation": {}
+    },
+    {
+        "label": "FavoritesPage",
+        "kind": 6,
+        "importPath": "ui.pages.favorites_page",
+        "description": "ui.pages.favorites_page",
+        "peekOfCode": "class FavoritesPage(BasePage):\n    \"\"\"收藏页面 - 支持滚动和自适应布局\"\"\"\n    page_id = \"favorites\"\n    page_title = \"收藏\"\n    page_icon = \"❤️\"\n    def create_widgets(self):\n        \"\"\"创建组件\"\"\"\n        colors = self.colors\n        # 配置页面网格\n        self._container.columnconfigure(0, weight=1)",
+        "detail": "ui.pages.favorites_page",
+        "documentation": {}
+    },
+    {
+        "label": "HomePage",
+        "kind": 6,
+        "importPath": "ui.pages.home_page",
+        "description": "ui.pages.home_page",
+        "peekOfCode": "class HomePage(BasePage):\n    \"\"\"首页 - 支持窗口自适应和滚动\"\"\"\n    page_id = \"home\"\n    page_title = \"首页\"\n    page_icon = \"🏠\"\n    def create_widgets(self):\n        \"\"\"创建组件\"\"\"\n        colors = self.colors\n        # 配置页面网格\n        self._container.columnconfigure(0, weight=1)",
+        "detail": "ui.pages.home_page",
+        "documentation": {}
+    },
+    {
+        "label": "LearningPage",
+        "kind": 6,
+        "importPath": "ui.pages.learning_page",
+        "description": "ui.pages.learning_page",
+        "peekOfCode": "class LearningPage(BasePage):\n    \"\"\"学习页面 - 支持窗口自适应\"\"\"\n    page_id = \"learning\"\n    page_title = \"学习\"\n    page_icon = \"📚\"\n    # 响应式断点配置\n    BREAKPOINTS = {\n        \"xs\": 400,    # 超小屏（手机）\n        \"sm\": 568,    # 小屏（小平板）\n        \"md\": 768,   # 中等（平板）",
+        "detail": "ui.pages.learning_page",
+        "documentation": {}
+    },
+    {
+        "label": "SettingsPage",
+        "kind": 6,
+        "importPath": "ui.pages.settings_page",
+        "description": "ui.pages.settings_page",
+        "peekOfCode": "class SettingsPage(BasePage):\n    \"\"\"设置页面 - 支持滚动\"\"\"\n    page_id = \"settings\"\n    page_title = \"设置\"\n    page_icon = \"⚙️\"\n    def create_widgets(self):\n        \"\"\"创建组件\"\"\"\n        colors = self.colors\n        # 创建滚动区域\n        self._create_scrollable_area()",
+        "detail": "ui.pages.settings_page",
+        "documentation": {}
+    },
+    {
+        "label": "StatisticsPage",
+        "kind": 6,
+        "importPath": "ui.pages.statistics_page",
+        "description": "ui.pages.statistics_page",
+        "peekOfCode": "class StatisticsPage(BasePage):\n    \"\"\"统计页面 - 支持滚动和自适应布局\"\"\"\n    page_id = \"statistics\"\n    page_title = \"统计\"\n    page_icon = \"📊\"\n    def create_widgets(self):\n        \"\"\"创建组件\"\"\"\n        colors = self.colors\n        # 配置页面网格\n        self._container.columnconfigure(0, weight=1)",
+        "detail": "ui.pages.statistics_page",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def main():\n    \"\"\"主函数\"\"\"\n    app = Application()\n    app.run()\nif __name__ == \"__main__\":\n    main()",
+        "detail": "app",
+        "documentation": {}
+    }
+]

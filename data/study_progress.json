@@ -1,0 +1,430 @@
+{
+  "study_sessions": [
+    {
+      "date": "2026-04-16T23:19:42.159999",
+      "words_studied": 20,
+      "words_mastered": 7,
+      "words_reviewed": 1,
+      "study_duration": 163,
+      "accuracy_rate": 0.875
+    },
+    {
+      "date": "2026-04-16T23:20:40.191742",
+      "words_studied": 20,
+      "words_mastered": 0,
+      "words_reviewed": 0,
+      "study_duration": 29,
+      "accuracy_rate": 0.0
+    },
+    {
+      "date": "2026-04-16T23:31:46.918646",
+      "words_studied": 20,
+      "words_mastered": 0,
+      "words_reviewed": 0,
+      "study_duration": 30,
+      "accuracy_rate": 0.0
+    },
+    {
+      "date": "2026-04-16T23:44:02.802962",
+      "words_studied": 20,
+      "words_mastered": 0,
+      "words_reviewed": 0,
+      "study_duration": 507,
+      "accuracy_rate": 0.0
+    },
+    {
+      "date": "2026-04-16T23:54:06.766452",
+      "words_studied": 20,
+      "words_mastered": 1,
+      "words_reviewed": 0,
+      "study_duration": 59,
+      "accuracy_rate": 1.0
+    },
+    {
+      "date": "2026-04-18T20:01:28.975845",
+      "words_studied": 20,
+      "words_mastered": 0,
+      "words_reviewed": 0,
+      "study_duration": 21,
+      "accuracy_rate": 0.0
+    },
+    {
+      "date": "2026-04-18T20:23:26.655536",
+      "words_studied": 3,
+      "words_mastered": 21,
+      "words_reviewed": 0,
+      "study_duration": 1110,
+      "accuracy_rate": 0.875
+    },
+    {
+      "date": "2026-04-18T20:33:57.685485",
+      "words_studied": 20,
+      "words_mastered": 4,
+      "words_reviewed": 1,
+      "study_duration": 629,
+      "accuracy_rate": 0.8
+    },
+    {
+      "date": "2026-04-30T00:24:42.961319",
+      "words_studied": 20,
+      "words_mastered": 0,
+      "words_reviewed": 0,
+      "study_duration": 24,
+      "accuracy_rate": 0.0
+    }
+  ],
+  "word_progress": {
+    "drink": {
+      "word": "drink",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-16T23:17:33.281844",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-19T23:17:33.281867",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "meat": {
+      "word": "meat",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-16T23:17:36.218280",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-19T23:17:36.218315",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "sun": {
+      "word": "sun",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-16T23:17:39.233722",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-19T23:17:39.233743",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "blueberry": {
+      "word": "blueberry",
+      "total_study_count": 2,
+      "correct_count": 1,
+      "wrong_count": 1,
+      "last_study_date": "2026-04-16T23:17:44.841724",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-19T23:17:44.841742",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "sister": {
+      "word": "sister",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-16T23:17:47.762071",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-19T23:17:47.762103",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "friend": {
+      "word": "friend",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-16T23:17:50.897784",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-19T23:17:50.897805",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "car": {
+      "word": "car",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-16T23:17:53.842050",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-19T23:17:53.842080",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "walk": {
+      "word": "walk",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-16T23:53:58.314421",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-19T23:53:58.314456",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "于": {
+      "word": "于",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:06:46.716243",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:06:46.716269",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "见": {
+      "word": "见",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:06:50.196081",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:06:50.196107",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "说": {
+      "word": "说",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:06:54.564001",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:06:54.564022",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "闻": {
+      "word": "闻",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:18:57.849600",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:18:57.849620",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "卑鄙": {
+      "word": "卑鄙",
+      "total_study_count": 3,
+      "correct_count": 2,
+      "wrong_count": 1,
+      "last_study_date": "2026-04-18T20:23:18.736965",
+      "mastery_level": 2,
+      "next_review_date": "2026-04-25T20:23:18.736982",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "毕": {
+      "word": "毕",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:19:05.610068",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:19:05.610087",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "阙": {
+      "word": "阙",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:19:12.649240",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:19:12.649258",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "而": {
+      "word": "而",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:19:16.041449",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:19:16.041473",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "帖": {
+      "word": "帖",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:19:19.137301",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:19:19.137323",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "俱": {
+      "word": "俱",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:19:22.145359",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:19:22.145384",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "顾": {
+      "word": "顾",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:19:26.170457",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:19:26.170491",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "尽": {
+      "word": "尽",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:19:28.971699",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:19:28.971730",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "之": {
+      "word": "之",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:21:07.161714",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:21:07.161733",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "交通": {
+      "word": "交通",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:21:10.176919",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:21:10.176945",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "上": {
+      "word": "上",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:21:12.952945",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:21:12.952978",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "固": {
+      "word": "固",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:21:24.645080",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:21:24.645130",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "有": {
+      "word": "有",
+      "total_study_count": 3,
+      "correct_count": 2,
+      "wrong_count": 1,
+      "last_study_date": "2026-04-18T20:23:21.632886",
+      "mastery_level": 2,
+      "next_review_date": "2026-04-25T20:23:21.632909",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "乃": {
+      "word": "乃",
+      "total_study_count": 2,
+      "correct_count": 1,
+      "wrong_count": 1,
+      "last_study_date": "2026-04-18T20:23:25.154482",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:23:25.154540",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "寻": {
+      "word": "寻",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:23:10.288032",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:23:10.288056",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "也": {
+      "word": "也",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:27:40.894413",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:27:40.894434",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "乐": {
+      "word": "乐",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:32:15.052703",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:32:15.052733",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "异": {
+      "word": "异",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:33:37.923996",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:33:37.924022",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "旦": {
+      "word": "旦",
+      "total_study_count": 1,
+      "correct_count": 0,
+      "wrong_count": 1,
+      "last_study_date": "2026-04-18T20:33:41.125798",
+      "mastery_level": 0,
+      "next_review_date": "2026-04-19T20:33:41.125834",
+      "review_count": 0,
+      "is_mastered": false
+    },
+    "者": {
+      "word": "者",
+      "total_study_count": 1,
+      "correct_count": 1,
+      "wrong_count": 0,
+      "last_study_date": "2026-04-18T20:33:55.035841",
+      "mastery_level": 1,
+      "next_review_date": "2026-04-21T20:33:55.035863",
+      "review_count": 0,
+      "is_mastered": false
+    }
+  }
+}
