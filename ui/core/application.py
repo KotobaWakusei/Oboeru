@@ -596,6 +596,9 @@ class Application:
         # 停止TTS
         self._tts_manager.stop()
         
+        # 停止AI线程池
+        self._ai_manager.shutdown()
+        
         # 确认退出
         if self._config.get_bool("confirm_before_exit", True):
             message = "确定要退出程序吗？"
@@ -608,6 +611,11 @@ class Application:
                     return
             except tk.TclError:
                 pass
+            except KeyboardInterrupt:
+                # 用户按Ctrl+C，直接退出，不显示确认对话框
+                self._logger.info("用户按Ctrl+C，强制退出")
+                self._root.destroy()
+                return
         
         # 清理资源
         try:

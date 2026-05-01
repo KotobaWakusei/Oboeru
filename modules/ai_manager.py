@@ -213,6 +213,11 @@ class AIManager:
         **kwargs
     ) -> None:
         """配置 AI 参数"""
+        # 如果配置发生变化，先关闭现有线程池
+        old_enabled = self._enabled
+        old_api_key = self._api_key
+        old_api_url = self._api_url
+        
         self._api_key = api_key.strip() if api_key else ""
         self._provider = provider
         self._difficulty = difficulty
@@ -233,16 +238,24 @@ class AIManager:
         
         self._enabled = enabled and bool(self._api_key) and bool(self._api_url)
         
-        # 初始化线程池
+        # 如果之前启用了但现在禁用了，或者API配置发生变化，关闭现有线程池
+        if (old_enabled and not self._enabled) or \
+           (old_enabled and (old_api_key != self._api_key or old_api_url != self._api_url)):
+            self.shutdown()
+        
+        # 初始化线程池（如果需要）
         if self._enabled and self._executor is None:
             self._executor = ThreadPoolExecutor(
                 max_workers=self._max_preload_workers,
                 thread_name_prefix="ai_preload"
             )
+            self._logger.info(f"AI 线程池已初始化，最大工作线程数: {self._max_preload_workers}")
         
         if self._enabled:
             provider_name = Constants.AI_PROVIDERS.get(provider, {}).get("name", provider)
             self._logger.info(f"AI 已启用: {provider_name}, 模型: {self._model}")
+        elif old_enabled and not self._enabled:
+            self._logger.info("AI 已禁用")
     
     def is_available(self) -> bool:
         """检查 AI 功能是否可用"""
@@ -441,6 +454,17 @@ class AIManager:
         with self._lock:
             self._request_version += 100
             self._logger.info("已取消所有待处理 AI 请求")
+    
+    def shutdown(self) -> None:
+        """关闭 AI 管理器，清理资源"""
+        with self._lock:
+            if self._executor is not None:
+                self._executor.shutdown(wait=False)
+                self._executor = None
+                self._logger.info("AI 线程池已关闭")
+            self._loading = False
+            self._request_version = 0
+            self._cache.clear()
     
     def _build_prompt(self, word: str, meaning: str, language: str = "en") -> str:
         """根据语言和难度构建提示词"""

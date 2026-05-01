@@ -546,7 +546,7 @@ class SettingsPage(BasePage):
         
         card = self._create_card("🤖 AI 例句设置")
         
-        # 启用 AI
+        # 启用 AI 和基本说明
         row0 = tk.Frame(card, bg=colors["bg_card"])
         row0.pack(fill=tk.X, pady=5)
         
@@ -560,6 +560,15 @@ class SettingsPage(BasePage):
             variable=self._ai_enabled_var,
             style="TCheckbutton"
         ).pack(side=tk.LEFT)
+        
+        # 添加说明标签
+        tk.Label(
+            row0,
+            text="(使用 AI 为单词生成例句，需要 API Key)",
+            font=self._style_manager.get_font("small"),
+            bg=colors["bg_card"],
+            fg=colors["fg_secondary"]
+        ).pack(side=tk.LEFT, padx=(10, 0))
         
         # API 提供商选择
         row_provider = tk.Frame(card, bg=colors["bg_card"])
@@ -654,7 +663,7 @@ class SettingsPage(BasePage):
             font=self._style_manager.get_font("body")
         ).pack(side=tk.LEFT)
         
-        # API Key
+        # API Key 输入区域
         row1 = tk.Frame(card, bg=colors["bg_card"])
         row1.pack(fill=tk.X, pady=5)
         
@@ -697,6 +706,15 @@ class SettingsPage(BasePage):
             command=toggle_key_visibility,
             style="TCheckbutton"
         ).pack(side=tk.LEFT)
+        
+        # 添加测试连接按钮
+        test_btn = ttk.Button(
+            row1,
+            text="测试连接",
+            command=self._test_ai_connection,
+            style="Secondary.TButton"
+        )
+        test_btn.pack(side=tk.LEFT, padx=(5, 0))
         
         # 难度等级选择
         row_diff = tk.Frame(card, bg=colors["bg_card"])
@@ -765,6 +783,15 @@ class SettingsPage(BasePage):
             width=8,
             font=self._style_manager.get_font("body")
         ).pack(side=tk.LEFT)
+        
+        # 添加超时说明
+        tk.Label(
+            row3,
+            text="(网络请求超时时间，建议 10-60 秒)",
+            font=self._style_manager.get_font("small"),
+            bg=colors["bg_card"],
+            fg=colors["fg_secondary"]
+        ).pack(side=tk.LEFT, padx=(5, 0))
         
         # 显示例句选项
         row4 = tk.Frame(card, bg=colors["bg_card"])
@@ -1243,6 +1270,39 @@ class SettingsPage(BasePage):
                 self.show_message(f"字体大小必须在 {font_min}-{font_max} 之间", "warning")
                 return
             
+            # 验证 AI 设置
+            ai_enabled = self._ai_enabled_var.get()
+            ai_timeout = int(self._ai_timeout_var.get())
+            
+            if ai_enabled:
+                # 验证 API Key
+                api_key = self._ai_key_var.get().strip()
+                if not api_key:
+                    self.show_message("启用 AI 功能需要填写 API Key", "warning")
+                    return
+                
+                # 验证超时时间
+                if not (5 <= ai_timeout <= 120):
+                    self.show_message("超时时间必须在 5-120 秒之间", "warning")
+                    return
+                
+                # 验证自定义提供商
+                provider_key = "xunfei_lite"
+                current_name = self._ai_provider_var.get()
+                for k, v in self._provider_names:
+                    if v == current_name:
+                        provider_key = k
+                        break
+                
+                if provider_key == "custom":
+                    custom_url = self._ai_custom_url_var.get().strip()
+                    if not custom_url:
+                        self.show_message("自定义提供商需要填写 API URL", "warning")
+                        return
+                    if not custom_url.startswith(("http://", "https://")):
+                        self.show_message("API URL 必须以 http:// 或 https:// 开头", "warning")
+                        return
+            
             # 保存学习设置
             self.app.config.set("daily_words", daily_words)
             self.app.config.set("vocab_file", self._vocab_file_var.get())
@@ -1271,9 +1331,9 @@ class SettingsPage(BasePage):
             self.app.config.set("theme", self._theme_var.get())
             
             # 保存 AI 配置
-            self.app.config.set("ai_enabled", self._ai_enabled_var.get())
+            self.app.config.set("ai_enabled", ai_enabled)
             self.app.config.set("ai_api_key", self._ai_key_var.get())
-            self.app.config.set("ai_timeout", int(self._ai_timeout_var.get()))
+            self.app.config.set("ai_timeout", ai_timeout)
             self.app.config.set("ai_show_sentence", self._ai_show_sentence_var.get())
             
             # 获取 provider key
@@ -1307,8 +1367,8 @@ class SettingsPage(BasePage):
                 custom_url=self._ai_custom_url_var.get(),
                 custom_model=self._ai_custom_model_var.get(),
                 difficulty=difficulty_key,
-                enabled=self._ai_enabled_var.get(),
-                timeout=int(self._ai_timeout_var.get())
+                enabled=ai_enabled,
+                timeout=ai_timeout
             )
             
             self.app.config.save_config()
