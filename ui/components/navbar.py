@@ -2,12 +2,13 @@
 import tkinter as tk
 from tkinter import ttk
 from typing import Callable, List, Dict, TYPE_CHECKING
+from ui.customtinker import CTFrame, CTLabel, CTButton
 
 if TYPE_CHECKING:
     from ui.core.style_manager import StyleManager
 
 
-class NavBar(tk.Frame):
+class NavBar(CTFrame):
     """顶部导航栏组件"""
     
     def __init__(
@@ -18,7 +19,7 @@ class NavBar(tk.Frame):
         items: List[Dict[str, str]],
         **kwargs
     ):
-        super().__init__(parent, **kwargs)
+        super().__init__(parent, style_manager=style_manager, **kwargs)
         
         self._style_manager = style_manager
         self._on_navigate = on_navigate
@@ -38,15 +39,16 @@ class NavBar(tk.Frame):
         self.pack_propagate(False)
         
         # 内部容器
-        inner = tk.Frame(self, bg=colors["bg_secondary"])
+        inner = CTFrame(self, style_manager=self._style_manager, bg=colors["bg_secondary"])
         inner.pack(fill=tk.BOTH, expand=True, padx=20, pady=10)
         
         # 左侧 - Logo
-        left_frame = tk.Frame(inner, bg=colors["bg_secondary"])
+        left_frame = CTFrame(inner, style_manager=self._style_manager, bg=colors["bg_secondary"])
         left_frame.pack(side=tk.LEFT)
-        
-        logo = tk.Label(
+
+        logo = CTLabel(
             left_frame,
+            style_manager=self._style_manager,
             text="🎯",
             font=("Segoe UI", 24),
             bg=colors["bg_secondary"],
@@ -54,8 +56,9 @@ class NavBar(tk.Frame):
         )
         logo.pack(side=tk.LEFT, padx=(0, 10))
         
-        title = tk.Label(
+        title = CTLabel(
             left_frame,
+            style_manager=self._style_manager,
             text="智能背单词",
             font=self._style_manager.get_font("heading"),
             bg=colors["bg_secondary"],
@@ -64,12 +67,13 @@ class NavBar(tk.Frame):
         title.pack(side=tk.LEFT)
         
         # 中间 - 导航按钮
-        center_frame = tk.Frame(inner, bg=colors["bg_secondary"])
+        center_frame = CTFrame(inner, style_manager=self._style_manager, bg=colors["bg_secondary"])
         center_frame.pack(side=tk.LEFT, expand=True)
         
         for item in self._items:
-            btn = ttk.Button(
+            btn = CTButton(
                 center_frame,
+                style_manager=self._style_manager,
                 text=f"{item['icon']} {item['title']}",
                 command=lambda pid=item['id']: self._on_navigate(pid),
                 style="Nav.TButton"
@@ -78,7 +82,7 @@ class NavBar(tk.Frame):
             self._nav_buttons[item['id']] = btn
         
         # 右侧 - 可扩展区域
-        self._right_frame = tk.Frame(inner, bg=colors["bg_secondary"])
+        self._right_frame = CTFrame(inner, style_manager=self._style_manager, bg=colors["bg_secondary"])
         self._right_frame.pack(side=tk.RIGHT)
     
     def set_active(self, page_id: str):

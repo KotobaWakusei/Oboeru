@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import ttk, simpledialog
 from ui.core.base_page import BasePage
+from ui.customtinker import CTFrame, CTLabel, CTProgressbar
 import random
 import os
 from modules.logger import get_logger
@@ -152,14 +153,15 @@ class LearningPage(BasePage):
         """创建头部区域"""
         colors = self.colors
         
-        header = tk.Frame(self._container, bg=colors["bg_primary"])
+        header = CTFrame(self._container, style_manager=self._style_manager, bg=colors["bg_primary"])
         header.grid(row=0, column=0, sticky="ew", pady=(0, 10))
         header.columnconfigure(0, weight=1)
         
         # 阶段标签
-        self._stage_label = tk.Label(
+        self._stage_label = CTLabel(
             header,
-            text="准备开始",
+            style_manager=self._style_manager,
+            text=self._t('learning.stage.ready', '准备开始'),
             font=self._style_manager.get_font("heading"),
             bg=colors["bg_primary"],
             fg=colors["fg_primary"]
@@ -167,12 +169,13 @@ class LearningPage(BasePage):
         self._stage_label.grid(row=0, column=0, sticky="w")
         
         # 进度区域
-        progress_frame = tk.Frame(header, bg=colors["bg_primary"])
+        progress_frame = CTFrame(header, style_manager=self._style_manager, bg=colors["bg_primary"])
         progress_frame.grid(row=0, column=1, sticky="e")
         
         # 进度条
-        self._progress_bar = ttk.Progressbar(
+        self._progress_bar = CTProgressbar(
             progress_frame,
+            style_manager=self._style_manager,
             mode='determinate',
             length=120,
             maximum=100
@@ -180,8 +183,9 @@ class LearningPage(BasePage):
         self._progress_bar.pack(side=tk.RIGHT)
         
         # 进度百分比
-        self._percent_label = tk.Label(
+        self._percent_label = CTLabel(
             progress_frame,
+            style_manager=self._style_manager,
             text="0%",
             font=self._style_manager.get_font("body"),
             bg=colors["bg_primary"],
@@ -195,14 +199,15 @@ class LearningPage(BasePage):
         colors = self.colors
         
         # 主容器（包含单词卡片和最近单词）
-        main_container = tk.Frame(self._container, bg=colors["bg_primary"])
+        main_container = CTFrame(self._container, style_manager=self._style_manager, bg=colors["bg_primary"])
         main_container.grid(row=1, column=0, sticky="nsew", pady=10)
         main_container.columnconfigure(0, weight=1)
         main_container.rowconfigure(0, weight=1)
         
         # 单词卡片
-        self._word_card = tk.Frame(
+        self._word_card = CTFrame(
             main_container,
+            style_manager=self._style_manager,
             bg=colors["bg_card"]
         )
         self._word_card.configure(highlightbackground=colors["border"], highlightthickness=1)
@@ -213,15 +218,16 @@ class LearningPage(BasePage):
         self._word_card.rowconfigure(0, weight=1)
         
         # 单词容器
-        word_container = tk.Frame(self._word_card, bg=colors["bg_card"])
+        word_container = CTFrame(self._word_card, style_manager=self._style_manager, bg=colors["bg_card"])
         word_container.grid(row=0, column=0, sticky="nsew")
         word_container.columnconfigure(0, weight=1)
         word_container.rowconfigure(1, weight=1)
         
         # 单词标签
-        self._word_label = tk.Label(
+        self._word_label = CTLabel(
             word_container,
-            text="点击「开始学习」开始",
+            style_manager=self._style_manager,
+            text=self._t('learning.placeholder', '点击「开始学习」开始'),
             font=("Segoe UI", 28, "bold"),
             bg=colors["bg_card"],
             fg=colors["accent"]
@@ -229,8 +235,9 @@ class LearningPage(BasePage):
         self._word_label.grid(row=0, column=0, pady=(20, 5))
         
         # 词性标签
-        self._pos_label = tk.Label(
+        self._pos_label = CTLabel(
             word_container,
+            style_manager=self._style_manager,
             text="",
             font=self._style_manager.get_font("subheading"),
             bg=colors["bg_card"],
@@ -239,12 +246,13 @@ class LearningPage(BasePage):
         self._pos_label.grid(row=1, column=0, pady=5)
         
         # 分隔线
-        sep_frame = tk.Frame(word_container, bg=colors["border"], height=1)
+        sep_frame = CTFrame(word_container, style_manager=self._style_manager, bg=colors["border"], height=1)
         sep_frame.grid(row=2, column=0, sticky="ew", padx=30, pady=10)
         
         # 意思标签
-        self._meaning_label = tk.Label(
+        self._meaning_label = CTLabel(
             word_container,
+            style_manager=self._style_manager,
             text="",
             font=("Segoe UI", 16, "bold"),
             bg=colors["bg_card"],
@@ -255,11 +263,12 @@ class LearningPage(BasePage):
         self._meaning_label.grid(row=3, column=0, pady=10, padx=20)
         
         # AI 例句区域
-        self._sentence_frame = tk.Frame(word_container, bg=colors["bg_card"])
+        self._sentence_frame = CTFrame(word_container, style_manager=self._style_manager, bg=colors["bg_card"])
         self._sentence_frame.grid(row=4, column=0, pady=(5, 10), padx=20, sticky="ew")
         
-        self._sentence_label = tk.Label(
+        self._sentence_label = CTLabel(
             self._sentence_frame,
+            style_manager=self._style_manager,
             text="",
             font=("Segoe UI", 11),
             bg=colors["bg_card"],
@@ -269,8 +278,9 @@ class LearningPage(BasePage):
         )
         self._sentence_label.pack(anchor="w")
         
-        self._sentence_loading = tk.Label(
+        self._sentence_loading = CTLabel(
             self._sentence_frame,
+            style_manager=self._style_manager,
             text="",
             font=("Segoe UI", 10),
             bg=colors["bg_card"],
@@ -279,16 +289,17 @@ class LearningPage(BasePage):
         self._sentence_loading.pack(anchor="w")
         
         # 最近背诵单词回顾面板（背诵阶段显示）
-        self._review_frame = tk.Frame(main_container, bg=colors["bg_secondary"])
+        self._review_frame = CTFrame(main_container, style_manager=self._style_manager, bg=colors["bg_secondary"])
         self._review_frame.configure(highlightbackground=colors["border"], highlightthickness=1)
         # 初始隐藏，只在背诵阶段显示
         
-        review_header = tk.Frame(self._review_frame, bg=colors["bg_card"])
+        review_header = CTFrame(self._review_frame, style_manager=self._style_manager, bg=colors["bg_card"])
         review_header.pack(fill=tk.X, padx=1, pady=1)
         
-        tk.Label(
+        CTLabel(
             review_header,
-            text="📝 最近背诵",
+            style_manager=self._style_manager,
+            text=self._t('learning.recent_title', '📝 最近背诵'),
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_card"],
             fg=colors["accent"],
@@ -296,7 +307,7 @@ class LearningPage(BasePage):
             pady=5
         ).pack(side=tk.LEFT)
         
-        self._review_words_container = tk.Frame(self._review_frame, bg=colors["bg_secondary"])
+        self._review_words_container = CTFrame(self._review_frame, style_manager=self._style_manager, bg=colors["bg_secondary"])
         self._review_words_container.pack(fill=tk.X, padx=10, pady=8)
         
         # 存储单词标签用于更新
@@ -346,12 +357,13 @@ class LearningPage(BasePage):
         
         # 创建单词标签（严格限制数量）
         for word in review_words[-review_count:]:  # 确保不超过设定数量
-            word_frame = tk.Frame(self._review_words_container, bg=colors["bg_secondary"])
+            word_frame = CTFrame(self._review_words_container, style_manager=self._style_manager, bg=colors["bg_secondary"])
             word_frame.pack(side=tk.LEFT, padx=8)
             
             # 单词标签（默认只显示单词）
-            word_label = tk.Label(
+            word_label = CTLabel(
                 word_frame,
+                style_manager=self._style_manager,
                 text=word.word,
                 font=self._style_manager.get_font("body"),
                 bg=colors["bg_secondary"],
@@ -432,7 +444,7 @@ class LearningPage(BasePage):
         
         self._prev_btn = ttk.Button(
             left_frame,
-            text="◀ 上一个",
+            text=self._t('learning.action.previous', '◀ 上一个'),
             command=self._prev_word,
             style="Nav.TButton",
             state=tk.DISABLED
@@ -441,7 +453,7 @@ class LearningPage(BasePage):
         
         self._next_btn = ttk.Button(
             left_frame,
-            text="下一个 ▶",
+            text=self._t('learning.action.next', '下一个 ▶'),
             command=self._next_word,
             style="Nav.TButton",
             state=tk.DISABLED
@@ -454,7 +466,7 @@ class LearningPage(BasePage):
         
         self._fav_btn = ttk.Button(
             center_frame,
-            text="☆ 收藏",
+            text=self._t('learning.action.favorite', '☆ 收藏'),
             command=self._toggle_favorite,
             style="Secondary.TButton",
             state=tk.DISABLED
@@ -463,7 +475,7 @@ class LearningPage(BasePage):
         
         self._pronounce_btn = ttk.Button(
             center_frame,
-            text="🔊 发音",
+            text=self._t('learning.action.pronounce', '🔊 发音'),
             command=self._play_pronunciation,
             style="Secondary.TButton",
             state=tk.DISABLED
@@ -472,7 +484,7 @@ class LearningPage(BasePage):
         
         self._ai_btn = ttk.Button(
             center_frame,
-            text="🤖 例句",
+            text=self._t('learning.action.ai_sentence', '🤖 例句'),
             command=self._generate_ai_sentence,
             style="Secondary.TButton",
             state=tk.DISABLED
@@ -485,7 +497,7 @@ class LearningPage(BasePage):
         
         self._start_btn = ttk.Button(
             right_frame,
-            text="▶ 开始学习",
+            text=self._t('learning.action.start', '▶ 开始学习'),
             command=self._start_learning,
             style="Primary.TButton"
         )
@@ -493,7 +505,7 @@ class LearningPage(BasePage):
         
         self._review_btn = ttk.Button(
             right_frame,
-            text="🧠 复习",
+            text=self._t('learning.action.review', '🧠 复习'),
             command=self._start_review,
             style="Primary.TButton"
         )
@@ -637,9 +649,9 @@ class LearningPage(BasePage):
         columns = ("word", "pos", "meaning")
         tree = ttk.Treeview(frame, columns=columns, show="headings")
         
-        tree.heading("word", text="单词")
-        tree.heading("pos", text="词性")
-        tree.heading("meaning", text="中文意思")
+        tree.heading("word", text=self._t('learning.table.word', '单词'))
+        tree.heading("pos", text=self._t('learning.table.pos', '词性'))
+        tree.heading("meaning", text=self._t('learning.table.meaning', '中文意思'))
         
         tree.column("word", width=80)
         tree.column("pos", width=50)
@@ -673,8 +685,8 @@ class LearningPage(BasePage):
                     self._enable_controls()
                     self._show_current_word()
         
-        ttk.Button(btn_frame, text="学习选中", command=learn_selected, style="Primary.TButton").pack(side=tk.RIGHT, padx=3)
-        ttk.Button(btn_frame, text="关闭", command=dialog.destroy, style="Secondary.TButton").pack(side=tk.RIGHT, padx=3)
+        ttk.Button(btn_frame, text=self._t('learning.dialog.learn_selected', '学习选中'), command=learn_selected, style="Primary.TButton").pack(side=tk.RIGHT, padx=3)
+        ttk.Button(btn_frame, text=self._t('learning.dialog.close', '关闭'), command=dialog.destroy, style="Secondary.TButton").pack(side=tk.RIGHT, padx=3)
     
     def _show_current_word(self):
         """显示当前单词"""

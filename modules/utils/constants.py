@@ -1,10 +1,17 @@
 """应用常量配置"""
+from pathlib import Path
 from typing import Dict, Any
 
 
 class Constants:
     """应用常量"""
-    
+
+    PROJECT_ROOT = Path(__file__).resolve().parents[2]
+    DATA_DIR = str(PROJECT_ROOT / "data")
+    LOG_DIR = str(PROJECT_ROOT / "logs")
+    BACKUP_DIR = str(PROJECT_ROOT / "backups")
+    LOCALES_DIR = str(PROJECT_ROOT / "data" / "locales")
+
     # 自动保存间隔（毫秒）
     AUTO_SAVE_INTERVAL = 30000  # 30秒
     
@@ -15,18 +22,19 @@ class Constants:
     
     # 备份配置
     MAX_BACKUPS = 5
-    BACKUP_DIR = "backups"
-    
-    # 数据目录
-    DATA_DIR = "data"
-    LOG_DIR = "logs"
     
     # 默认文件路径
-    DEFAULT_CONFIG_FILE = "data/config.json"
-    DEFAULT_VOCAB_FILE = "data/vocabulary.txt"
-    DEFAULT_FAVORITES_FILE = "data/favorites.txt"
-    DEFAULT_PROGRESS_FILE = "data/study_progress.json"
-    DEFAULT_LOG_FILE = "logs/app.log"
+    DEFAULT_CONFIG_FILE = str(PROJECT_ROOT / "data" / "config.json")
+    DEFAULT_VOCAB_FILE = str(PROJECT_ROOT / "data" / "vocabulary.txt")
+    DEFAULT_FAVORITES_FILE = str(PROJECT_ROOT / "data" / "favorites.txt")
+    DEFAULT_PROGRESS_FILE = str(PROJECT_ROOT / "data" / "study_progress.json")
+    DEFAULT_LOG_FILE = str(PROJECT_ROOT / "logs" / "app.log")
+
+    @classmethod
+    def ensure_directories(cls) -> None:
+        """确保必要的项目目录存在。"""
+        for path in [cls.DATA_DIR, cls.LOG_DIR, cls.BACKUP_DIR, cls.LOCALES_DIR]:
+            Path(path).mkdir(parents=True, exist_ok=True)
     
     # 学习配置
     DAILY_WORDS_MIN = 1
@@ -201,5 +209,6 @@ class Constants:
             "ai_provider": "xunfei_lite",
             "ai_custom_url": "",
             "ai_custom_model": "",
+            "language": "zh",
             "review_words_count": 3,  # 背诵阶段显示的最近单词数量
         }

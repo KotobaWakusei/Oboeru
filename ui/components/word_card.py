@@ -6,8 +6,10 @@ from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from ui.core.style_manager import StyleManager
 
+from ui.customtinker import CTFrame, CTLabel
 
-class WordCard(tk.Frame):
+
+class WordCard(CTFrame):
     """单词显示卡片组件"""
     
     def __init__(
@@ -17,7 +19,7 @@ class WordCard(tk.Frame):
         on_click: Optional[callable] = None,
         **kwargs
     ):
-        super().__init__(parent, **kwargs)
+        super().__init__(parent, style_manager=style_manager, **kwargs)
         
         self._style_manager = style_manager
         self._on_click = on_click
@@ -36,12 +38,13 @@ class WordCard(tk.Frame):
         )
         
         # 内容容器
-        self._content = tk.Frame(self, bg=colors["bg_card"])
+        self._content = CTFrame(self, style_manager=self._style_manager, bg=colors["bg_card"])
         self._content.pack(fill=tk.BOTH, expand=True, padx=40, pady=40)
         
         # 单词标签
-        self._word_label = tk.Label(
+        self._word_label = CTLabel(
             self._content,
+            style_manager=self._style_manager,
             text="",
             font=("Segoe UI", 36, "bold"),
             bg=colors["bg_card"],
@@ -50,8 +53,9 @@ class WordCard(tk.Frame):
         self._word_label.pack(expand=True)
         
         # 词性标签
-        self._pos_label = tk.Label(
+        self._pos_label = CTLabel(
             self._content,
+            style_manager=self._style_manager,
             text="",
             font=self._style_manager.get_font("subheading"),
             bg=colors["bg_card"],

@@ -1,6 +1,7 @@
 """应用程序核心类 - 应用入口和主控制"""
 import tkinter as tk
 from tkinter import ttk, messagebox
+from pathlib import Path
 from typing import Optional, Dict, Any
 import os
 
@@ -22,6 +23,10 @@ class Application:
         
         # 核心组件
         self._config = ConfigManager()
+        # 语言管理器（i18n）
+        from modules.i18n import LanguageManager
+        self._language_manager = LanguageManager(config=self._config)
+
         self._style_manager = StyleManager(
             self._config.get("theme", "dark")
         )
@@ -94,6 +99,10 @@ class Application:
     @property
     def page_manager(self) -> PageManager:
         return self._page_manager
+
+    @property
+    def language_manager(self):
+        return self._language_manager
     
     @property
     def vocabulary_manager(self) -> VocabularyManager:
@@ -161,7 +170,7 @@ class Application:
     
     def _setup_window(self):
         """设置窗口属性"""
-        self._root.title("智能背单词系统")
+        self._root.title(self.translate('app.title', '智能背单词系统'))
         self._root.geometry("950x720")
         self._root.minsize(900, 650)  # 增加最小尺寸，确保所有控件可见
         
@@ -232,6 +241,28 @@ class Application:
         y = (self._root.winfo_screenheight() // 2) - (height // 2)
         self._root.geometry(f'{width}x{height}+{x}+{y}')
     
+    def translate(self, key: str, default: str = "") -> str:
+        """返回当前语言翻译文本。"""
+        try:
+            return self._language_manager.translate(key, default)
+        except Exception:
+            return default
+
+    def apply_translation(self):
+        """应用当前语言翻译到所有页面和导航。"""
+        try:
+            self._apply_navbar_layout(self._root.winfo_width())
+        except Exception:
+            pass
+
+        try:
+            self._page_manager.apply_translation_to_all()
+        except Exception:
+            pass
+
+        if hasattr(self, '_status_label'):
+            self._status_label.configure(text=self.translate('status.ready', '准备就绪'))
+
     def _create_layout(self):
         """创建主布局"""
         colors = self._style_manager.colors
@@ -263,86 +294,43 @@ class Application:
         self._create_status_bar()
     
     def _create_navbar(self):
-        """创建导航栏 - 响应式设计"""
+        """创建导航栏 - 使用 NavBar 组件（支持 CT 样式）"""
         colors = self._style_manager.colors
-        
-        navbar = tk.Frame(
-            self._main_container,
-            bg=colors["bg_secondary"],
-            height=50
-        )
-        navbar.grid(row=0, column=0, sticky="ew")
-        navbar.grid_propagate(False)
-        
-        # 配置网格
-        navbar.columnconfigure(0, weight=0)  # Logo区域
-        navbar.columnconfigure(1, weight=1)  # 导航按钮区域（可扩展）
-        navbar.columnconfigure(2, weight=0)  # 右侧信息区域
-        
-        # 左侧 - Logo和标题（紧凑）
-        left_frame = tk.Frame(navbar, bg=colors["bg_secondary"])
-        left_frame.grid(row=0, column=0, sticky="w", padx=15, pady=8)
-        
-        logo_label = tk.Label(
-            left_frame,
-            text="🎯",
-            font=("Segoe UI", 16),
-            bg=colors["bg_secondary"],
-            fg=colors["accent"]
-        )
-        logo_label.pack(side=tk.LEFT, padx=(0, 6))
-        
-        title_label = tk.Label(
-            left_frame,
-            text="智能背单词",
-            font=self._style_manager.get_font("subheading"),
-            bg=colors["bg_secondary"],
-            fg=colors["fg_primary"]
-        )
-        title_label.pack(side=tk.LEFT)
-        
-        # 中间 - 导航按钮（居中）
-        center_frame = tk.Frame(navbar, bg=colors["bg_secondary"])
-        center_frame.grid(row=0, column=1, sticky="nsew", pady=8)
-        center_frame.columnconfigure(0, weight=1)
 
-        # 内部容器用于水平居中按钮组
-        center_inner = tk.Frame(center_frame, bg=colors["bg_secondary"])
-        center_inner.pack(expand=True)
+        # 延迟导入以避免循环依赖
+        from ui.components.navbar import NavBar
+        from ui.customtinker import CTLabel
 
-        self._nav_buttons = {}
         nav_items = [
-            ("home", "🏠 首页"),
-            ("learning", "📚 学习"),
-            ("favorites", "❤️ 收藏"),
-            ("statistics", "📊 统计"),
-            ("settings", "⚙️ 设置"),
+            {"id": "home", "icon": "🏠", "title": self.translate('nav.home', '首页')},
+            {"id": "learning", "icon": "📚", "title": self.translate('nav.learning', '学习')},
+            {"id": "favorites", "icon": "❤️", "title": self.translate('nav.favorites', '收藏')},
+            {"id": "statistics", "icon": "📊", "title": self.translate('nav.statistics', '统计')},
+            {"id": "settings", "icon": "⚙️", "title": self.translate('nav.settings', '设置')},
         ]
 
-        for page_id, text in nav_items:
-            btn = ttk.Button(
-                center_inner,
-                text=text,
-                command=lambda pid=page_id: self.navigate_to(pid),
-                style="Nav.TButton"
-            )
-            btn.pack(side=tk.LEFT, padx=6)
-            self._nav_buttons[page_id] = btn
-        
-        # 右侧 - 收藏数
-        right_frame = tk.Frame(navbar, bg=colors["bg_secondary"])
-        right_frame.grid(row=0, column=2, sticky="e", padx=15, pady=8)
-        
-        self._favorites_count_label = tk.Label(
-            right_frame,
+        self._navbar = NavBar(
+            self._main_container,
+            style_manager=self._style_manager,
+            on_navigate=self.navigate_to,
+            items=nav_items,
+        )
+        self._navbar.grid(row=0, column=0, sticky="ew")
+        self._navbar.grid_propagate(False)
+
+        # 收藏数量显示（放到右侧扩展区）
+        self._favorites_count_label = CTLabel(
+            self._navbar,
+            style_manager=self._style_manager,
             text=f"❤️ {len(self._favorites_manager)}",
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_secondary"],
             fg=colors["accent"]
         )
-        self._favorites_count_label.pack(side=tk.RIGHT)
-        
-        # 导航栏响应式状态
+        self._navbar.add_right_widget(self._favorites_count_label)
+
+        # 兼容旧逻辑：保留引用
+        self._nav_buttons = getattr(self._navbar, "_nav_buttons", {})
         self._navbar_resize_timer = None
         self._last_navbar_width = 0
     
@@ -385,11 +373,11 @@ class Application:
             else:
                 # 大窗口：显示完整文字
                 full_labels = {
-                    "home": "🏠 首页",
-                    "learning": "📚 学习",
-                    "favorites": "❤️ 收藏",
-                    "statistics": "📊 统计",
-                    "settings": "⚙️ 设置",
+                    "home": f"🏠 {self.translate('nav.home', '首页')}",
+                    "learning": f"📚 {self.translate('nav.learning', '学习')}",
+                    "favorites": f"❤️ {self.translate('nav.favorites', '收藏')}",
+                    "statistics": f"📊 {self.translate('nav.statistics', '统计')}",
+                    "settings": f"⚙️ {self.translate('nav.settings', '设置')}",
                 }
                 for page_id, text in full_labels.items():
                     if page_id in self._nav_buttons:
@@ -415,7 +403,7 @@ class Application:
         # 状态文本
         self._status_label = tk.Label(
             status_inner,
-            text="准备就绪",
+            text=self.translate('status.ready', '准备就绪'),
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_secondary"],
             fg=colors["fg_secondary"]
@@ -512,6 +500,14 @@ class Application:
     
     def _update_nav_buttons(self, current_page_id: str):
         """更新导航按钮状态"""
+        # 如果使用 NavBar 组件，委托给它处理样式
+        try:
+            if hasattr(self, "_navbar") and getattr(self._navbar, "set_active", None):
+                self._navbar.set_active(current_page_id)
+                return
+        except Exception:
+            pass
+
         for page_id, btn in self._nav_buttons.items():
             if page_id == current_page_id:
                 btn.configure(style="Primary.TButton")
@@ -601,12 +597,15 @@ class Application:
         
         # 确认退出
         if self._config.get_bool("confirm_before_exit", True):
-            message = "确定要退出程序吗？"
+            message = self.translate('confirm.exit_program', '确定要退出程序吗？')
             if self._today_words:
-                message = "学习尚未完成，确定要退出吗？"
+                message = self.translate('confirm.exit_learning', '学习尚未完成，确定要退出吗？')
             
             try:
-                if not messagebox.askyesno("确认", message):
+                if not messagebox.askyesno(
+                    self.translate('confirm.title', '确认'),
+                    message
+                ):
                     self._closing = False
                     return
             except tk.TclError:

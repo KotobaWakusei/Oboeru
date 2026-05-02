@@ -30,6 +30,11 @@ def safe_save_file(
         Tuple[bool, str]: (成功标志, 错误信息或备份路径)
     """
     try:
+        # 确保目标目录存在
+        dir_name = os.path.dirname(file_path)
+        if dir_name:
+            os.makedirs(dir_name, exist_ok=True)
+
         # 创建备份
         backup_path = None
         if create_backup and os.path.exists(file_path):

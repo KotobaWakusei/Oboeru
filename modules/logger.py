@@ -4,6 +4,8 @@ import logging
 from datetime import datetime
 from typing import Optional
 
+from .utils import Constants
+
 
 class Logger:
     """日志管理器"""
@@ -16,7 +18,7 @@ class Logger:
             cls._instance = super().__new__(cls)
         return cls._instance
     
-    def __init__(self, log_file: str = "logs/app.log", log_level: str = "INFO"):
+    def __init__(self, log_file: str = Constants.DEFAULT_LOG_FILE, log_level: str = "INFO"):
         """
         初始化日志管理器
         
@@ -41,7 +43,7 @@ class Logger:
         """设置日志处理器"""
         # 确保日志目录存在
         dir_name = os.path.dirname(self.log_file)
-        if dir_name and not os.path.exists(dir_name):
+        if dir_name:
             try:
                 os.makedirs(dir_name, exist_ok=True)
             except Exception:

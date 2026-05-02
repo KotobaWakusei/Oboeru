@@ -124,3 +124,11 @@ class PageManager:
         """对所有已创建的页面应用主题"""
         for page in self._instances.values():
             page.apply_theme()
+
+    def apply_translation_to_all(self):
+        """对所有已创建的页面应用当前语言翻译"""
+        for page in self._instances.values():
+            try:
+                page.apply_translation()
+            except Exception:
+                pass

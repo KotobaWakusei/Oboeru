@@ -4,12 +4,14 @@ from tkinter import ttk
 from abc import ABC, abstractmethod
 from typing import Optional, TYPE_CHECKING
 
+from ui.customtinker import CTFrame, CTLabel, CTButton, CTCard
+
 if TYPE_CHECKING:
     from .application import Application
     from .style_manager import StyleManager
 
 
-class BasePage(ABC, tk.Frame):
+class BasePage(ABC, CTFrame):
     """页面基类，所有页面都需要继承此类"""
     
     # 页面标识符
@@ -18,7 +20,7 @@ class BasePage(ABC, tk.Frame):
     page_icon: str = ""
     
     def __init__(self, parent: tk.Widget, app: "Application"):
-        super().__init__(parent)
+        super().__init__(parent, style_manager=app.style_manager)
         self._app = app
         self._style_manager: "StyleManager" = app.style_manager
         self._is_initialized = False
@@ -40,7 +42,7 @@ class BasePage(ABC, tk.Frame):
     def _setup_page(self):
         """设置页面结构"""
         # 创建主容器
-        self._container = tk.Frame(self, bg=self.colors["bg_primary"])
+        self._container = CTFrame(self, style_manager=self._style_manager, bg=self.colors["bg_primary"]) 
         self._container.pack(fill=tk.BOTH, expand=True, padx=20, pady=15)
         
         # 子类实现具体内容
@@ -79,34 +81,30 @@ class BasePage(ABC, tk.Frame):
         """应用主题 - 子类可选实现"""
         self.configure(bg=self.colors["bg_primary"])
         self._container.configure(bg=self.colors["bg_primary"])
-    
+
+    def apply_translation(self):
+        """在语言切换时调用，默认重建页面以刷新文本内容。"""
+        if not self._is_initialized:
+            return
+        try:
+            if hasattr(self, '_container') and self._container:
+                self._container.destroy()
+            self._setup_page()
+            self.apply_theme()
+        except Exception:
+            pass
+
+    def _t(self, key: str, default: str = "") -> str:
+        """快捷翻译方法"""
+        try:
+            return self.app.language_manager.translate(key, default)
+        except Exception:
+            return default
+
     def create_card(self, parent: tk.Widget, title: str = "") -> tk.Frame:
         """创建卡片容器"""
         colors = self.colors
-        
-        card = tk.Frame(
-            parent,
-            bg=colors["bg_card"],
-            highlightbackground=colors["border"],
-            highlightthickness=1
-        )
-        
-        if title:
-            title_frame = tk.Frame(card, bg=colors["bg_secondary"])
-            title_frame.pack(fill=tk.X, padx=1, pady=1)
-            
-            title_label = tk.Label(
-                title_frame,
-                text=title,
-                font=self._style_manager.get_font("subheading"),
-                bg=colors["bg_secondary"],
-                fg=colors["accent"],
-                anchor="w",
-                padx=15,
-                pady=10
-            )
-            title_label.pack(fill=tk.X)
-        
+        card = CTCard(parent, style_manager=self._style_manager, title=title)
         return card
     
     def create_button(
@@ -119,12 +117,7 @@ class BasePage(ABC, tk.Frame):
     ) -> ttk.Button:
         """创建按钮"""
         btn_text = f"{icon} {text}" if icon else text
-        btn = ttk.Button(
-            parent,
-            text=btn_text,
-            command=command,
-            style=style
-        )
+        btn = CTButton(parent, style_manager=self._style_manager, text=btn_text, command=command, style=style)
         return btn
     
     def create_label(
@@ -135,7 +128,8 @@ class BasePage(ABC, tk.Frame):
         **kwargs
     ) -> ttk.Label:
         """创建标签"""
-        return ttk.Label(parent, text=text, style=style, **kwargs)
+        # 使用 CTLabel 以支持主题感知的 tk.Label
+        return CTLabel(parent, style_manager=self._style_manager, text=text, **kwargs)
     
     def show_message(self, message: str, msg_type: str = "info"):
         """显示消息提示"""

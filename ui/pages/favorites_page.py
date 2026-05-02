@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import ttk, filedialog
 from ui.core.base_page import BasePage
+from ui.customtinker import CTFrame, CTLabel
 
 
 class FavoritesPage(BasePage):
@@ -56,17 +57,18 @@ class FavoritesPage(BasePage):
         """创建标题区域"""
         colors = self.colors
         
-        header = tk.Frame(self._container, bg=colors["bg_primary"])
+        header = CTFrame(self._container, style_manager=self._style_manager, bg=colors["bg_primary"])
         header.pack(fill=tk.X, pady=(0, 12))
         header.columnconfigure(1, weight=1)
         
         # 左侧标题
-        left = tk.Frame(header, bg=colors["bg_primary"])
+        left = CTFrame(header, style_manager=self._style_manager, bg=colors["bg_primary"])
         left.grid(row=0, column=0, sticky="w")
         
-        title = tk.Label(
+        title = CTLabel(
             left,
-            text="❤️ 我的收藏",
+            style_manager=self._style_manager,
+            text=self._t('favorites.title', '❤️ 我的收藏'),
             font=self._style_manager.get_font("title"),
             bg=colors["bg_primary"],
             fg=colors["fg_primary"]
@@ -74,9 +76,10 @@ class FavoritesPage(BasePage):
         title.pack(anchor="w")
         
         # 数量统计
-        self._count_label = tk.Label(
+        self._count_label = CTLabel(
             left,
-            text=f"共 {len(self.app.favorites_manager)} 个单词",
+            style_manager=self._style_manager,
+            text=self._t('favorites.count', '共 {count} 个单词').format(count=len(self.app.favorites_manager)),
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_primary"],
             fg=colors["fg_secondary"]
@@ -84,7 +87,7 @@ class FavoritesPage(BasePage):
         self._count_label.pack(anchor="w", pady=(3, 0))
         
         # 右侧搜索
-        right = tk.Frame(header, bg=colors["bg_primary"])
+        right = CTFrame(header, style_manager=self._style_manager, bg=colors["bg_primary"])
         right.grid(row=0, column=1, sticky="e")
         
         self._search_var = tk.StringVar()
@@ -109,7 +112,7 @@ class FavoritesPage(BasePage):
         colors = self.colors
         
         # 列表卡片
-        list_card = tk.Frame(self._container, bg=colors["bg_card"])
+        list_card = CTFrame(self._container, style_manager=self._style_manager, bg=colors["bg_card"])
         list_card.configure(highlightbackground=colors["border"], highlightthickness=1)
         list_card.pack(fill=tk.BOTH, expand=True, pady=(0, 12))
         
@@ -126,9 +129,9 @@ class FavoritesPage(BasePage):
             selectmode="browse"
         )
         
-        self._tree.heading("word", text="单词")
-        self._tree.heading("pos", text="词性")
-        self._tree.heading("meaning", text="中文意思")
+        self._tree.heading("word", text=self._t('favorites.table.word', '单词'))
+        self._tree.heading("pos", text=self._t('favorites.table.pos', '词性'))
+        self._tree.heading("meaning", text=self._t('favorites.table.meaning', '中文意思'))
         
         self._tree.column("word", width=120, minwidth=80)
         self._tree.column("pos", width=60, minwidth=40)
@@ -150,8 +153,8 @@ class FavoritesPage(BasePage):
         
         # 右键菜单
         self._context_menu = tk.Menu(self._tree, tearoff=0)
-        self._context_menu.add_command(label="📚 学习", command=self._learn_selected)
-        self._context_menu.add_command(label="🗑️ 删除", command=self._delete_selected)
+        self._context_menu.add_command(label=self._t('favorites.context.learn', '📚 学习'), command=self._learn_selected)
+        self._context_menu.add_command(label=self._t('favorites.context.delete', '🗑️ 删除'), command=self._delete_selected)
         self._tree.bind("<Button-3>", self._show_context_menu)
         
         # 加载数据
@@ -161,49 +164,49 @@ class FavoritesPage(BasePage):
         """创建操作按钮"""
         colors = self.colors
         
-        btn_frame = tk.Frame(self._container, bg=colors["bg_primary"])
+        btn_frame = CTFrame(self._container, style_manager=self._style_manager, bg=colors["bg_primary"])
         btn_frame.pack(fill=tk.X)
         btn_frame.columnconfigure(1, weight=1)
         
         # 左侧
-        left = tk.Frame(btn_frame, bg=colors["bg_primary"])
+        left = CTFrame(btn_frame, style_manager=self._style_manager, bg=colors["bg_primary"])
         left.grid(row=0, column=0, sticky="w")
         
         ttk.Button(
             left,
-            text="📚 学习选中",
+            text=self._t('favorites.action.learn_selected', '📚 学习选中'),
             command=self._learn_selected,
             style="Primary.TButton"
         ).pack(side=tk.LEFT, padx=3)
         
         ttk.Button(
             left,
-            text="📚 学习全部",
+            text=self._t('favorites.action.learn_all', '📚 学习全部'),
             command=self._learn_all,
             style="Secondary.TButton"
         ).pack(side=tk.LEFT, padx=3)
         
         # 右侧
-        right = tk.Frame(btn_frame, bg=colors["bg_primary"])
+        right = CTFrame(btn_frame, style_manager=self._style_manager, bg=colors["bg_primary"])
         right.grid(row=0, column=2, sticky="e")
         
         ttk.Button(
             right,
-            text="🧹 清空",
+            text=self._t('favorites.action.clear', '🧹 清空'),
             command=self._clear_all,
             style="Secondary.TButton"
         ).pack(side=tk.RIGHT, padx=3)
         
         ttk.Button(
             right,
-            text="🗑️ 删除",
+            text=self._t('favorites.action.delete', '🗑️ 删除'),
             command=self._delete_selected,
             style="Secondary.TButton"
         ).pack(side=tk.RIGHT, padx=3)
         
         ttk.Button(
             right,
-            text="💾 导出",
+            text=self._t('favorites.action.export', '💾 导出'),
             command=self._export_favorites,
             style="Secondary.TButton"
         ).pack(side=tk.RIGHT, padx=3)
@@ -227,7 +230,7 @@ class FavoritesPage(BasePage):
             )
         
         count = len(self._tree.get_children())
-        self._count_label.configure(text=f"共 {count} 个单词")
+        self._count_label.configure(text=self._t('favorites.count', '共 {count} 个单词').format(count=count))
     
     def _on_search(self, event=None):
         """搜索"""
@@ -244,7 +247,7 @@ class FavoritesPage(BasePage):
         """学习选中的单词"""
         selected = self._tree.selection()
         if not selected:
-            self.show_message("请先选择一个单词", "warning")
+            self.show_message(self._t('favorites.message.select_word', '请先选择一个单词'), "warning")
             return
         
         words = []
@@ -268,7 +271,7 @@ class FavoritesPage(BasePage):
     def _learn_all(self):
         """学习全部收藏"""
         if len(self.app.favorites_manager) == 0:
-            self.show_message("收藏列表为空", "warning")
+            self.show_message(self._t('favorites.message.empty_list', '收藏列表为空'), "warning")
             return
         
         words = self.app.favorites_manager.get_all_words()
@@ -289,7 +292,7 @@ class FavoritesPage(BasePage):
         """删除选中"""
         selected = self._tree.selection()
         if not selected:
-            self.show_message("请先选择要删除的单词", "warning")
+            self.show_message(self._t('favorites.message.select_delete', '请先选择要删除的单词'), "warning")
             return
         
         for word_text in selected:
@@ -301,16 +304,16 @@ class FavoritesPage(BasePage):
         self._load_favorites()
         self.app.update_favorites_count()
         
-        self.show_message(f"已删除 {len(selected)} 个单词", "success")
+        self.show_message(self._t('favorites.message.deleted_count', '已删除 {count} 个单词').format(count=len(selected)), "success")
     
     def _export_favorites(self):
         """导出收藏"""
         if len(self.app.favorites_manager) == 0:
-            self.show_message("收藏列表为空", "warning")
+            self.show_message(self._t('favorites.message.empty_list', '收藏列表为空'), "warning")
             return
         
         file_path = filedialog.asksaveasfilename(
-            title="导出收藏词库",
+            title=self._t('favorites.export_title', '导出收藏词库'),
             defaultextension=".txt",
             initialfile="my_favorites.txt",
             filetypes=[("文本文件", "*.txt"), ("所有文件", "*.*")],
@@ -319,27 +322,27 @@ class FavoritesPage(BasePage):
         
         if file_path:
             if self.app.favorites_manager.export_to_file(file_path):
-                self.show_message(f"已导出到: {file_path}", "success")
+                self.show_message(self._t('favorites.message.export_success', '已导出到: {path}').format(path=file_path), "success")
             else:
-                self.show_message("导出失败", "error")
+                self.show_message(self._t('favorites.message.export_failed', '导出失败'), "error")
     
     def _clear_all(self):
         """清空收藏"""
         if len(self.app.favorites_manager) == 0:
-            self.show_message("收藏列表已经是空的", "info")
+            self.show_message(self._t('favorites.message.empty_already', '收藏列表已经是空的'), "info")
             return
         
         from tkinter import messagebox
         if not messagebox.askyesno(
-            "确认",
-            "确定要清空所有收藏吗？此操作不可恢复！",
+            self._t('confirm.title', '确认'),
+            self._t('favorites.confirm.clear_confirmation', '确定要清空所有收藏吗？此操作不可恢复！'),
             parent=self.app.root
         ):
             return
         
         if not messagebox.askyesno(
-            "再次确认",
-            "您真的确定要清空所有收藏吗？",
+            self._t('confirm.title', '确认'),
+            self._t('favorites.confirm.clear_confirmation_final', '您真的确定要清空所有收藏吗？'),
             parent=self.app.root
         ):
             return
@@ -350,13 +353,13 @@ class FavoritesPage(BasePage):
         self._load_favorites()
         self.app.update_favorites_count()
         
-        self.show_message("收藏已清空", "success")
+        self.show_message(self._t('favorites.message.cleared', '收藏已清空'), "success")
     
     def on_enter(self, **kwargs):
         """进入页面"""
         super().on_enter(**kwargs)
         self._load_favorites()
-        self.app.update_status("管理您的收藏单词")
+        self.app.update_status(self._t('favorites.status.manage', '管理您的收藏单词'))
         self.app.update_progress("")
     
     def refresh(self):

@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import ttk
 from ui.core.base_page import BasePage
+from ui.customtinker import CTFrame, CTLabel, CTButton
 import os
 
 
@@ -36,7 +37,7 @@ class HomePage(BasePage):
         colors = self.colors
         
         # 外层容器
-        self._outer_frame = tk.Frame(self._container, bg=colors["bg_primary"])
+        self._outer_frame = CTFrame(self._container, style_manager=self._style_manager, bg=colors["bg_primary"])
         self._outer_frame.grid(row=0, column=0, sticky="nsew")
         self._outer_frame.columnconfigure(0, weight=1)
         self._outer_frame.rowconfigure(0, weight=1)
@@ -55,7 +56,7 @@ class HomePage(BasePage):
         )
         
         # 内层容器
-        self._scroll_frame = tk.Frame(self._canvas, bg=colors["bg_primary"])
+        self._scroll_frame = CTFrame(self._canvas, style_manager=self._style_manager, bg=colors["bg_primary"])
         
         # 配置滚动
         self._canvas.configure(yscrollcommand=self._scrollbar.set)
@@ -117,13 +118,14 @@ class HomePage(BasePage):
         """创建欢迎区域"""
         colors = self.colors
         
-        welcome_frame = tk.Frame(self._scroll_frame, bg=colors["bg_primary"])
+        welcome_frame = CTFrame(self._scroll_frame, style_manager=self._style_manager, bg=colors["bg_primary"])
         welcome_frame.pack(fill=tk.X, pady=(0, 15))
         
         # 主标题
-        title = tk.Label(
+        title = CTLabel(
             welcome_frame,
-            text="欢迎回来 👋",
+            style_manager=self._style_manager,
+            text=self._t('home.welcome_title', '欢迎回来 👋'),
             font=self._style_manager.get_font("title"),
             bg=colors["bg_primary"],
             fg=colors["fg_primary"]
@@ -131,9 +133,10 @@ class HomePage(BasePage):
         title.pack(anchor="w")
         
         # 副标题
-        subtitle = tk.Label(
+        subtitle = CTLabel(
             welcome_frame,
-            text="准备好今天的学习了吗？",
+            style_manager=self._style_manager,
+            text=self._t('home.welcome_subtitle', '准备好今天的学习了吗？'),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_primary"],
             fg=colors["fg_secondary"]
@@ -144,7 +147,7 @@ class HomePage(BasePage):
         """创建快捷操作区域"""
         colors = self.colors
         
-        actions_frame = tk.Frame(self._scroll_frame, bg=colors["bg_primary"])
+        actions_frame = CTFrame(self._scroll_frame, style_manager=self._style_manager, bg=colors["bg_primary"])
         actions_frame.pack(fill=tk.X, pady=(0, 15))
         
         # 配置列使其自适应
@@ -152,9 +155,9 @@ class HomePage(BasePage):
             actions_frame.columnconfigure(i, weight=1)
         
         actions = [
-            {"title": "开始学习", "icon": "📚", "desc": "学习新单词", "command": self._start_learning, "color": colors["accent"]},
-            {"title": "智能复习", "icon": "🧠", "desc": "基于遗忘曲线", "command": self._start_review, "color": colors["success"]},
-            {"title": "搜索单词", "icon": "🔍", "desc": "查找特定单词", "command": self._search_words, "color": colors["warning"]},
+            {"title": self._t('home.action.learn_title', '开始学习'), "icon": "📚", "desc": self._t('home.action.learn_desc', '学习新单词'), "command": self._start_learning, "color": colors["accent"]},
+            {"title": self._t('home.action.review_title', '智能复习'), "icon": "🧠", "desc": self._t('home.action.review_desc', '基于遗忘曲线'), "command": self._start_review, "color": colors["success"]},
+            {"title": self._t('home.action.search_title', '搜索单词'), "icon": "🔍", "desc": self._t('home.action.search_desc', '查找特定单词'), "command": self._search_words, "color": colors["warning"]},
         ]
         
         for i, action in enumerate(actions):
@@ -165,19 +168,19 @@ class HomePage(BasePage):
         """创建操作卡片"""
         colors = self.colors
         
-        card = tk.Frame(parent, bg=colors["bg_card"], cursor="hand2")
+        card = CTFrame(parent, style_manager=self._style_manager, bg=colors["bg_card"], cursor="hand2")
         card.configure(highlightbackground=colors["border"], highlightthickness=1)
         
-        inner = tk.Frame(card, bg=colors["bg_card"])
+        inner = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         inner.pack(fill=tk.BOTH, expand=True, padx=12, pady=12)
         
-        icon_label = tk.Label(inner, text=action["icon"], font=("Segoe UI", 20), bg=colors["bg_card"], fg=action["color"])
+        icon_label = CTLabel(inner, style_manager=self._style_manager, text=action["icon"], font=("Segoe UI", 20), bg=colors["bg_card"], fg=action["color"])
         icon_label.pack(anchor="w")
         
-        title_label = tk.Label(inner, text=action["title"], font=self._style_manager.get_font("subheading"), bg=colors["bg_card"], fg=colors["fg_primary"])
+        title_label = CTLabel(inner, style_manager=self._style_manager, text=action["title"], font=self._style_manager.get_font("subheading"), bg=colors["bg_card"], fg=colors["fg_primary"])
         title_label.pack(anchor="w", pady=(6, 2))
         
-        desc_label = tk.Label(inner, text=action["desc"], font=self._style_manager.get_font("caption"), bg=colors["bg_card"], fg=colors["fg_secondary"])
+        desc_label = CTLabel(inner, style_manager=self._style_manager, text=action["desc"], font=self._style_manager.get_font("caption"), bg=colors["bg_card"], fg=colors["fg_secondary"])
         desc_label.pack(anchor="w")
         
         def on_click(e):
@@ -220,17 +223,17 @@ class HomePage(BasePage):
         """创建今日统计"""
         colors = self.colors
         
-        stats_card = tk.Frame(self._scroll_frame, bg=colors["bg_card"])
+        stats_card = CTFrame(self._scroll_frame, style_manager=self._style_manager, bg=colors["bg_card"])
         stats_card.configure(highlightbackground=colors["border"], highlightthickness=1)
         stats_card.pack(fill=tk.X, pady=(0, 15))
         
-        header = tk.Frame(stats_card, bg=colors["bg_secondary"])
+        header = CTFrame(stats_card, style_manager=self._style_manager, bg=colors["bg_secondary"])
         header.pack(fill=tk.X, padx=1, pady=1)
         
-        title = tk.Label(header, text="📊 今日概览", font=self._style_manager.get_font("subheading"), bg=colors["bg_secondary"], fg=colors["accent"], padx=10, pady=6)
+        title = CTLabel(header, style_manager=self._style_manager, text=self._t('home.today_overview', '📊 今日概览'), font=self._style_manager.get_font("subheading"), bg=colors["bg_secondary"], fg=colors["accent"], padx=10, pady=6)
         title.pack(anchor="w")
         
-        content = tk.Frame(stats_card, bg=colors["bg_card"])
+        content = CTFrame(stats_card, style_manager=self._style_manager, bg=colors["bg_card"])
         content.pack(fill=tk.X, padx=10, pady=10)
         
         for i in range(4):
@@ -239,27 +242,27 @@ class HomePage(BasePage):
         stats = self._get_today_stats()
         
         stat_items = [
-            ("已学习", f"{stats['studied']}", "词"),
-            ("已掌握", f"{stats['mastered']}", "词"),
-            ("需复习", f"{stats['review']}", "词"),
-            ("准确率", f"{stats['accuracy']}", "%"),
+            (self._t('home.stats.studied', '已学习'), f"{stats['studied']}", self._t('home.stats.unit_words', '词')),
+            (self._t('home.stats.mastered', '已掌握'), f"{stats['mastered']}", self._t('home.stats.unit_words', '词')),
+            (self._t('home.stats.review', '需复习'), f"{stats['review']}", self._t('home.stats.unit_words', '词')),
+            (self._t('home.stats.accuracy', '准确率'), f"{stats['accuracy']}", "%"),
         ]
         
         for i, (label, value, unit) in enumerate(stat_items):
-            stat_frame = tk.Frame(content, bg=colors["bg_card"])
+            stat_frame = CTFrame(content, style_manager=self._style_manager, bg=colors["bg_card"])
             stat_frame.grid(row=0, column=i, padx=5, pady=5)
             
-            value_label = tk.Label(stat_frame, text=value, font=("Segoe UI", 18, "bold"), bg=colors["bg_card"], fg=colors["accent"])
+            value_label = CTLabel(stat_frame, style_manager=self._style_manager, text=value, font=("Segoe UI", 18, "bold"), bg=colors["bg_card"], fg=colors["accent"])
             value_label.pack()
             
-            unit_label = tk.Label(stat_frame, text=f"{label}{unit}", font=self._style_manager.get_font("caption"), bg=colors["bg_card"], fg=colors["fg_secondary"])
+            unit_label = CTLabel(stat_frame, style_manager=self._style_manager, text=f"{label}{unit}", font=self._style_manager.get_font("caption"), bg=colors["bg_card"], fg=colors["fg_secondary"])
             unit_label.pack()
     
     def _create_recent_section(self):
         """创建最近学习区域"""
         colors = self.colors
         
-        recent_card = tk.Frame(self._scroll_frame, bg=colors["bg_card"])
+        recent_card = CTFrame(self._scroll_frame, style_manager=self._style_manager, bg=colors["bg_card"])
         recent_card.configure(highlightbackground=colors["border"], highlightthickness=1)
         recent_card.pack(fill=tk.BOTH, expand=True)
         
@@ -267,32 +270,32 @@ class HomePage(BasePage):
         recent_card.columnconfigure(0, weight=1)
         recent_card.rowconfigure(1, weight=1)
         
-        header = tk.Frame(recent_card, bg=colors["bg_secondary"])
+        header = CTFrame(recent_card, style_manager=self._style_manager, bg=colors["bg_secondary"])
         header.grid(row=0, column=0, sticky="ew", padx=1, pady=1)
         
-        title = tk.Label(header, text="📝 最近学习的单词", font=self._style_manager.get_font("subheading"), bg=colors["bg_secondary"], fg=colors["accent"], padx=10, pady=6)
+        title = CTLabel(header, style_manager=self._style_manager, text=self._t('home.recent_title', '📝 最近学习的单词'), font=self._style_manager.get_font("subheading"), bg=colors["bg_secondary"], fg=colors["accent"], padx=10, pady=6)
         title.pack(anchor="w")
         
-        content = tk.Frame(recent_card, bg=colors["bg_card"])
+        content = CTFrame(recent_card, style_manager=self._style_manager, bg=colors["bg_card"])
         content.grid(row=1, column=0, sticky="nsew", padx=10, pady=8)
         
         recent_words = self._get_recent_words()
         
         if recent_words:
             for word in recent_words[:5]:
-                word_frame = tk.Frame(content, bg=colors["bg_card"])
+                word_frame = CTFrame(content, style_manager=self._style_manager, bg=colors["bg_card"])
                 word_frame.pack(fill=tk.X, pady=2)
                 
-                word_label = tk.Label(word_frame, text=word["word"], font=self._style_manager.get_font("body"), bg=colors["bg_card"], fg=colors["fg_primary"], width=10, anchor="w")
+                word_label = CTLabel(word_frame, style_manager=self._style_manager, text=word["word"], font=self._style_manager.get_font("body"), bg=colors["bg_card"], fg=colors["fg_primary"], width=10, anchor="w")
                 word_label.pack(side=tk.LEFT)
                 
-                pos_label = tk.Label(word_frame, text=word["pos"], font=self._style_manager.get_font("caption"), bg=colors["bg_card"], fg=colors["warning"], width=5, anchor="w")
+                pos_label = CTLabel(word_frame, style_manager=self._style_manager, text=word["pos"], font=self._style_manager.get_font("caption"), bg=colors["bg_card"], fg=colors["warning"], width=5, anchor="w")
                 pos_label.pack(side=tk.LEFT, padx=(0, 5))
                 
-                meaning_label = tk.Label(word_frame, text=word["meaning"], font=self._style_manager.get_font("body"), bg=colors["bg_card"], fg=colors["fg_secondary"], anchor="w")
+                meaning_label = CTLabel(word_frame, style_manager=self._style_manager, text=word["meaning"], font=self._style_manager.get_font("body"), bg=colors["bg_card"], fg=colors["fg_secondary"], anchor="w")
                 meaning_label.pack(side=tk.LEFT, fill=tk.X, expand=True)
         else:
-            empty_label = tk.Label(content, text="还没有学习记录，开始你的第一次学习吧！", font=self._style_manager.get_font("body"), bg=colors["bg_card"], fg=colors["fg_secondary"])
+            empty_label = CTLabel(content, style_manager=self._style_manager, text=self._t('home.recent_empty', '还没有学习记录，开始你的第一次学习吧！'), font=self._style_manager.get_font("body"), bg=colors["bg_card"], fg=colors["fg_secondary"])
             empty_label.pack(pady=15)
     
     def _get_today_stats(self) -> dict:
@@ -328,13 +331,13 @@ class HomePage(BasePage):
         vocab_file = self.app.config.get("vocab_file", "data/vocabulary.txt")
         
         if not os.path.exists(vocab_file):
-            self.show_message("请先在设置中加载词库", "warning")
+            self.show_message(self._t('home.message.no_vocab_loaded', '请先在设置中加载词库'), "warning")
             return
         
         if len(self.app.vocabulary_manager) == 0:
             success, result = self.app.vocabulary_manager.load_from_file(vocab_file)
             if not success:
-                self.show_message(f"加载词库失败: {result}", "error")
+                self.show_message(self._t('home.message.load_vocab_failed', '加载词库失败: {error}').format(error=result), "error")
                 return
         
         self.navigate_to("learning", mode="new")
@@ -350,8 +353,7 @@ class HomePage(BasePage):
                     self.show_message(f"加载词库失败: {result}", "error")
                     return
             else:
-                self.show_message("请先在设置中加载词库", "warning")
-                return
+            self.show_message(self._t('home.message.no_vocab_loaded', '请先在设置中加载词库'), "warning")
         
         self.navigate_to("learning", mode="review")
     
@@ -362,7 +364,7 @@ class HomePage(BasePage):
     def on_enter(self, **kwargs):
         """进入页面"""
         super().on_enter(**kwargs)
-        self.app.update_status("选择一个操作开始学习")
+        self.app.update_status(self._t('home.status.select_action', '选择一个操作开始学习'))
         self.app.update_progress("")
     
     def apply_theme(self):

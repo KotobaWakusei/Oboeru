@@ -1,8 +1,10 @@
 """设置页面 - 应用配置（优化版本）"""
+import os
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
+
+from modules.utils.constants import Constants
 from ui.core.base_page import BasePage
-import os
 
 
 class SettingsPage(BasePage):
@@ -23,6 +25,7 @@ class SettingsPage(BasePage):
         self._create_header()
         self._create_learning_settings()
         self._create_display_settings()
+        self._create_language_settings()
         self._create_behavior_settings()
         self._create_theme_settings()
         self._create_ai_settings()
@@ -121,6 +124,18 @@ class SettingsPage(BasePage):
         """设置布局"""
         pass
     
+    def apply_translation(self):
+        """语言切换时重新构建页面以应用翻译。"""
+        if not self._is_initialized:
+            return
+        try:
+            if hasattr(self, '_container') and self._container:
+                self._container.destroy()
+            self._setup_page()
+            self.apply_theme()
+        except Exception:
+            pass
+    
     def _create_header(self):
         """创建标题"""
         colors = self.colors
@@ -130,7 +145,7 @@ class SettingsPage(BasePage):
         
         title = tk.Label(
             header,
-            text="⚙️ 应用设置",
+            text=self._t("settings.title", "⚙️ 应用设置"),
             font=self._style_manager.get_font("title"),
             bg=colors["bg_primary"],
             fg=colors["fg_primary"]
@@ -139,7 +154,7 @@ class SettingsPage(BasePage):
         
         subtitle = tk.Label(
             header,
-            text="自定义您的学习体验",
+            text=self._t("settings.subtitle", "自定义您的学习体验"),
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_primary"],
             fg=colors["fg_secondary"]
@@ -171,7 +186,7 @@ class SettingsPage(BasePage):
         """创建学习设置"""
         colors = self.colors
         
-        card = self._create_card("📚 学习设置")
+        card = self._create_card(self._t("settings.learning_title", "📚 学习设置"))
         
         # 每日单词量
         row1 = tk.Frame(card, bg=colors["bg_card"])
@@ -179,7 +194,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row1,
-            text="每日单词量：",
+            text=self._t("settings.daily_words_label", "每日单词量："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -216,7 +231,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row2,
-            text="词库文件：",
+            text=self._t("settings.vocab_file_label", "词库文件："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -225,7 +240,7 @@ class SettingsPage(BasePage):
         ).pack(side=tk.LEFT)
         
         self._vocab_file_var = tk.StringVar(
-            value=self.app.config.get("vocab_file", "data/vocabulary.txt")
+            value=self.app.config.get("vocab_file", Constants.DEFAULT_VOCAB_FILE)
         )
         
         vocab_entry = ttk.Entry(
@@ -238,7 +253,7 @@ class SettingsPage(BasePage):
         
         ttk.Button(
             row2,
-            text="浏览",
+            text=self._t("settings.browse", "浏览"),
             command=self._browse_vocab,
             style="Secondary.TButton"
         ).pack(side=tk.LEFT)
@@ -253,7 +268,7 @@ class SettingsPage(BasePage):
         
         ttk.Checkbutton(
             row3,
-            text="随机打乱单词顺序",
+            text=self._t("settings.shuffle_words", "随机打乱单词顺序"),
             variable=self._shuffle_var,
             style="TCheckbutton"
         ).pack(side=tk.LEFT)
@@ -268,7 +283,7 @@ class SettingsPage(BasePage):
         
         ttk.Checkbutton(
             row4,
-            text="显示拼音/词性标注",
+            text=self._t("settings.show_pinyin", "显示拼音/词性标注"),
             variable=self._show_pinyin_var,
             style="TCheckbutton"
         ).pack(side=tk.LEFT)
@@ -283,7 +298,7 @@ class SettingsPage(BasePage):
         
         ttk.Checkbutton(
             row5,
-            text="学习时自动播放发音",
+            text=self._t("settings.auto_play_pronunciation", "学习时自动播放发音"),
             variable=self._auto_play_sound_var,
             style="TCheckbutton"
         ).pack(side=tk.LEFT)
@@ -294,7 +309,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row6,
-            text="回顾单词数：",
+            text=self._t("settings.review_words_label", "回顾单词数："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -316,7 +331,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row6,
-            text="(1-10) 背诵时显示最近N个单词",
+            text=self._t("settings.review_range_hint", "(1-10) 背诵时显示最近N个单词"),
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_card"],
             fg=colors["fg_secondary"]
@@ -326,7 +341,7 @@ class SettingsPage(BasePage):
         """创建显示设置"""
         colors = self.colors
         
-        card = self._create_card("🖥️ 显示设置")
+        card = self._create_card(self._t("settings.display_title", "🖥️ 显示设置"))
         
         # 字体大小
         row1 = tk.Frame(card, bg=colors["bg_card"])
@@ -334,7 +349,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row1,
-            text="字体大小：",
+            text=self._t("settings.font_size_label", "字体大小："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -375,7 +390,7 @@ class SettingsPage(BasePage):
         
         ttk.Checkbutton(
             row2,
-            text="显示学习进度条",
+            text=self._t("settings.show_progress_bar", "显示学习进度条"),
             variable=self._progress_var,
             style="TCheckbutton"
         ).pack(side=tk.LEFT)
@@ -390,7 +405,7 @@ class SettingsPage(BasePage):
         
         ttk.Checkbutton(
             row3,
-            text="记住窗口大小和位置",
+            text=self._t("settings.remember_window_size", "记住窗口大小和位置"),
             variable=self._remember_size_var,
             style="TCheckbutton"
         ).pack(side=tk.LEFT)
@@ -399,7 +414,7 @@ class SettingsPage(BasePage):
         """创建行为设置"""
         colors = self.colors
         
-        card = self._create_card("⚡ 行为设置")
+        card = self._create_card(self._t("settings.behavior_title", "⚡ 行为设置"))
         
         # 测试延迟
         row1 = tk.Frame(card, bg=colors["bg_card"])
@@ -407,7 +422,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row1,
-            text="答对延迟：",
+            text=self._t("settings.correct_delay_label", "答对延迟："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -428,7 +443,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row1,
-            text="毫秒",
+            text=self._t("settings.milliseconds", "毫秒"),
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_card"],
             fg=colors["fg_secondary"]
@@ -440,7 +455,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row2,
-            text="答错延迟：",
+            text=self._t("settings.wrong_delay_label", "答错延迟："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -461,7 +476,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row2,
-            text="毫秒",
+            text=self._t("settings.milliseconds", "毫秒"),
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_card"],
             fg=colors["fg_secondary"]
@@ -477,7 +492,7 @@ class SettingsPage(BasePage):
         
         ttk.Checkbutton(
             row3,
-            text="退出前确认",
+            text=self._t("settings.confirm_before_exit", "退出前确认"),
             variable=self._confirm_exit_var,
             style="TCheckbutton"
         ).pack(side=tk.LEFT)
@@ -492,7 +507,7 @@ class SettingsPage(BasePage):
         
         ttk.Checkbutton(
             row4,
-            text="自动保存配置",
+            text=self._t("settings.auto_save_config", "自动保存配置"),
             variable=self._auto_save_var,
             style="TCheckbutton"
         ).pack(side=tk.LEFT)
@@ -501,14 +516,14 @@ class SettingsPage(BasePage):
         """创建主题设置"""
         colors = self.colors
         
-        card = self._create_card("🎨 主题设置")
+        card = self._create_card(self._t("settings.theme_title", "🎨 主题设置"))
         
         row1 = tk.Frame(card, bg=colors["bg_card"])
         row1.pack(fill=tk.X, pady=5)
         
         tk.Label(
             row1,
-            text="选择主题：",
+            text=self._t("settings.theme_label", "选择主题："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -538,13 +553,86 @@ class SettingsPage(BasePage):
         self._theme_preview.pack(fill=tk.X, pady=10)
         
         self._update_theme_preview()
+
+    def _create_language_settings(self):
+        """创建语言设置"""
+        colors = self.colors
+
+        card = self._create_card(self._t("settings.language_title", "🌐 语言设置"))
+
+        row = tk.Frame(card, bg=colors["bg_card"])
+        row.pack(fill=tk.X, pady=5)
+
+        label_text = None
+        try:
+            label_text = self.app.language_manager.translate("settings.ui_language", "界面语言")
+        except Exception:
+            label_text = "界面语言："
+
+        tk.Label(
+            row,
+            text=label_text,
+            font=self._style_manager.get_font("body"),
+            bg=colors["bg_card"],
+            fg=colors["fg_primary"],
+            width=12,
+            anchor="w"
+        ).pack(side=tk.LEFT)
+
+        # 获取可用语言并显示友好名称
+        lang_mgr = self.app.language_manager
+        available = lang_mgr.get_available_languages() if lang_mgr else []
+        # mapping display_name -> code
+        self._lang_display_to_code = {name: code for code, name in available}
+
+        # 当前选择显示为友好名称
+        current_code = lang_mgr.current_language if lang_mgr else None
+        current_display = lang_mgr.get_language_display(current_code) if current_code else None
+
+        self._language_var = tk.StringVar(value=current_display or (available[0][1] if available else ""))
+
+        values = [name for _, name in available]
+
+        self._language_combo = ttk.Combobox(
+            row,
+            textvariable=self._language_var,
+            values=values,
+            state="readonly",
+            width=18,
+            font=self._style_manager.get_font("body")
+        )
+        self._language_combo.pack(side=tk.LEFT)
+        self._language_combo.bind("<<ComboboxSelected>>", self._on_language_change)
+
+    def _on_language_change(self, event=None):
+        """语言变更处理：将友好名称映射回 code 并保存到配置"""
+        try:
+            sel = self._language_var.get()
+            code = self._lang_display_to_code.get(sel)
+            if not code:
+                return
+            # 设置语言并保存配置
+            self.app.language_manager.set_language(code, save=True)
+            self.app.update_status(self._t("settings.language_changed", "语言已切换: {name}").format(name=sel))
+            # 通知所有页面（若需要可在 PageManager 实现 apply_locale_to_all）
+            try:
+                for p in list(self.app.page_manager._instances.values()):
+                    if hasattr(p, 'apply_translation'):
+                        try:
+                            p.apply_translation()
+                        except Exception:
+                            pass
+            except Exception:
+                pass
+        except Exception:
+            pass
     
     def _create_ai_settings(self):
         """创建 AI 例句设置"""
         colors = self.colors
         from modules.utils.constants import Constants
         
-        card = self._create_card("🤖 AI 例句设置")
+        card = self._create_card(self._t("settings.ai_title", "🤖 AI 例句设置"))
         
         # 启用 AI 和基本说明
         row0 = tk.Frame(card, bg=colors["bg_card"])
@@ -556,7 +644,7 @@ class SettingsPage(BasePage):
         
         ttk.Checkbutton(
             row0,
-            text="启用 AI 例句生成",
+            text=self._t("settings.enable_ai_sentences", "启用 AI 例句生成"),
             variable=self._ai_enabled_var,
             style="TCheckbutton"
         ).pack(side=tk.LEFT)
@@ -564,7 +652,7 @@ class SettingsPage(BasePage):
         # 添加说明标签
         tk.Label(
             row0,
-            text="(使用 AI 为单词生成例句，需要 API Key)",
+            text=self._t("settings.ai_description", "(使用 AI 为单词生成例句，需要 API Key)"),
             font=self._style_manager.get_font("small"),
             bg=colors["bg_card"],
             fg=colors["fg_secondary"]
@@ -576,7 +664,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row_provider,
-            text="API 提供商：",
+            text=self._t("settings.ai_provider_label", "API 提供商："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -584,17 +672,20 @@ class SettingsPage(BasePage):
             anchor="w"
         ).pack(side=tk.LEFT)
         
-        self._ai_provider_var = tk.StringVar(
-            value=self.app.config.get("ai_provider", "xunfei_lite")
-        )
-        
         providers = Constants.AI_PROVIDERS
         provider_names = [(k, v["name"]) for k, v in providers.items()]
+        selected_provider_key = self.app.config.get("ai_provider", "xunfei_lite")
+        selected_provider_name = dict(provider_names).get(
+            selected_provider_key,
+            provider_names[0][1]
+        )
+
+        self._ai_provider_var = tk.StringVar(value=selected_provider_name)
         
         provider_combo = ttk.Combobox(
             row_provider,
             textvariable=self._ai_provider_var,
-            values=[f"{v[1]}" for v in provider_names],
+            values=[v for _, v in provider_names],
             state="readonly",
             width=18,
             font=self._style_manager.get_font("body")
@@ -620,7 +711,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             self._custom_url_frame,
-            text="自定义 URL：",
+            text=self._t("settings.ai_custom_url_label", "自定义 URL："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -644,7 +735,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             self._custom_model_frame,
-            text="模型名称：",
+            text=self._t("settings.ai_custom_model_label", "模型名称："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -669,7 +760,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row1,
-            text="API Key：",
+            text=self._t("settings.ai_key_label", "API Key："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -701,7 +792,7 @@ class SettingsPage(BasePage):
         
         ttk.Checkbutton(
             row1,
-            text="显示",
+            text=self._t("settings.show_api_key", "显示"),
             variable=self._show_key_var,
             command=toggle_key_visibility,
             style="TCheckbutton"
@@ -710,7 +801,7 @@ class SettingsPage(BasePage):
         # 添加测试连接按钮
         test_btn = ttk.Button(
             row1,
-            text="测试连接",
+            text=self._t("settings.test_connection", "测试连接"),
             command=self._test_ai_connection,
             style="Secondary.TButton"
         )
@@ -722,7 +813,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row_diff,
-            text="例句难度：",
+            text=self._t("settings.ai_difficulty_label", "例句难度："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -730,12 +821,15 @@ class SettingsPage(BasePage):
             anchor="w"
         ).pack(side=tk.LEFT)
         
-        self._ai_difficulty_var = tk.StringVar(
-            value=self.app.config.get("ai_difficulty", "junior")
-        )
-        
         difficulties = Constants.AI_DIFFICULTY_LEVELS
         diff_options = [(k, v["name"]) for k, v in difficulties.items()]
+        selected_difficulty_key = self.app.config.get("ai_difficulty", "junior")
+        selected_difficulty_name = dict(diff_options).get(
+            selected_difficulty_key,
+            diff_options[0][1]
+        )
+        
+        self._ai_difficulty_var = tk.StringVar(value=selected_difficulty_name)
         
         diff_combo = ttk.Combobox(
             row_diff,
@@ -765,7 +859,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row3,
-            text="超时(秒)：",
+            text=self._t("settings.ai_timeout_label", "超时(秒)："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -787,7 +881,7 @@ class SettingsPage(BasePage):
         # 添加超时说明
         tk.Label(
             row3,
-            text="(网络请求超时时间，建议 10-60 秒)",
+            text=self._t("settings.ai_timeout_hint", "(网络请求超时时间，建议 10-60 秒)"),
             font=self._style_manager.get_font("small"),
             bg=colors["bg_card"],
             fg=colors["fg_secondary"]
@@ -803,7 +897,7 @@ class SettingsPage(BasePage):
         
         ttk.Checkbutton(
             row4,
-            text="学习时自动显示 AI 例句",
+            text=self._t("settings.auto_show_ai_sentences", "学习时自动显示 AI 例句"),
             variable=self._ai_show_sentence_var,
             style="TCheckbutton"
         ).pack(side=tk.LEFT)
@@ -854,7 +948,7 @@ class SettingsPage(BasePage):
         """创建 AI 对话调试区域"""
         colors = self.colors
         
-        card = self._create_card("🐛 AI 对话调试")
+        card = self._create_card(self._t("settings.ai_debug_title", "🐛 AI 对话调试"))
         
         # 对话历史区域
         history_frame = tk.Frame(card, bg=colors["bg_card"])
@@ -897,21 +991,21 @@ class SettingsPage(BasePage):
         
         ttk.Button(
             input_frame,
-            text="发送",
+            text=self._t("settings.send", "发送"),
             command=self._send_debug_message,
             style="Primary.TButton"
         ).pack(side=tk.LEFT, padx=2)
         
         ttk.Button(
             input_frame,
-            text="清除",
+            text=self._t("settings.clear", "清除"),
             command=self._clear_debug_history,
             style="Secondary.TButton"
         ).pack(side=tk.LEFT, padx=2)
         
         ttk.Button(
             input_frame,
-            text="测试连接",
+            text=self._t("settings.test_connection", "测试连接"),
             command=self._test_ai_connection,
             style="Secondary.TButton"
         ).pack(side=tk.LEFT, padx=2)
@@ -919,7 +1013,7 @@ class SettingsPage(BasePage):
         # 状态显示
         self._debug_status = tk.Label(
             card,
-            text="准备就绪",
+            text=self._t("settings.ready", "准备就绪"),
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_card"],
             fg=colors["fg_secondary"]
@@ -937,8 +1031,8 @@ class SettingsPage(BasePage):
             return
         
         self._debug_input.delete(0, tk.END)
-        self._add_debug_message("用户", message)
-        self._debug_status.configure(text="AI 正在思考...")
+        self._add_debug_message(self._t("settings.user_label", "用户"), message)
+        self._debug_status.configure(text=self._t("settings.ai_thinking", "AI 正在思考..."))
         
         def on_response(success, result):
             self.after(0, lambda: self._on_debug_response(success, result))
@@ -1005,10 +1099,10 @@ class SettingsPage(BasePage):
         """处理 AI 响应"""
         if success:
             self._add_debug_message("AI", result)
-            self._debug_status.configure(text="回复完成")
+            self._debug_status.configure(text=self._t("settings.reply_complete", "回复完成"))
         else:
             self._add_debug_message("系统", f"错误: {result}", "error")
-            self._debug_status.configure(text="请求失败")
+            self._debug_status.configure(text=self._t("settings.request_failed", "请求失败"))
     
     def _add_debug_message(self, sender: str, message: str, msg_type: str = "normal"):
         """添加消息到调试历史"""
@@ -1040,7 +1134,7 @@ class SettingsPage(BasePage):
         self._debug_history.configure(state=tk.NORMAL)
         self._debug_history.delete(1.0, tk.END)
         self._debug_history.configure(state=tk.DISABLED)
-        self._debug_status.configure(text="历史已清除")
+        self._debug_status.configure(text=self._t("settings.history_cleared", "历史已清除"))
     
     def _test_ai_connection(self):
         """测试 AI 连接"""
@@ -1048,8 +1142,8 @@ class SettingsPage(BasePage):
             self._add_debug_message("系统", "AI 功能未配置，请先配置 API Key", "error")
             return
         
-        self._add_debug_message("系统", "正在测试连接...")
-        self._debug_status.configure(text="测试连接中...")
+        self._add_debug_message(self._t("settings.system_label", "系统"), self._t("settings.connection_testing", "正在测试连接..."))
+        self._debug_status.configure(text=self._t("settings.connection_testing", "测试连接中..."))
         
         def on_response(success, result):
             self.after(0, lambda: self._on_test_response(success, result))
@@ -1059,17 +1153,17 @@ class SettingsPage(BasePage):
     def _on_test_response(self, success: bool, result: str):
         """处理测试响应"""
         if success:
-            self._add_debug_message("系统", f"✓ 连接成功！AI 响应: {result}")
-            self._debug_status.configure(text="连接正常")
+            self._add_debug_message(self._t("settings.system_label", "系统"), self._t("settings.connection_success", "✓ 连接成功！AI 响应: {result}").format(result=result))
+            self._debug_status.configure(text=self._t("settings.connection_ok", "连接正常"))
         else:
-            self._add_debug_message("系统", f"✗ 连接失败: {result}", "error")
-            self._debug_status.configure(text="连接失败")
+            self._add_debug_message(self._t("settings.system_label", "系统"), self._t("settings.connection_failed_detail", "✗ 连接失败: {result}").format(result=result), "error")
+            self._debug_status.configure(text=self._t("settings.connection_failed", "连接失败"))
     
     def _create_data_settings(self):
         """创建数据管理设置"""
         colors = self.colors
         
-        card = self._create_card("📁 数据管理")
+        card = self._create_card(self._t("settings.data_title", "📁 数据管理"))
         
         # 收藏自动备份
         row1 = tk.Frame(card, bg=colors["bg_card"])
@@ -1081,7 +1175,7 @@ class SettingsPage(BasePage):
         
         ttk.Checkbutton(
             row1,
-            text="收藏自动备份",
+            text=self._t("settings.favorites_auto_backup", "收藏自动备份"),
             variable=self._fav_backup_var,
             style="TCheckbutton"
         ).pack(side=tk.LEFT)
@@ -1092,7 +1186,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row2,
-            text="收藏排序：",
+            text=self._t("settings.favorites_sort_label", "收藏排序："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
             fg=colors["fg_primary"],
@@ -1116,7 +1210,7 @@ class SettingsPage(BasePage):
         
         tk.Label(
             row2,
-            text="(时间/字母/学习次数)",
+            text=self._t("settings.favorites_sort_hint", "(时间/字母/学习次数)"),
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_card"],
             fg=colors["fg_secondary"]
@@ -1128,14 +1222,14 @@ class SettingsPage(BasePage):
         
         ttk.Button(
             btn_row,
-            text="🗑️ 清除学习进度",
+            text=self._t("settings.clear_progress", "🗑️ 清除学习进度"),
             command=self._clear_progress,
             style="Secondary.TButton"
         ).pack(side=tk.LEFT, padx=3)
         
         ttk.Button(
             btn_row,
-            text="📤 导出所有数据",
+            text=self._t("settings.export_all_data", "📤 导出所有数据"),
             command=self._export_all_data,
             style="Secondary.TButton"
         ).pack(side=tk.LEFT, padx=3)
@@ -1212,21 +1306,21 @@ class SettingsPage(BasePage):
         
         ttk.Button(
             btn_frame,
-            text="💾 保存设置",
+            text=self._t("settings.save_settings", "💾 保存设置"),
             command=self._save_settings,
             style="Primary.TButton"
         ).pack(side=tk.RIGHT, padx=3)
         
         ttk.Button(
             btn_frame,
-            text="🔄 重置",
+            text=self._t("settings.reset", "🔄 重置"),
             command=self._reset_settings,
             style="Secondary.TButton"
         ).pack(side=tk.RIGHT, padx=3)
         
         ttk.Button(
             btn_frame,
-            text="📁 加载词库",
+            text=self._t("settings.load_vocab", "📁 加载词库"),
             command=self._load_vocabulary,
             style="Secondary.TButton"
         ).pack(side=tk.RIGHT, padx=3)
@@ -1234,7 +1328,7 @@ class SettingsPage(BasePage):
     def _browse_vocab(self):
         """浏览词库文件"""
         file_path = filedialog.askopenfilename(
-            title="选择词库文件",
+            title=self._t("settings.select_vocab_file", "选择词库文件"),
             filetypes=[("文本文件", "*.txt"), ("所有文件", "*.*")],
             parent=self.app.root
         )
@@ -1373,18 +1467,22 @@ class SettingsPage(BasePage):
             
             self.app.config.save_config()
             
-            self.show_message("设置已保存", "success")
+            self.show_message(self._t("settings.settings_saved", "设置已保存"), "success")
             
         except ValueError as e:
             self.show_message(f"请输入有效的数值: {e}", "error")
     
     def _reset_settings(self):
         """重置设置"""
-        if not messagebox.askyesno("确认", "确定要重置所有设置为默认值吗？", parent=self.app.root):
+        if not messagebox.askyesno(
+            self._t("settings.confirm_reset_title", "确认"),
+            self._t("settings.confirm_reset_message", "确定要重置所有设置为默认值吗？"),
+            parent=self.app.root
+        ):
             return
         
         self._daily_words_var.set("20")
-        self._vocab_file_var.set("data/vocabulary.txt")
+        self._vocab_file_var.set(Constants.DEFAULT_VOCAB_FILE)
         self._shuffle_var.set(True)
         self._show_pinyin_var.set(True)
         self._auto_play_sound_var.set(False)
@@ -1409,42 +1507,71 @@ class SettingsPage(BasePage):
         self._ai_custom_model_var.set("")
         self._ai_difficulty_var.set("初中")
         
-        self._fav_backup_var.set(True)
-        self._fav_sort_var.set("time")
-        
+        default = self.app.config.get_default_config()
+
+        self._daily_words_var.set(str(default.get("daily_words", 20)))
+        self._vocab_file_var.set(default.get("vocab_file", Constants.DEFAULT_VOCAB_FILE))
+        self._shuffle_var.set(default.get("shuffle_words", True))
+        self._show_pinyin_var.set(default.get("show_pinyin", True))
+        self._auto_play_sound_var.set(default.get("auto_play_sound", False))
+        self._review_words_count_var.set(str(default.get("review_words_count", 3)))
+
+        self._font_size_var.set(str(default.get("font_size", 14)))
+        self._progress_var.set(default.get("show_progress_bar", True))
+        self._remember_size_var.set(default.get("remember_window_size", True))
+
+        self._test_delay_var.set(str(default.get("test_delay", 1500)))
+        self._wrong_delay_var.set(str(default.get("wrong_delay", 2000)))
+        self._confirm_exit_var.set(default.get("confirm_before_exit", True))
+        self._auto_save_var.set(default.get("auto_save_config", True))
+
+        self._theme_var.set(default.get("theme", "default"))
+
+        self._ai_enabled_var.set(default.get("ai_enabled", False))
+        self._ai_key_var.set(default.get("ai_api_key", ""))
+        self._ai_timeout_var.set(str(default.get("ai_timeout", 30)))
+        self._ai_show_sentence_var.set(default.get("ai_show_sentence", True))
+        self._ai_provider_var.set(dict(provider_names).get(default.get("ai_provider", "xunfei_lite"), provider_names[0][1]))
+        self._ai_custom_url_var.set(default.get("ai_custom_url", ""))
+        self._ai_custom_model_var.set(default.get("ai_custom_model", ""))
+        self._ai_difficulty_var.set(dict(diff_options).get(default.get("ai_difficulty", "junior"), diff_options[0][1]))
+
+        self._fav_backup_var.set(default.get("favorites_auto_backup", True))
+        self._fav_sort_var.set(default.get("favorites_sort", "time"))
+
         self._on_theme_change()
         self._update_ai_settings_display()
         self._save_settings()
         
-        self.show_message("已重置为默认设置", "info")
+        self.show_message(self._t("settings.reset_done", "已重置为默认设置"), "info")
     
     def _load_vocabulary(self):
         """加载词库"""
         vocab_file = self._vocab_file_var.get()
         
         if not os.path.exists(vocab_file):
-            self.show_message(f"词库文件不存在: {vocab_file}", "error")
+            self.show_message(self._t("settings.vocab_file_not_found", "词库文件不存在: {file}").format(file=vocab_file), "error")
             return
         
         success, result = self.app.vocabulary_manager.load_from_file(vocab_file)
         
         if success:
-            self.show_message(f"词库加载成功，共 {result} 个单词", "success")
+            self.show_message(self._t("settings.load_vocab_success", "词库加载成功，共 {count} 个单词").format(count=result), "success")
             self.app.update_status(f"词库已加载: {result} 个单词")
         else:
-            self.show_message(f"加载词库失败: {result}", "error")
+            self.show_message(self._t("settings.load_vocab_failed", "加载词库失败: {error}").format(error=result), "error")
     
     def _clear_progress(self):
         """清除学习进度"""
         if not messagebox.askyesno(
-            "确认",
-            "确定要清除所有学习进度吗？\n此操作不可恢复！",
+            self._t("settings.confirm_clear_title", "确认"),
+            self._t("settings.confirm_clear_progress", "确定要清除所有学习进度吗？\n此操作不可恢复！"),
             parent=self.app.root
         ):
             return
         
         self.app.progress_manager.clear_all_progress()
-        self.show_message("学习进度已清除", "success")
+        self.show_message(self._t("settings.progress_cleared", "学习进度已清除"), "success")
     
     def _export_all_data(self):
         """导出所有数据"""
@@ -1475,7 +1602,7 @@ class SettingsPage(BasePage):
         progress_path = os.path.join(dir_path, f"progress_{timestamp}.txt")
         self.app.progress_manager.export_progress(progress_path)
         
-        self.show_message(f"数据已导出到: {dir_path}", "success")
+        self.show_message(self._t("settings.export_success", "数据已导出到: {dir}").format(dir=dir_path), "success")
     
     def on_enter(self, **kwargs):
         """进入页面"""

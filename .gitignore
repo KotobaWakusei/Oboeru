@@ -1,6 +1,6 @@
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.egg-info/
 dist/
@@ -12,14 +12,21 @@ env/
 
 # IDE
 .vscode/
+.idea/
 .codex/
+
+# Test
+.pytest_cache/
 
 # Data
 data/config.json
 data/study_progress.json
 
-# Logs
+# Logs and backup
 logs/
+backups/
+*.log
+*.tmp
 
 # OS
 .DS_Store
