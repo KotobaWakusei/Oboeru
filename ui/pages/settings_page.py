@@ -5,6 +5,7 @@ from tkinter import ttk, filedialog, messagebox
 
 from modules.utils.constants import Constants
 from ui.core.base_page import BasePage
+from ui.customtinker import CTFrame, CTLabel, CTEntry, CTCombobox, CTScrollableFrame
 
 
 class SettingsPage(BasePage):
@@ -43,56 +44,14 @@ class SettingsPage(BasePage):
     def _create_scrollable_area(self):
         """创建滚动区域"""
         colors = self.colors
-        
-        # 外层容器
-        self._outer_frame = tk.Frame(self._container, bg=colors["bg_primary"])
+        # 使用 CTScrollableFrame 替代 Canvas+Frame+Scrollbar 的手工实现
+        self._outer_frame = CTScrollableFrame(self._container, style_manager=self._style_manager, bg=colors["bg_primary"], padx=15, pady=15)
         self._outer_frame.pack(fill=tk.BOTH, expand=True)
-        
-        # 创建 Canvas 和滚动条
-        self._canvas = tk.Canvas(
-            self._outer_frame,
-            bg=colors["bg_primary"],
-            highlightthickness=0
-        )
-        
-        self._scrollbar = ttk.Scrollbar(
-            self._outer_frame,
-            orient=tk.VERTICAL,
-            command=self._canvas.yview
-        )
-        
-        # 内层容器（放置内容）
-        self._scroll_frame = tk.Frame(self._canvas, bg=colors["bg_primary"])
-        
-        # 配置滚动
-        self._canvas.configure(yscrollcommand=self._scrollbar.set)
-        
-        # 布局
-        self._scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-        self._canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-        
-        # 在 Canvas 中创建窗口
-        self._canvas_window = self._canvas.create_window(
-            (0, 0),
-            window=self._scroll_frame,
-            anchor="nw",
-            width=self._canvas.winfo_reqwidth()
-        )
-        
-        # 绑定事件
-        self._scroll_frame.bind("<Configure>", self._on_frame_configure)
-        self._canvas.bind("<Configure>", self._on_canvas_configure)
-        
-        # 鼠标滚轮支持 - 绑定到 canvas
-        self._canvas.bind("<MouseWheel>", self._on_mousewheel)
-        self._canvas.bind("<Button-4>", self._on_mousewheel)
-        self._canvas.bind("<Button-5>", self._on_mousewheel)
-        
-        # 鼠标滚轮支持 - 绑定到 scroll_frame 及其子组件
-        self._bind_mousewheel_recursive(self._scroll_frame)
-        
-        # 设置内边距
-        self._scroll_frame.configure(padx=15, pady=15)
+        # 透出内部引用以保持兼容性
+        self._canvas = self._outer_frame._canvas
+        self._scrollbar = self._outer_frame._scrollbar
+        self._scroll_frame = self._outer_frame._scroll_frame
+        self._canvas_window = self._outer_frame._canvas_window
     
     def _bind_mousewheel_recursive(self, widget):
         """递归绑定滚轮事件到所有子组件"""
@@ -139,21 +98,22 @@ class SettingsPage(BasePage):
     def _create_header(self):
         """创建标题"""
         colors = self.colors
-        
-        header = tk.Frame(self._scroll_frame, bg=colors["bg_primary"])
+        header = CTFrame(self._scroll_frame, style_manager=self._style_manager, bg=colors["bg_primary"])
         header.pack(fill=tk.X, pady=(0, 15))
-        
-        title = tk.Label(
+
+        title = CTLabel(
             header,
+            style_manager=self._style_manager,
             text=self._t("settings.title", "⚙️ 应用设置"),
             font=self._style_manager.get_font("title"),
             bg=colors["bg_primary"],
             fg=colors["fg_primary"]
         )
         title.pack(anchor="w")
-        
-        subtitle = tk.Label(
+
+        subtitle = CTLabel(
             header,
+            style_manager=self._style_manager,
             text=self._t("settings.subtitle", "自定义您的学习体验"),
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_primary"],
@@ -164,12 +124,12 @@ class SettingsPage(BasePage):
     def _create_setting_row(self, parent, label: str, widget, label_width: int = 12):
         """创建设置行"""
         colors = self.colors
-        
-        row = tk.Frame(parent, bg=colors["bg_card"])
+        row = CTFrame(parent, style_manager=self._style_manager, bg=colors["bg_card"])
         row.pack(fill=tk.X, pady=5)
-        
-        tk.Label(
+
+        CTLabel(
             row,
+            style_manager=self._style_manager,
             text=label,
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
@@ -177,23 +137,23 @@ class SettingsPage(BasePage):
             width=label_width,
             anchor="w"
         ).pack(side=tk.LEFT)
-        
+
         widget.pack(side=tk.LEFT, padx=(0, 8))
-        
+
         return row
     
     def _create_learning_settings(self):
         """创建学习设置"""
         colors = self.colors
-        
         card = self._create_card(self._t("settings.learning_title", "📚 学习设置"))
-        
+
         # 每日单词量
-        row1 = tk.Frame(card, bg=colors["bg_card"])
+        row1 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row1.pack(fill=tk.X, pady=5)
-        
-        tk.Label(
+
+        CTLabel(
             row1,
+            style_manager=self._style_manager,
             text=self._t("settings.daily_words_label", "每日单词量："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
@@ -201,36 +161,37 @@ class SettingsPage(BasePage):
             width=12,
             anchor="w"
         ).pack(side=tk.LEFT)
-        
-        self._daily_words_var = tk.StringVar(
-            value=str(self.app.config.get("daily_words", 20))
-        )
-        
-        daily_entry = ttk.Entry(
+
+        self._daily_words_var = tk.StringVar(value=str(self.app.config.get("daily_words", 20)))
+
+        daily_entry = CTEntry(
             row1,
+            style_manager=self._style_manager,
             textvariable=self._daily_words_var,
             width=8,
             font=self._style_manager.get_font("body")
         )
         daily_entry.pack(side=tk.LEFT, padx=(0, 8))
-        
+
         daily_min = self.app.config.get("daily_words_min", 1)
         daily_max = self.app.config.get("daily_words_max", 100)
-        
-        tk.Label(
+
+        CTLabel(
             row1,
+            style_manager=self._style_manager,
             text=f"({daily_min}-{daily_max})",
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_card"],
             fg=colors["fg_secondary"]
         ).pack(side=tk.LEFT)
-        
+
         # 词库文件
-        row2 = tk.Frame(card, bg=colors["bg_card"])
+        row2 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row2.pack(fill=tk.X, pady=5)
-        
-        tk.Label(
+
+        CTLabel(
             row2,
+            style_manager=self._style_manager,
             text=self._t("settings.vocab_file_label", "词库文件："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
@@ -238,77 +199,48 @@ class SettingsPage(BasePage):
             width=12,
             anchor="w"
         ).pack(side=tk.LEFT)
-        
-        self._vocab_file_var = tk.StringVar(
-            value=self.app.config.get("vocab_file", Constants.DEFAULT_VOCAB_FILE)
-        )
-        
-        vocab_entry = ttk.Entry(
+
+        self._vocab_file_var = tk.StringVar(value=self.app.config.get("vocab_file", Constants.DEFAULT_VOCAB_FILE))
+
+        vocab_entry = CTEntry(
             row2,
+            style_manager=self._style_manager,
             textvariable=self._vocab_file_var,
             width=30,
             font=self._style_manager.get_font("body")
         )
         vocab_entry.pack(side=tk.LEFT, padx=(0, 8), fill=tk.X, expand=True)
-        
-        ttk.Button(
-            row2,
-            text=self._t("settings.browse", "浏览"),
-            command=self._browse_vocab,
-            style="Secondary.TButton"
-        ).pack(side=tk.LEFT)
-        
+
+        self.create_button(row2, self._t("settings.browse", "浏览"), self._browse_vocab, style="Secondary.TButton").pack(side=tk.LEFT)
+
         # 随机顺序
-        row3 = tk.Frame(card, bg=colors["bg_card"])
+        row3 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row3.pack(fill=tk.X, pady=5)
-        
-        self._shuffle_var = tk.BooleanVar(
-            value=self.app.config.get_bool("shuffle_words", True)
-        )
-        
-        ttk.Checkbutton(
-            row3,
-            text=self._t("settings.shuffle_words", "随机打乱单词顺序"),
-            variable=self._shuffle_var,
-            style="TCheckbutton"
-        ).pack(side=tk.LEFT)
-        
+
+        self._shuffle_var = tk.BooleanVar(value=self.app.config.get_bool("shuffle_words", True))
+        ttk.Checkbutton(row3, text=self._t("settings.shuffle_words", "随机打乱单词顺序"), variable=self._shuffle_var, style="TCheckbutton").pack(side=tk.LEFT)
+
         # 显示拼音
-        row4 = tk.Frame(card, bg=colors["bg_card"])
+        row4 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row4.pack(fill=tk.X, pady=5)
-        
-        self._show_pinyin_var = tk.BooleanVar(
-            value=self.app.config.get_bool("show_pinyin", True)
-        )
-        
-        ttk.Checkbutton(
-            row4,
-            text=self._t("settings.show_pinyin", "显示拼音/词性标注"),
-            variable=self._show_pinyin_var,
-            style="TCheckbutton"
-        ).pack(side=tk.LEFT)
-        
+
+        self._show_pinyin_var = tk.BooleanVar(value=self.app.config.get_bool("show_pinyin", True))
+        ttk.Checkbutton(row4, text=self._t("settings.show_pinyin", "显示拼音/词性标注"), variable=self._show_pinyin_var, style="TCheckbutton").pack(side=tk.LEFT)
+
         # 自动播放发音
-        row5 = tk.Frame(card, bg=colors["bg_card"])
+        row5 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row5.pack(fill=tk.X, pady=5)
-        
-        self._auto_play_sound_var = tk.BooleanVar(
-            value=self.app.config.get_bool("auto_play_sound", False)
-        )
-        
-        ttk.Checkbutton(
-            row5,
-            text=self._t("settings.auto_play_pronunciation", "学习时自动播放发音"),
-            variable=self._auto_play_sound_var,
-            style="TCheckbutton"
-        ).pack(side=tk.LEFT)
-        
+
+        self._auto_play_sound_var = tk.BooleanVar(value=self.app.config.get_bool("auto_play_sound", False))
+        ttk.Checkbutton(row5, text=self._t("settings.auto_play_pronunciation", "学习时自动播放发音"), variable=self._auto_play_sound_var, style="TCheckbutton").pack(side=tk.LEFT)
+
         # 回顾单词数量
-        row6 = tk.Frame(card, bg=colors["bg_card"])
+        row6 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row6.pack(fill=tk.X, pady=5)
-        
-        tk.Label(
+
+        CTLabel(
             row6,
+            style_manager=self._style_manager,
             text=self._t("settings.review_words_label", "回顾单词数："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
@@ -316,21 +248,15 @@ class SettingsPage(BasePage):
             width=12,
             anchor="w"
         ).pack(side=tk.LEFT)
-        
-        self._review_words_count_var = tk.StringVar(
-            value=str(self.app.config.get("review_words_count", 3))
-        )
-        
-        review_entry = ttk.Entry(
-            row6,
-            textvariable=self._review_words_count_var,
-            width=8,
-            font=self._style_manager.get_font("body")
-        )
+
+        self._review_words_count_var = tk.StringVar(value=str(self.app.config.get("review_words_count", 3)))
+
+        review_entry = CTEntry(row6, style_manager=self._style_manager, textvariable=self._review_words_count_var, width=8, font=self._style_manager.get_font("body"))
         review_entry.pack(side=tk.LEFT, padx=(0, 8))
-        
-        tk.Label(
+
+        CTLabel(
             row6,
+            style_manager=self._style_manager,
             text=self._t("settings.review_range_hint", "(1-10) 背诵时显示最近N个单词"),
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_card"],
@@ -344,11 +270,12 @@ class SettingsPage(BasePage):
         card = self._create_card(self._t("settings.display_title", "🖥️ 显示设置"))
         
         # 字体大小
-        row1 = tk.Frame(card, bg=colors["bg_card"])
+        row1 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row1.pack(fill=tk.X, pady=5)
-        
-        tk.Label(
+
+        CTLabel(
             row1,
+            style_manager=self._style_manager,
             text=self._t("settings.font_size_label", "字体大小："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
@@ -356,24 +283,24 @@ class SettingsPage(BasePage):
             width=12,
             anchor="w"
         ).pack(side=tk.LEFT)
-        
-        self._font_size_var = tk.StringVar(
-            value=str(self.app.config.get("font_size", 14))
-        )
-        
-        font_entry = ttk.Entry(
+
+        self._font_size_var = tk.StringVar(value=str(self.app.config.get("font_size", 14)))
+
+        font_entry = CTEntry(
             row1,
+            style_manager=self._style_manager,
             textvariable=self._font_size_var,
             width=8,
             font=self._style_manager.get_font("body")
         )
         font_entry.pack(side=tk.LEFT, padx=(0, 8))
-        
+
         font_min = self.app.config.get("font_size_min", 12)
         font_max = self.app.config.get("font_size_max", 24)
-        
-        tk.Label(
+
+        CTLabel(
             row1,
+            style_manager=self._style_manager,
             text=f"({font_min}-{font_max})",
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_card"],
@@ -381,34 +308,18 @@ class SettingsPage(BasePage):
         ).pack(side=tk.LEFT)
         
         # 显示进度条
-        row2 = tk.Frame(card, bg=colors["bg_card"])
+        row2 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row2.pack(fill=tk.X, pady=5)
-        
-        self._progress_var = tk.BooleanVar(
-            value=self.app.config.get_bool("show_progress_bar", True)
-        )
-        
-        ttk.Checkbutton(
-            row2,
-            text=self._t("settings.show_progress_bar", "显示学习进度条"),
-            variable=self._progress_var,
-            style="TCheckbutton"
-        ).pack(side=tk.LEFT)
+
+        self._progress_var = tk.BooleanVar(value=self.app.config.get_bool("show_progress_bar", True))
+        ttk.Checkbutton(row2, text=self._t("settings.show_progress_bar", "显示学习进度条"), variable=self._progress_var, style="TCheckbutton").pack(side=tk.LEFT)
         
         # 记住窗口大小
-        row3 = tk.Frame(card, bg=colors["bg_card"])
+        row3 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row3.pack(fill=tk.X, pady=5)
-        
-        self._remember_size_var = tk.BooleanVar(
-            value=self.app.config.get_bool("remember_window_size", True)
-        )
-        
-        ttk.Checkbutton(
-            row3,
-            text=self._t("settings.remember_window_size", "记住窗口大小和位置"),
-            variable=self._remember_size_var,
-            style="TCheckbutton"
-        ).pack(side=tk.LEFT)
+
+        self._remember_size_var = tk.BooleanVar(value=self.app.config.get_bool("remember_window_size", True))
+        ttk.Checkbutton(row3, text=self._t("settings.remember_window_size", "记住窗口大小和位置"), variable=self._remember_size_var, style="TCheckbutton").pack(side=tk.LEFT)
     
     def _create_behavior_settings(self):
         """创建行为设置"""
@@ -417,11 +328,12 @@ class SettingsPage(BasePage):
         card = self._create_card(self._t("settings.behavior_title", "⚡ 行为设置"))
         
         # 测试延迟
-        row1 = tk.Frame(card, bg=colors["bg_card"])
+        row1 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row1.pack(fill=tk.X, pady=5)
-        
-        tk.Label(
+
+        CTLabel(
             row1,
+            style_manager=self._style_manager,
             text=self._t("settings.correct_delay_label", "答对延迟："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
@@ -429,88 +341,36 @@ class SettingsPage(BasePage):
             width=12,
             anchor="w"
         ).pack(side=tk.LEFT)
-        
-        self._test_delay_var = tk.StringVar(
-            value=str(self.app.config.get_int("test_delay", 1500))
-        )
-        
-        ttk.Entry(
-            row1,
-            textvariable=self._test_delay_var,
-            width=8,
-            font=self._style_manager.get_font("body")
-        ).pack(side=tk.LEFT, padx=(0, 5))
-        
-        tk.Label(
-            row1,
-            text=self._t("settings.milliseconds", "毫秒"),
-            font=self._style_manager.get_font("caption"),
-            bg=colors["bg_card"],
-            fg=colors["fg_secondary"]
-        ).pack(side=tk.LEFT)
+
+        self._test_delay_var = tk.StringVar(value=str(self.app.config.get_int("test_delay", 1500)))
+        CTEntry(row1, style_manager=self._style_manager, textvariable=self._test_delay_var, width=8, font=self._style_manager.get_font("body")).pack(side=tk.LEFT, padx=(0, 5))
+
+        CTLabel(row1, style_manager=self._style_manager, text=self._t("settings.milliseconds", "毫秒"), font=self._style_manager.get_font("caption"), bg=colors["bg_card"], fg=colors["fg_secondary"]).pack(side=tk.LEFT)
         
         # 错误延迟
-        row2 = tk.Frame(card, bg=colors["bg_card"])
+        row2 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row2.pack(fill=tk.X, pady=5)
-        
-        tk.Label(
-            row2,
-            text=self._t("settings.wrong_delay_label", "答错延迟："),
-            font=self._style_manager.get_font("body"),
-            bg=colors["bg_card"],
-            fg=colors["fg_primary"],
-            width=12,
-            anchor="w"
-        ).pack(side=tk.LEFT)
-        
-        self._wrong_delay_var = tk.StringVar(
-            value=str(self.app.config.get_int("wrong_delay", 2000))
-        )
-        
-        ttk.Entry(
-            row2,
-            textvariable=self._wrong_delay_var,
-            width=8,
-            font=self._style_manager.get_font("body")
-        ).pack(side=tk.LEFT, padx=(0, 5))
-        
-        tk.Label(
-            row2,
-            text=self._t("settings.milliseconds", "毫秒"),
-            font=self._style_manager.get_font("caption"),
-            bg=colors["bg_card"],
-            fg=colors["fg_secondary"]
-        ).pack(side=tk.LEFT)
+
+        CTLabel(row2, style_manager=self._style_manager, text=self._t("settings.wrong_delay_label", "答错延迟："), font=self._style_manager.get_font("body"), bg=colors["bg_card"], fg=colors["fg_primary"], width=12, anchor="w").pack(side=tk.LEFT)
+
+        self._wrong_delay_var = tk.StringVar(value=str(self.app.config.get_int("wrong_delay", 2000)))
+        CTEntry(row2, style_manager=self._style_manager, textvariable=self._wrong_delay_var, width=8, font=self._style_manager.get_font("body")).pack(side=tk.LEFT, padx=(0, 5))
+
+        CTLabel(row2, style_manager=self._style_manager, text=self._t("settings.milliseconds", "毫秒"), font=self._style_manager.get_font("caption"), bg=colors["bg_card"], fg=colors["fg_secondary"]).pack(side=tk.LEFT)
         
         # 退出确认
-        row3 = tk.Frame(card, bg=colors["bg_card"])
+        row3 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row3.pack(fill=tk.X, pady=5)
-        
-        self._confirm_exit_var = tk.BooleanVar(
-            value=self.app.config.get_bool("confirm_before_exit", True)
-        )
-        
-        ttk.Checkbutton(
-            row3,
-            text=self._t("settings.confirm_before_exit", "退出前确认"),
-            variable=self._confirm_exit_var,
-            style="TCheckbutton"
-        ).pack(side=tk.LEFT)
+
+        self._confirm_exit_var = tk.BooleanVar(value=self.app.config.get_bool("confirm_before_exit", True))
+        ttk.Checkbutton(row3, text=self._t("settings.confirm_before_exit", "退出前确认"), variable=self._confirm_exit_var, style="TCheckbutton").pack(side=tk.LEFT)
         
         # 自动保存
-        row4 = tk.Frame(card, bg=colors["bg_card"])
+        row4 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row4.pack(fill=tk.X, pady=5)
-        
-        self._auto_save_var = tk.BooleanVar(
-            value=self.app.config.get_bool("auto_save_config", True)
-        )
-        
-        ttk.Checkbutton(
-            row4,
-            text=self._t("settings.auto_save_config", "自动保存配置"),
-            variable=self._auto_save_var,
-            style="TCheckbutton"
-        ).pack(side=tk.LEFT)
+
+        self._auto_save_var = tk.BooleanVar(value=self.app.config.get_bool("auto_save_config", True))
+        ttk.Checkbutton(row4, text=self._t("settings.auto_save_config", "自动保存配置"), variable=self._auto_save_var, style="TCheckbutton").pack(side=tk.LEFT)
     
     def _create_theme_settings(self):
         """创建主题设置"""
@@ -518,11 +378,12 @@ class SettingsPage(BasePage):
         
         card = self._create_card(self._t("settings.theme_title", "🎨 主题设置"))
         
-        row1 = tk.Frame(card, bg=colors["bg_card"])
+        row1 = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row1.pack(fill=tk.X, pady=5)
-        
-        tk.Label(
+
+        CTLabel(
             row1,
+            style_manager=self._style_manager,
             text=self._t("settings.theme_label", "选择主题："),
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
@@ -530,28 +391,19 @@ class SettingsPage(BasePage):
             width=12,
             anchor="w"
         ).pack(side=tk.LEFT)
-        
-        self._theme_var = tk.StringVar(
-            value=self._style_manager.current_theme
-        )
-        
+
+        self._theme_var = tk.StringVar(value=self._style_manager.current_theme)
+
         themes = self._style_manager.get_available_themes()
-        
-        theme_combo = ttk.Combobox(
-            row1,
-            textvariable=self._theme_var,
-            values=themes,
-            state="readonly",
-            width=15,
-            font=self._style_manager.get_font("body")
-        )
+
+        theme_combo = CTCombobox(row1, style_manager=self._style_manager, textvariable=self._theme_var, values=themes, state="readonly", width=15, font=self._style_manager.get_font("body"))
         theme_combo.pack(side=tk.LEFT)
         theme_combo.bind("<<ComboboxSelected>>", self._on_theme_change)
-        
+
         # 主题预览
-        self._theme_preview = tk.Frame(card, bg=colors["bg_card"])
+        self._theme_preview = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         self._theme_preview.pack(fill=tk.X, pady=10)
-        
+
         self._update_theme_preview()
 
     def _create_language_settings(self):
@@ -560,7 +412,7 @@ class SettingsPage(BasePage):
 
         card = self._create_card(self._t("settings.language_title", "🌐 语言设置"))
 
-        row = tk.Frame(card, bg=colors["bg_card"])
+        row = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         row.pack(fill=tk.X, pady=5)
 
         label_text = None
@@ -569,8 +421,9 @@ class SettingsPage(BasePage):
         except Exception:
             label_text = "界面语言："
 
-        tk.Label(
+        CTLabel(
             row,
+            style_manager=self._style_manager,
             text=label_text,
             font=self._style_manager.get_font("body"),
             bg=colors["bg_card"],
@@ -593,14 +446,7 @@ class SettingsPage(BasePage):
 
         values = [name for _, name in available]
 
-        self._language_combo = ttk.Combobox(
-            row,
-            textvariable=self._language_var,
-            values=values,
-            state="readonly",
-            width=18,
-            font=self._style_manager.get_font("body")
-        )
+        self._language_combo = CTCombobox(row, style_manager=self._style_manager, textvariable=self._language_var, values=values, state="readonly", width=18, font=self._style_manager.get_font("body"))
         self._language_combo.pack(side=tk.LEFT)
         self._language_combo.bind("<<ComboboxSelected>>", self._on_language_change)
 
@@ -613,17 +459,12 @@ class SettingsPage(BasePage):
                 return
             # 设置语言并保存配置
             self.app.language_manager.set_language(code, save=True)
-            self.app.update_status(self._t("settings.language_changed", "语言已切换: {name}").format(name=sel))
-            # 通知所有页面（若需要可在 PageManager 实现 apply_locale_to_all）
+            # 使用应用级别的方法统一应用翻译到导航栏、页面和状态栏
             try:
-                for p in list(self.app.page_manager._instances.values()):
-                    if hasattr(p, 'apply_translation'):
-                        try:
-                            p.apply_translation()
-                        except Exception:
-                            pass
+                self.app.apply_translation()
             except Exception:
                 pass
+            self.app.update_status(self._t("settings.language_changed", "语言已切换: {name}").format(name=sel))
         except Exception:
             pass
     
@@ -1277,25 +1118,14 @@ class SettingsPage(BasePage):
         ]
         
         for i, (name, color) in enumerate(preview_items):
-            frame = tk.Frame(self._theme_preview, bg=self.colors["bg_card"])
+            frame = CTFrame(self._theme_preview, style_manager=self._style_manager, bg=self.colors["bg_card"])
             frame.pack(side=tk.LEFT, padx=4)
-            
-            color_box = tk.Frame(
-                frame,
-                bg=color,
-                width=30,
-                height=30
-            )
+
+            color_box = CTFrame(frame, style_manager=self._style_manager, bg=color, width=30, height=30)
             color_box.pack()
             color_box.pack_propagate(False)
-            
-            tk.Label(
-                frame,
-                text=name,
-                font=self._style_manager.get_font("small"),
-                bg=self.colors["bg_card"],
-                fg=self.colors["fg_secondary"]
-            ).pack(pady=(3, 0))
+
+            CTLabel(frame, style_manager=self._style_manager, text=name, font=self._style_manager.get_font("small"), bg=self.colors["bg_card"], fg=self.colors["fg_secondary"]).pack(pady=(3, 0))
     
     def _create_action_buttons(self):
         """创建操作按钮"""

@@ -252,4 +252,98 @@ class CTProgressbar(ttk.Progressbar):
         return
 
 
-__all__ = ["CTFrame", "CTLabel", "CTButton", "CTCard", "CTProgressbar"]
+class CTEntry(ttk.Entry):
+    """主题感知的 Entry（基于 ttk.Entry）"""
+    def __init__(self, parent, style_manager: Optional[Any] = None, textvariable=None, font: Optional[Any] = None, width: Optional[int] = None, show: Optional[str] = None, **kwargs):
+        self._style_manager = style_manager
+        if font is None and getattr(style_manager, "_fonts", None):
+            font = style_manager._fonts.get("body")
+        cfg = {}
+        if show is not None:
+            cfg['show'] = show
+        super().__init__(parent, textvariable=textvariable, width=width, font=font, style="TEntry", **cfg, **kwargs)
+
+
+class CTCombobox(ttk.Combobox):
+    """主题感知的 Combobox（基于 ttk.Combobox）"""
+    def __init__(self, parent, style_manager: Optional[Any] = None, values=None, textvariable=None, font: Optional[Any] = None, width: Optional[int] = None, state: str = "readonly", **kwargs):
+        self._style_manager = style_manager
+        if font is None and getattr(style_manager, "_fonts", None):
+            font = style_manager._fonts.get("body")
+        super().__init__(parent, values=values or [], textvariable=textvariable, font=font, width=width, state=state, style="TCombobox", **kwargs)
+
+
+class CTScrollableFrame(CTFrame):
+    """可滚动的容器：内部使用 Canvas + 内层 Frame + 垂直滚动条。
+
+    创建后可以通过属性访问内部对象：
+    - `_canvas`：底层 Canvas
+    - `_scrollbar`：垂直滚动条
+    - `_scroll_frame`：内层用于放置内容的 CTFrame
+    - `_canvas_window`：Canvas 中创建的窗口 id
+    """
+    def __init__(self, parent, style_manager: Optional[Any] = None, bg: Optional[str] = None, padx: int = 0, pady: int = 0, **kwargs):
+        super().__init__(parent, style_manager=style_manager, bg=bg, **kwargs)
+        colors = style_manager.colors if style_manager else {}
+
+        # Canvas
+        self._canvas = tk.Canvas(self, bg=bg or colors.get("bg_primary"), highlightthickness=0)
+
+        # 内层 frame（使用 CTFrame 以保持主题感知）
+        self._scroll_frame = CTFrame(self._canvas, style_manager=style_manager, bg=bg or colors.get("bg_primary"))
+
+        # 垂直滚动条
+        self._scrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self._canvas.yview)
+        self._canvas.configure(yscrollcommand=self._scrollbar.set)
+
+        # 布局
+        self._scrollbar.grid(row=0, column=1, sticky="ns")
+        self._canvas.grid(row=0, column=0, sticky="nsew")
+
+        # 在 Canvas 中创建窗口
+        self._canvas_window = self._canvas.create_window((0, 0), window=self._scroll_frame, anchor="nw", width=self._canvas.winfo_reqwidth())
+
+        # 配置 grid 扩展
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(0, weight=1)
+
+        # 内边距
+        try:
+            self._scroll_frame.configure(padx=padx, pady=pady)
+        except Exception:
+            pass
+
+        # 绑定事件
+        self._scroll_frame.bind("<Configure>", self._on_frame_configure)
+        self._canvas.bind("<Configure>", self._on_canvas_configure)
+
+        # 鼠标滚轮支持（绑定到 canvas）
+        self._canvas.bind("<MouseWheel>", self._on_mousewheel)
+        self._canvas.bind("<Button-4>", self._on_mousewheel)
+        self._canvas.bind("<Button-5>", self._on_mousewheel)
+
+    def _on_frame_configure(self, event=None):
+        try:
+            self._canvas.configure(scrollregion=self._canvas.bbox("all"))
+        except Exception:
+            pass
+
+    def _on_canvas_configure(self, event=None):
+        try:
+            self._canvas.itemconfig(self._canvas_window, width=event.width)
+        except Exception:
+            pass
+
+    def _on_mousewheel(self, event):
+        try:
+            if event.num == 4:
+                self._canvas.yview_scroll(-1, "units")
+            elif event.num == 5:
+                self._canvas.yview_scroll(1, "units")
+            else:
+                self._canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+        except Exception:
+            pass
+
+
+__all__ = ["CTFrame", "CTLabel", "CTButton", "CTCard", "CTProgressbar", "CTEntry", "CTCombobox", "CTScrollableFrame"]

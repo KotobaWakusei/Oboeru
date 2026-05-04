@@ -45,6 +45,9 @@ class Application:
         self._unknown_words = []
         self._stage = "recite"
         self._test_mode = False
+        # 导航栏隐藏状态与退出按钮引用
+        self._navbar_hidden = False
+        self._learning_exit_btn = None
         
         # 初始化TTS
         from modules.tts_manager import TTSManager
@@ -62,7 +65,7 @@ class Application:
             custom_url=self._config.get("ai_custom_url", ""),
             custom_model=self._config.get("ai_custom_model", ""),
             difficulty=self._config.get("ai_difficulty", "junior"),
-            enabled=self._config.get_bool("ai_enabled", False),
+            enabled=self._config.get_bool("ai_enabled", False) or bool(self._config.get("ai_api_key", "")),
             timeout=self._config.get_int("ai_timeout", 30)
         )
         
@@ -260,8 +263,29 @@ class Application:
         except Exception:
             pass
 
-        if hasattr(self, '_status_label'):
-            self._status_label.configure(text=self.translate('status.ready', '准备就绪'))
+        # 更新全局 UI 文本
+        try:
+            if hasattr(self, '_status_label'):
+                self._status_label.configure(text=self.translate('status.ready', '准备就绪'))
+        except Exception:
+            pass
+
+        try:
+            # 更新收藏统计文本
+            if hasattr(self, '_favorites_count_label'):
+                self.update_favorites_count()
+        except Exception:
+            pass
+
+        try:
+            # 更新浮动的退出学习按钮文本（若存在）
+            if getattr(self, '_learning_exit_btn', None):
+                try:
+                    self._learning_exit_btn.configure(text=self.translate('learning.exit', '退出学习'))
+                except Exception:
+                    pass
+        except Exception:
+            pass
 
     def _create_layout(self):
         """创建主布局"""
@@ -530,6 +554,90 @@ class Application:
             except Exception:
                 count = 0
         self._favorites_count_label.configure(text=f"❤️ {count}")
+
+    def hide_navbar(self, show_exit_button: bool = True):
+        """隐藏顶部导航栏，必要时显示一个小的退出学习按钮"""
+        try:
+            if hasattr(self, '_navbar') and self._navbar and not self._navbar_hidden:
+                try:
+                    # 使用 grid_remove 保留 grid 信息以便恢复
+                    self._navbar.grid_remove()
+                except Exception:
+                    try:
+                        self._navbar.pack_forget()
+                    except Exception:
+                        pass
+                self._navbar_hidden = True
+        except Exception:
+            pass
+
+        if show_exit_button:
+            try:
+                from ui.customtinker import CTButton
+                if not getattr(self, '_learning_exit_btn', None):
+                    self._learning_exit_btn = CTButton(
+                        self._main_container,
+                        style_manager=self._style_manager,
+                        text=self.translate('learning.exit', '退出学习'),
+                        command=self._on_learning_exit_requested,
+                        style="Primary.TButton"
+                    )
+                # 放置在窗口右上角（浮动）
+                try:
+                    self._learning_exit_btn.place(relx=0.99, rely=0.02, anchor="ne")
+                except Exception:
+                    try:
+                        self._learning_exit_btn.pack(side=tk.TOP, anchor='ne')
+                    except Exception:
+                        pass
+            except Exception:
+                pass
+
+    def show_navbar(self):
+        """恢复顶部导航栏并移除退出按钮"""
+        try:
+            if getattr(self, '_navbar_hidden', False) and hasattr(self, '_navbar'):
+                try:
+                    self._navbar.grid(row=0, column=0, sticky="ew")
+                    self._navbar.grid_propagate(False)
+                except Exception:
+                    try:
+                        self._navbar.pack(fill=tk.X)
+                    except Exception:
+                        pass
+                self._navbar_hidden = False
+        except Exception:
+            pass
+
+        try:
+            if getattr(self, '_learning_exit_btn', None):
+                try:
+                    self._learning_exit_btn.place_forget()
+                except Exception:
+                    try:
+                        self._learning_exit_btn.pack_forget()
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+
+    def _on_learning_exit_requested(self):
+        """退出学习按钮被点击时的回调；委托给当前页面处理"""
+        try:
+            current = getattr(self._page_manager, 'current_page', None)
+            if current and getattr(current, 'exit_learning', None):
+                try:
+                    current.exit_learning()
+                    return
+                except Exception:
+                    pass
+            # 回退到首页作为兜底
+            try:
+                self.navigate_to('home')
+            except Exception:
+                pass
+        except Exception:
+            pass
     
     def show_message(self, message: str, msg_type: str = "info"):
         """显示消息提示"""

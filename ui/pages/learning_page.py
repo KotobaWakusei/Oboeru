@@ -492,11 +492,11 @@ class LearningPage(BasePage):
         self._ai_btn.pack(side=tk.LEFT, padx=2)
         
         # 右侧功能按钮
-        right_frame = tk.Frame(controls_frame, bg=colors["bg_primary"])
-        right_frame.grid(row=0, column=2, sticky="e")
-        
+        self._controls_right_frame = tk.Frame(controls_frame, bg=colors["bg_primary"])
+        self._controls_right_frame.grid(row=0, column=2, sticky="e")
+
         self._start_btn = ttk.Button(
-            right_frame,
+            self._controls_right_frame,
             text=self._t('learning.action.start', '▶ 开始学习'),
             command=self._start_learning,
             style="Primary.TButton"
@@ -504,7 +504,7 @@ class LearningPage(BasePage):
         self._start_btn.pack(side=tk.LEFT, padx=2)
         
         self._review_btn = ttk.Button(
-            right_frame,
+            self._controls_right_frame,
             text=self._t('learning.action.review', '🧠 复习'),
             command=self._start_review,
             style="Primary.TButton"
@@ -527,6 +527,25 @@ class LearningPage(BasePage):
     def _prepare_new_learning(self):
         """准备新学习"""
         self.app.update_status("点击「开始学习」开始今日学习")
+
+    def on_leave(self):
+        """离开页面时如果处于学习中，结束学习并恢复界面"""
+        super().on_leave()
+        # 如果开始按钮被隐藏，说明处于学习会话中或刚开始后未恢复
+        if getattr(self, '_start_buttons_hidden', False):
+            try:
+                # 结束当前学习（保存会话）
+                self._finish_learning()
+            except Exception:
+                pass
+            try:
+                self._show_start_review_buttons()
+            except Exception:
+                pass
+            try:
+                self.app.show_navbar()
+            except Exception:
+                pass
     
     def _start_learning(self):
         """开始学习 - 背诵模式"""
@@ -557,7 +576,16 @@ class LearningPage(BasePage):
         
         self._enable_controls()
         self._show_current_word()
-        
+        # 隐藏开始/复习按钮并隐藏导航栏，进入专注学习模式
+        try:
+            self._hide_start_review_buttons()
+        except Exception:
+            pass
+        try:
+            self.app.hide_navbar()
+        except Exception:
+            pass
+
         self.show_message(f"开始学习 {len(self.app.today_words)} 个单词", "success")
     
     def _start_review_mode(self):
@@ -594,7 +622,16 @@ class LearningPage(BasePage):
         
         self._enable_controls()
         self._show_current_word()
-        
+        # 隐藏开始/复习按钮并隐藏导航栏，进入专注复习模式
+        try:
+            self._hide_start_review_buttons()
+        except Exception:
+            pass
+        try:
+            self.app.hide_navbar()
+        except Exception:
+            pass
+
         self.show_message(f"找到 {len(review_words)} 个需要复习的单词", "success")
     
     def _start_review(self):
@@ -1038,6 +1075,80 @@ class LearningPage(BasePage):
         
         self.app.update_status("今日学习已完成")
         self.app.update_progress("")
+        # 恢复开始/复习按钮和导航栏
+        try:
+            self._show_start_review_buttons()
+        except Exception:
+            pass
+        try:
+            self.app.show_navbar()
+        except Exception:
+            pass
+
+    def _hide_start_review_buttons(self):
+        """隐藏页面右侧的开始和复习按钮（进入专注模式）"""
+        try:
+            # 隐藏整个右侧控件容器，避免空白占位导致左侧按钮位置不变
+            if getattr(self, '_controls_right_frame', None):
+                try:
+                    self._controls_right_frame.grid_remove()
+                except Exception:
+                    try:
+                        self._controls_right_frame.pack_forget()
+                    except Exception:
+                        pass
+            self._start_buttons_hidden = True
+        except Exception:
+            self._start_buttons_hidden = True
+
+    def _show_start_review_buttons(self):
+        """显示页面右侧的开始和复习按钮（离开专注模式）"""
+        try:
+            # 恢复整个右侧控件容器的布局
+            if getattr(self, '_controls_right_frame', None) and getattr(self, '_start_buttons_hidden', False):
+                try:
+                    self._controls_right_frame.grid(row=0, column=2, sticky="e")
+                except Exception:
+                    try:
+                        self._controls_right_frame.pack()
+                    except Exception:
+                        pass
+            self._start_buttons_hidden = False
+        except Exception:
+            self._start_buttons_hidden = False
+
+    def exit_learning(self):
+        """供外部调用以退出学习，会结束会话并返回主页"""
+        from tkinter import messagebox
+
+        try:
+            if messagebox.askyesno(self._t('learning.dialog.exit_confirm_title', '退出学习'), self._t('learning.dialog.exit_confirm', '确定要退出当前学习并结束本次会话吗？'), parent=self.app.root):
+                try:
+                    self._finish_learning()
+                except Exception:
+                    pass
+                try:
+                    self.app.show_navbar()
+                except Exception:
+                    pass
+                try:
+                    self.app.navigate_to('home')
+                except Exception:
+                    pass
+        except Exception:
+            # 默认直接结束
+            try:
+                self._finish_learning()
+            except Exception:
+                pass
+            try:
+                self.app.show_navbar()
+            except Exception:
+                pass
+            try:
+                self.app.navigate_to('home')
+            except Exception:
+                pass
     
     def apply_theme(self):
         """应用主题"""

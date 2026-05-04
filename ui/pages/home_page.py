@@ -353,7 +353,7 @@ class HomePage(BasePage):
                     self.show_message(f"加载词库失败: {result}", "error")
                     return
             else:
-            self.show_message(self._t('home.message.no_vocab_loaded', '请先在设置中加载词库'), "warning")
+                self.show_message(self._t('home.message.no_vocab_loaded', '请先在设置中加载词库'), "warning")
         
         self.navigate_to("learning", mode="review")
     

@@ -1,0 +1,13 @@
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+/(\.git|\.venv|build|dist|__pycache__|\.eggs|\.mypy_cache|\.pytest_cache)/
+'''
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+extend-select = ["E", "F", "W", "C", "B"]
+exclude = [".venv", "build", "dist", "__pycache__"]

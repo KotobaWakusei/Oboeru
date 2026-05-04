@@ -1,3 +1,15 @@
+__pycache__/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+*.pyc
+logs/
+data/*.json
+data/*.txt
+backups/
 # Python
 __pycache__/
 *.py[cod]
