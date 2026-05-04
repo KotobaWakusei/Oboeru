@@ -287,6 +287,38 @@ class Application:
         except Exception:
             pass
 
+        try:
+            # 让 NavBar 自行更新标题等可翻译文本
+            if getattr(self, '_navbar', None) and hasattr(self._navbar, 'apply_translation'):
+                try:
+                    self._navbar.apply_translation(self.translate)
+                except Exception:
+                    pass
+        except Exception:
+            pass
+
+        try:
+            # 更新可能存在的进度指示器（如果页面或主界面有该组件）
+            # 在根容器下查找带 apply_translation 的子组件并调用
+            for child in self._main_container.winfo_children():
+                try:
+                    def visit(w):
+                        try:
+                            if hasattr(w, 'apply_translation'):
+                                try:
+                                    w.apply_translation(self.translate)
+                                except Exception:
+                                    pass
+                        except Exception:
+                            pass
+                        for c in w.winfo_children():
+                            visit(c)
+                    visit(child)
+                except Exception:
+                    pass
+        except Exception:
+            pass
+
     def _create_layout(self):
         """创建主布局"""
         colors = self._style_manager.colors
@@ -553,7 +585,29 @@ class Application:
                 count = len(self._favorites_manager)
             except Exception:
                 count = 0
-        self._favorites_count_label.configure(text=f"❤️ {count}")
+        try:
+            # 如果数量为 0，则隐藏该组件，避免右上角常驻无意义显示
+            if count is None or count == 0:
+                try:
+                    if getattr(self, '_favorites_count_label', None):
+                        self._favorites_count_label.pack_forget()
+                except Exception:
+                    pass
+            else:
+                # 确保已加入到 navbar 的右侧区域
+                if getattr(self, '_favorites_count_label', None):
+                    try:
+                        self._favorites_count_label.configure(text=f"❤️ {count}")
+                    except Exception:
+                        pass
+                    try:
+                        # 如果当前未被管理，则重新添加到 navbar 右侧
+                        if getattr(self, '_navbar', None) and not self._favorites_count_label.winfo_ismapped():
+                            self._navbar.add_right_widget(self._favorites_count_label)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
 
     def hide_navbar(self, show_exit_button: bool = True):
         """隐藏顶部导航栏，必要时显示一个小的退出学习按钮"""
@@ -575,16 +629,30 @@ class Application:
             try:
                 from ui.customtinker import CTButton
                 if not getattr(self, '_learning_exit_btn', None):
+                    # 优先将退出按钮放置到导航栏右侧，避免与底部进度条重合
+                    if getattr(self, '_navbar', None):
+                        parent_for_btn = self._navbar
+                    else:
+                        parent_for_btn = self._main_container
+
                     self._learning_exit_btn = CTButton(
-                        self._main_container,
+                        parent_for_btn,
                         style_manager=self._style_manager,
                         text=self.translate('learning.exit', '退出学习'),
                         command=self._on_learning_exit_requested,
                         style="Primary.TButton"
                     )
-                # 放置在窗口右上角（浮动）
+
+                # 如果有 navbar，使用其右侧扩展区添加；否则回退到浮动放置
                 try:
-                    self._learning_exit_btn.place(relx=0.99, rely=0.02, anchor="ne")
+                    if getattr(self, '_navbar', None):
+                        try:
+                            self._navbar.add_right_widget(self._learning_exit_btn)
+                        except Exception:
+                            # 回退到 place
+                            self._learning_exit_btn.place(relx=0.99, rely=0.02, anchor="ne")
+                    else:
+                        self._learning_exit_btn.place(relx=0.99, rely=0.02, anchor="ne")
                 except Exception:
                     try:
                         self._learning_exit_btn.pack(side=tk.TOP, anchor='ne')

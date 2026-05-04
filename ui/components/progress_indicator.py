@@ -114,3 +114,19 @@ class ProgressIndicator(CTFrame):
                 for subchild in child.winfo_children():
                     if isinstance(subchild, tk.Label):
                         subchild.configure(bg=colors["bg_primary"])
+
+        def apply_translation(self, translate_func: Callable[[str, str], str]):
+            """应用翻译：更新阶段文本等可本地化字符串"""
+            try:
+                try:
+                    self._stage_label.configure(text=translate_func('learning.stage.ready', '准备开始'))
+                except Exception:
+                    pass
+                try:
+                    # 百分比用数字，无需翻译，但当重置时保证显示本地格式
+                    if getattr(self, '_total', 0) == 0:
+                        self._percent_label.configure(text="0%")
+                except Exception:
+                    pass
+            except Exception:
+                pass

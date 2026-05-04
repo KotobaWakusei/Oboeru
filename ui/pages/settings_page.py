@@ -844,12 +844,7 @@ class SettingsPage(BasePage):
             style="Secondary.TButton"
         ).pack(side=tk.LEFT, padx=2)
         
-        ttk.Button(
-            input_frame,
-            text=self._t("settings.test_connection", "测试连接"),
-            command=self._test_ai_connection,
-            style="Secondary.TButton"
-        ).pack(side=tk.LEFT, padx=2)
+        #（已在上方 API Key 行提供测试连接按钮，此处移除冗余按钮）
         
         # 状态显示
         self._debug_status = tk.Label(

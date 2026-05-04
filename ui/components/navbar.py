@@ -56,7 +56,7 @@ class NavBar(CTFrame):
         )
         logo.pack(side=tk.LEFT, padx=(0, 10))
         
-        title = CTLabel(
+        self._title_label = CTLabel(
             left_frame,
             style_manager=self._style_manager,
             text="智能背单词",
@@ -64,7 +64,7 @@ class NavBar(CTFrame):
             bg=colors["bg_secondary"],
             fg=colors["fg_primary"]
         )
-        title.pack(side=tk.LEFT)
+        self._title_label.pack(side=tk.LEFT)
         
         # 中间 - 导航按钮
         center_frame = CTFrame(inner, style_manager=self._style_manager, bg=colors["bg_secondary"])
@@ -74,7 +74,7 @@ class NavBar(CTFrame):
             btn = CTButton(
                 center_frame,
                 style_manager=self._style_manager,
-                text=f"{item['icon']} {item['title']}",
+                text=f"{item['icon']} {item.get('title', '')}",
                 command=lambda pid=item['id']: self._on_navigate(pid),
                 style="Nav.TButton"
             )
@@ -96,6 +96,30 @@ class NavBar(CTFrame):
     def add_right_widget(self, widget: tk.Widget):
         """在右侧添加组件"""
         widget.pack(in_=self._right_frame, side=tk.RIGHT, padx=5)
+
+    def apply_translation(self, translate_func: Callable[[str, str], str]):
+        """应用翻译：更新标题和按钮文本（由 Application 提供 translate 方法）"""
+        try:
+            # 更新应用标题
+            try:
+                if getattr(self, '_title_label', None):
+                    self._title_label.configure(text=translate_func('app.title', '智能背单词'))
+            except Exception:
+                pass
+
+            # 更新导航按钮文本
+            for item in self._items:
+                pid = item.get('id')
+                icon = item.get('icon', '')
+                default = item.get('title', '')
+                try:
+                    translated = translate_func(f'nav.{pid}', default)
+                    if pid in self._nav_buttons:
+                        self._nav_buttons[pid].configure(text=f"{icon} {translated}")
+                except Exception:
+                    pass
+        except Exception:
+            pass
     
     def apply_theme(self):
         """应用主题"""
