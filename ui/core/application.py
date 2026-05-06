@@ -360,6 +360,7 @@ class Application:
         nav_items = [
             {"id": "home", "icon": "🏠", "title": self.translate('nav.home', '首页')},
             {"id": "learning", "icon": "📚", "title": self.translate('nav.learning', '学习')},
+            {"id": "vocabulary", "icon": "📖", "title": self.translate('nav.vocabulary', '词汇表')},
             {"id": "favorites", "icon": "❤️", "title": self.translate('nav.favorites', '收藏')},
             {"id": "statistics", "icon": "📊", "title": self.translate('nav.statistics', '统计')},
             {"id": "settings", "icon": "⚙️", "title": self.translate('nav.settings', '设置')},
@@ -419,6 +420,7 @@ class Application:
                 short_labels = {
                     "home": "🏠",
                     "learning": "📚",
+                    "vocabulary": "📖",
                     "favorites": "❤️",
                     "statistics": "📊",
                     "settings": "⚙️",
@@ -431,6 +433,7 @@ class Application:
                 full_labels = {
                     "home": f"🏠 {self.translate('nav.home', '首页')}",
                     "learning": f"📚 {self.translate('nav.learning', '学习')}",
+                    "vocabulary": f"📖 {self.translate('nav.vocabulary', '词汇表')}",
                     "favorites": f"❤️ {self.translate('nav.favorites', '收藏')}",
                     "statistics": f"📊 {self.translate('nav.statistics', '统计')}",
                     "settings": f"⚙️ {self.translate('nav.settings', '设置')}",
@@ -480,12 +483,13 @@ class Application:
         """注册所有页面"""
         from ui.pages import (
             HomePage, LearningPage, SettingsPage,
-            FavoritesPage, StatisticsPage
+            FavoritesPage, StatisticsPage, VocabularyPage
         )
-        
+
         self._page_manager.register_all([
             HomePage,
             LearningPage,
+            VocabularyPage,
             SettingsPage,
             FavoritesPage,
             StatisticsPage,

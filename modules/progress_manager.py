@@ -290,26 +290,58 @@ class ProgressManager:
         next_date = now + datetime.timedelta(days=days)
         return next_date.isoformat()
     
-    def get_due_words(self, all_words: List[str]) -> List[str]:
-        """获取需要复习的单词"""
+    def get_due_words(self, all_words: List[str], include_last_n: int = 0) -> List[str]:
+        """获取需要复习的单词。
+
+        参数:
+            all_words: 所有词库中的单词文本列表
+            include_last_n: 强制包含最近学习的 N 个单词（优先未掌握的）
+
+        返回:
+            List[str]: 需要复习的单词文本列表（去重）
+        """
         now = datetime.datetime.now()
-        due_words = []
-        
+        due_set = set()
+
         for word in all_words:
             if word not in self._word_progress:
-                due_words.append(word)
+                # 未学习过的也视为待处理（方便复习/学习）
+                due_set.add(word)
             else:
                 progress = self._word_progress[word]
                 try:
-                    next_review = datetime.datetime.fromisoformat(
-                        progress.next_review_date
-                    )
-                    if now >= next_review:
-                        due_words.append(word)
-                except:
-                    due_words.append(word)
-        
-        return due_words
+                    next_review = datetime.datetime.fromisoformat(progress.next_review_date)
+                    if now >= next_review and not progress.is_mastered:
+                        due_set.add(word)
+                except Exception:
+                    # 解析错误时保守处理为待复习
+                    due_set.add(word)
+
+        # 包含最近学习的 N 个单词（优先未掌握的）
+        if include_last_n and include_last_n > 0:
+            # 从已有进度中按最后学习时间排序（降序）
+            entries = [p for p in self._word_progress.values() if p.word in all_words]
+            try:
+                entries_sorted = sorted(
+                    entries,
+                    key=lambda p: datetime.datetime.fromisoformat(p.last_study_date) if p.last_study_date else datetime.datetime.min,
+                    reverse=True
+                )
+            except Exception:
+                # 回退到字符串排序（iso 格式可行）
+                entries_sorted = sorted(entries, key=lambda p: p.last_study_date or "", reverse=True)
+
+            added = 0
+            for prog in entries_sorted:
+                if added >= include_last_n:
+                    break
+                # 如果已掌握则可跳过（避免重复复习掌握词），但若用户希望包含可做配置调整
+                if not prog.is_mastered and prog.word in all_words:
+                    if prog.word not in due_set:
+                        due_set.add(prog.word)
+                        added += 1
+
+        return list(due_set)
     
     def get_statistics(self) -> Dict[str, Any]:
         """获取学习统计"""

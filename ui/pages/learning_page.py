@@ -602,14 +602,15 @@ class LearningPage(BasePage):
                 self.show_message("请先在设置中加载词库", "warning")
                 return
         
-        all_words = [word.word for word in self.app.vocabulary_manager.vocabulary]
-        due_words = self.app.progress_manager.get_due_words(all_words)
+        all_words = [word.word for word in self.app.vocabulary_manager.get_words()]
+        review_count = self.app.config.get_int("review_words_count", 3)
+        due_words = self.app.progress_manager.get_due_words(all_words, include_last_n=review_count)
         
         if not due_words:
             self.show_message("暂时没有需要复习的单词", "info")
             return
         
-        word_map = {word.word: word for word in self.app.vocabulary_manager.vocabulary}
+        word_map = {word.word: word for word in self.app.vocabulary_manager.get_words()}
         review_words = [word_map[w] for w in due_words if w in word_map]
         
         self.app.today_words = review_words

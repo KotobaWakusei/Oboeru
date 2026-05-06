@@ -64,5 +64,25 @@
     "settings.favorites_sort_hint": "(时间/字母/学习次数)",
     "settings.save": "保存",
     "settings.cancel": "取消"
+    ,
+    "nav.vocabulary": "词汇表",
+    "vocab.title": "词汇表",
+    "vocab.filter.all": "全部",
+    "vocab.filter.reviewed": "已复习",
+    "vocab.filter.unreviewed": "未复习",
+    "vocab.filter.unlearned": "未学习",
+    "vocab.table.word": "单词",
+    "vocab.table.pos": "词性",
+    "vocab.table.meaning": "中文意思",
+    "vocab.table.status": "状态",
+    "vocab.table.last_study": "最后学习",
+    "vocab.status.mastered": "已掌握",
+    "vocab.status.reviewed": "已复习",
+    "vocab.status.in_progress": "学习中",
+    "vocab.status.unseen": "未学习",
+    "vocab.status.unlearned": "未学习",
+    "vocab.action.search": "搜索",
+    "vocab.action.refresh": "刷新",
+    "vocab.dialog.title": "单词详情"
   }
 }

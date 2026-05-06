@@ -30,7 +30,7 @@ class SettingsPage(BasePage):
         self._create_behavior_settings()
         self._create_theme_settings()
         self._create_ai_settings()
-        self._create_ai_debug()
+        # 已移除 AI 对话调试区域以简化设置界面
         self._create_data_settings()
         self._create_action_buttons()
         
@@ -785,215 +785,23 @@ class SettingsPage(BasePage):
                 self._diff_hint.configure(text=diff_config.get("description", ""))
                 break
     
-    def _create_ai_debug(self):
-        """创建 AI 对话调试区域"""
-        colors = self.colors
-        
-        card = self._create_card(self._t("settings.ai_debug_title", "🐛 AI 对话调试"))
-        
-        # 对话历史区域
-        history_frame = tk.Frame(card, bg=colors["bg_card"])
-        history_frame.pack(fill=tk.BOTH, expand=True, pady=(0, 10))
-        
-        # 创建带滚动条的文本框
-        self._debug_history = tk.Text(
-            history_frame,
-            height=8,
-            font=self._style_manager.get_font("body"),
-            bg=colors["bg_secondary"],
-            fg=colors["fg_primary"],
-            wrap=tk.WORD,
-            state=tk.DISABLED,
-            padx=8,
-            pady=8
-        )
-        
-        debug_scrollbar = ttk.Scrollbar(
-            history_frame,
-            orient=tk.VERTICAL,
-            command=self._debug_history.yview
-        )
-        self._debug_history.configure(yscrollcommand=debug_scrollbar.set)
-        
-        debug_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-        self._debug_history.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-        
-        # 输入区域
-        input_frame = tk.Frame(card, bg=colors["bg_card"])
-        input_frame.pack(fill=tk.X, pady=(0, 8))
-        
-        self._debug_input = ttk.Entry(
-            input_frame,
-            font=self._style_manager.get_font("body"),
-            width=50
-        )
-        self._debug_input.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 8))
-        self._debug_input.bind("<Return>", lambda e: self._send_debug_message())
-        
-        ttk.Button(
-            input_frame,
-            text=self._t("settings.send", "发送"),
-            command=self._send_debug_message,
-            style="Primary.TButton"
-        ).pack(side=tk.LEFT, padx=2)
-        
-        ttk.Button(
-            input_frame,
-            text=self._t("settings.clear", "清除"),
-            command=self._clear_debug_history,
-            style="Secondary.TButton"
-        ).pack(side=tk.LEFT, padx=2)
-        
-        #（已在上方 API Key 行提供测试连接按钮，此处移除冗余按钮）
-        
-        # 状态显示
-        self._debug_status = tk.Label(
-            card,
-            text=self._t("settings.ready", "准备就绪"),
-            font=self._style_manager.get_font("caption"),
-            bg=colors["bg_card"],
-            fg=colors["fg_secondary"]
-        )
-        self._debug_status.pack(anchor="w")
-    
-    def _send_debug_message(self):
-        """发送调试消息"""
-        message = self._debug_input.get().strip()
-        if not message:
-            return
-        
-        if not self.app.ai_manager.is_available():
-            self._add_debug_message("系统", "AI 功能未配置，请先配置 API Key", "error")
-            return
-        
-        self._debug_input.delete(0, tk.END)
-        self._add_debug_message(self._t("settings.user_label", "用户"), message)
-        self._debug_status.configure(text=self._t("settings.ai_thinking", "AI 正在思考..."))
-        
-        def on_response(success, result):
-            self.after(0, lambda: self._on_debug_response(success, result))
-        
-        # 构建对话 prompt
-        prompt = f"""请回复以下问题或请求，回复要简洁有用：
-{message}"""
-        
-        # 直接调用 API
-        self._call_ai_api(prompt, on_response)
-    
-    def _call_ai_api(self, prompt: str, callback):
-        """调用 AI API"""
-        import threading
-        import json
-        import urllib.request
-        import urllib.error
-        
-        def call_in_thread():
-            try:
-                api_key = self.app.config.get("ai_api_key", "")
-                model = self.app.config.get("ai_model", "generalv3.5")
-                timeout = self.app.config.get_int("ai_timeout", 30)
-                
-                headers = {
-                    "Content-Type": "application/json",
-                    "Authorization": f"Bearer {api_key}"
-                }
-                
-                data = {
-                    "model": model,
-                    "messages": [{"role": "user", "content": prompt}],
-                    "max_tokens": 500,
-                    "temperature": 0.7
-                }
-                
-                request = urllib.request.Request(
-                    "https://spark-api-open.xf-yun.com/v1/chat/completions",
-                    data=json.dumps(data).encode("utf-8"),
-                    headers=headers,
-                    method="POST"
-                )
-                
-                with urllib.request.urlopen(request, timeout=timeout) as response:
-                    result = json.loads(response.read().decode("utf-8"))
-                    if "choices" in result:
-                        content = result["choices"][0]["message"]["content"]
-                        callback(True, content)
-                    else:
-                        callback(False, result.get("error", "解析响应失败"))
-                        
-            except urllib.error.HTTPError as e:
-                error_body = e.read().decode("utf-8") if e.fp else ""
-                callback(False, f"HTTP {e.code}: {error_body}")
-            except urllib.error.URLError as e:
-                callback(False, f"网络错误: {str(e.reason)}")
-            except Exception as e:
-                callback(False, f"错误: {str(e)}")
-        
-        thread = threading.Thread(target=call_in_thread, daemon=True)
-        thread.start()
-    
-    def _on_debug_response(self, success: bool, result: str):
-        """处理 AI 响应"""
-        if success:
-            self._add_debug_message("AI", result)
-            self._debug_status.configure(text=self._t("settings.reply_complete", "回复完成"))
-        else:
-            self._add_debug_message("系统", f"错误: {result}", "error")
-            self._debug_status.configure(text=self._t("settings.request_failed", "请求失败"))
-    
-    def _add_debug_message(self, sender: str, message: str, msg_type: str = "normal"):
-        """添加消息到调试历史"""
-        colors = self.colors
-        
-        self._debug_history.configure(state=tk.NORMAL)
-        
-        # 添加时间戳
-        import datetime
-        timestamp = datetime.datetime.now().strftime("%H:%M:%S")
-        
-        # 设置标签样式
-        tag_name = f"msg_{msg_type}"
-        if msg_type == "error":
-            self._debug_history.tag_configure(tag_name, foreground=colors["error"])
-        elif sender == "AI":
-            self._debug_history.tag_configure(tag_name, foreground=colors["success"])
-        elif sender == "用户":
-            self._debug_history.tag_configure(tag_name, foreground=colors["accent"])
-        
-        self._debug_history.insert(tk.END, f"[{timestamp}] {sender}: ", tag_name)
-        self._debug_history.insert(tk.END, f"{message}\n\n")
-        
-        self._debug_history.configure(state=tk.DISABLED)
-        self._debug_history.see(tk.END)
-    
-    def _clear_debug_history(self):
-        """清除调试历史"""
-        self._debug_history.configure(state=tk.NORMAL)
-        self._debug_history.delete(1.0, tk.END)
-        self._debug_history.configure(state=tk.DISABLED)
-        self._debug_status.configure(text=self._t("settings.history_cleared", "历史已清除"))
-    
     def _test_ai_connection(self):
-        """测试 AI 连接"""
+        """测试 AI 连接（简化版，移除调试面板）"""
+        # 使用 AI 管理器提供的同步接口进行检测并通过消息反馈结果
         if not self.app.ai_manager.is_available():
-            self._add_debug_message("系统", "AI 功能未配置，请先配置 API Key", "error")
+            self.show_message(self._t("settings.connection_failed", "连接失败: AI 未配置"), "error")
             return
-        
-        self._add_debug_message(self._t("settings.system_label", "系统"), self._t("settings.connection_testing", "正在测试连接..."))
-        self._debug_status.configure(text=self._t("settings.connection_testing", "测试连接中..."))
-        
-        def on_response(success, result):
-            self.after(0, lambda: self._on_test_response(success, result))
-        
-        self._call_ai_api("回复'连接成功'两个词", on_response)
-    
-    def _on_test_response(self, success: bool, result: str):
-        """处理测试响应"""
-        if success:
-            self._add_debug_message(self._t("settings.system_label", "系统"), self._t("settings.connection_success", "✓ 连接成功！AI 响应: {result}").format(result=result))
-            self._debug_status.configure(text=self._t("settings.connection_ok", "连接正常"))
-        else:
-            self._add_debug_message(self._t("settings.system_label", "系统"), self._t("settings.connection_failed_detail", "✗ 连接失败: {result}").format(result=result), "error")
-            self._debug_status.configure(text=self._t("settings.connection_failed", "连接失败"))
+
+        self.show_message(self._t("settings.connection_testing", "正在测试连接..."), "info")
+
+        try:
+            success, result = self.app.ai_manager.generate_sentence_sync("test", "test")
+            if success:
+                self.show_message(self._t("settings.connection_success", "✓ 连接成功！AI 响应: {result}").format(result=result), "success")
+            else:
+                self.show_message(self._t("settings.connection_failed_detail", "✗ 连接失败: {result}").format(result=result), "error")
+        except Exception as e:
+            self.show_message(self._t("settings.connection_failed_detail", "✗ 连接失败: {result}").format(result=str(e)), "error")
     
     def _create_data_settings(self):
         """创建数据管理设置"""

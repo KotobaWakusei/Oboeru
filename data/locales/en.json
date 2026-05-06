@@ -64,5 +64,25 @@
     "settings.favorites_sort_hint": "(time/word/learn count)",
     "settings.save": "Save",
     "settings.cancel": "Cancel"
+    ,
+    "nav.vocabulary": "Vocabulary",
+    "vocab.title": "Vocabulary",
+    "vocab.filter.all": "All",
+    "vocab.filter.reviewed": "Reviewed",
+    "vocab.filter.unreviewed": "Unreviewed",
+    "vocab.filter.unlearned": "Unlearned",
+    "vocab.table.word": "Word",
+    "vocab.table.pos": "POS",
+    "vocab.table.meaning": "Meaning",
+    "vocab.table.status": "Status",
+    "vocab.table.last_study": "Last Studied",
+    "vocab.status.mastered": "Mastered",
+    "vocab.status.reviewed": "Reviewed",
+    "vocab.status.in_progress": "In Progress",
+    "vocab.status.unseen": "Unseen",
+    "vocab.status.unlearned": "Unlearned",
+    "vocab.action.search": "Search",
+    "vocab.action.refresh": "Refresh",
+    "vocab.dialog.title": "Word Details"
   }
 }
