@@ -47,8 +47,17 @@ class PageManager:
         """导航到指定页面"""
         if page_id not in self._pages:
             return False
-        
-        # 记录导航历史
+        # 如果已经在目标页面，避免重复将当前页加入历史并仅刷新页面
+        if self._current_page and self._current_page.page_id == page_id:
+            # 保存页面参数并调用 on_enter 做刷新
+            self._page_kwargs[page_id] = kwargs
+            try:
+                self._current_page.on_enter(**kwargs)
+            except Exception:
+                pass
+            return True
+
+        # 记录导航历史（仅当将要切换到不同页面时）
         if self._current_page:
             self._navigation_history.append(self._current_page.page_id)
             self._current_page.on_leave()

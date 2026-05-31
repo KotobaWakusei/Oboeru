@@ -19,6 +19,7 @@ class VocabularyManager:
     
     def __init__(self):
         self._vocabulary: List[VocabularyWord] = []
+        self._word_index: Dict[str, VocabularyWord] = {}
         self._current_index = 0
         
         # 使用 LRU 缓存替代无限制字典
@@ -27,6 +28,10 @@ class VocabularyManager:
         )
         
         self._logger = get_logger()
+
+    def _rebuild_index(self) -> None:
+        """Rebuild fast lookup indexes after the vocabulary list changes."""
+        self._word_index = {word.word: word for word in self._vocabulary}
     
     def load_from_file(self, file_path: str) -> Tuple[bool, Union[int, str]]:
         """
@@ -40,6 +45,7 @@ class VocabularyManager:
         
         try:
             self._vocabulary = []
+            self._word_index = {}
             self._similar_words_cache.clear()
             
             with open(file_path, 'r', encoding='utf-8') as f:
@@ -47,6 +53,8 @@ class VocabularyManager:
                     word = VocabularyWord.from_line(line)
                     if word:
                         self._vocabulary.append(word)
+            
+            self._rebuild_index()
             
             if not self._vocabulary:
                 return False, "词库中没有有效的单词"
@@ -69,11 +77,14 @@ class VocabularyManager:
             int: 加载的单词数量
         """
         self._vocabulary = []
+        self._similar_words_cache.clear()
         
         for line in lines:
             word = VocabularyWord.from_line(line)
             if word:
                 self._vocabulary.append(word)
+        
+        self._rebuild_index()
         
         return len(self._vocabulary)
     
@@ -110,10 +121,7 @@ class VocabularyManager:
     
     def get_word_by_text(self, text: str) -> Optional[VocabularyWord]:
         """根据单词文本获取单词"""
-        for word in self._vocabulary:
-            if word.word == text:
-                return word
-        return None
+        return self._word_index.get(text)
     
     def search_words(self, query: str) -> List[VocabularyWord]:
         """搜索单词"""
@@ -154,7 +162,7 @@ class VocabularyManager:
         
         if similar_words is None:
             # 缓存未命中，计算相似词
-            word_list = [w.word for w in self._vocabulary if w.word != word_key]
+            word_list = [word for word in self._word_index if word != word_key]
             similar_words = difflib.get_close_matches(
                 word_key, word_list, n=10, cutoff=0.6
             )
@@ -162,10 +170,9 @@ class VocabularyManager:
         
         # 添加相似词的意思作为干扰项
         for similar_word in similar_words:
-            for w in self._vocabulary:
-                if w.word == similar_word:
-                    all_distractors.append(w.meaning)
-                    break
+            word = self._word_index.get(similar_word)
+            if word:
+                all_distractors.append(word.meaning)
         
         # 添加随机干扰项
         random_distractors = [

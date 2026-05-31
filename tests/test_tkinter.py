@@ -1,10 +1,19 @@
 import tkinter as tk
-print("导入Tkinter成功")
-root = tk.Tk()
-root.title("测试")
-root.geometry("300x200")
-label = tk.Label(root, text="Tkinter测试成功！")
-label.pack(pady=50)
-print("创建窗口成功")
-root.mainloop()
-print("程序退出")
+
+import pytest
+
+
+def test_tkinter_can_create_and_destroy_root():
+    try:
+        root = tk.Tk()
+    except tk.TclError as exc:
+        pytest.skip(f"Tkinter display is not available: {exc}")
+
+    try:
+        root.title("测试")
+        root.geometry("300x200")
+        label = tk.Label(root, text="Tkinter测试成功！")
+        label.pack(pady=50)
+        root.update_idletasks()
+    finally:
+        root.destroy()

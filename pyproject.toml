@@ -1,3 +1,13 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oboeru"
+version = "3.0.0"
+description = "AI-powered vocabulary learning system with Tkinter GUI"
+requires-python = ">=3.8"
+
 [tool.black]
 line-length = 88
 target-version = ['py38']
@@ -11,3 +21,56 @@ line-length = 88
 target-version = "py38"
 extend-select = ["E", "F", "W", "C", "B"]
 exclude = [".venv", "build", "dist", "__pycache__"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_incomplete_defs = false
+disallow_untyped_defs = false
+disallow_untyped_calls = false
+no_implicit_optional = true
+warn_no_return = true
+warn_redundant_casts = true
+warn_unreachable = true
+strict_equality = true
+ignore_missing_imports = true
+show_error_codes = true
+show_error_context = true
+
+[[tool.mypy.overrides]]
+module = ["tkinter.*", "PIL.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--tb=short --strict-markers"
+markers = [
+    "unit: Unit tests for individual modules",
+    "integration: Integration tests",
+    "slow: Slow running tests",
+    "ui: UI-related tests",
+]
+
+[tool.coverage.run]
+source = ["modules", "ui"]
+omit = [
+    "*/tests/*",
+    "*/test_*.py",
+    "*/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
+precision = 2
+skip_covered = false

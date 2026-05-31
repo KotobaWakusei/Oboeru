@@ -266,7 +266,7 @@ class FavoritesPage(BasePage):
         self.app.stage = "recite"
         self.app.test_mode = False
         
-        self.navigate_to("learning")
+        self.navigate_to("learning", mode="resume")
     
     def _learn_all(self):
         """学习全部收藏"""
@@ -286,7 +286,7 @@ class FavoritesPage(BasePage):
         self.app.stage = "recite"
         self.app.test_mode = False
         
-        self.navigate_to("learning")
+        self.navigate_to("learning", mode="resume")
     
     def _delete_selected(self):
         """删除选中"""
@@ -297,8 +297,8 @@ class FavoritesPage(BasePage):
         
         for word_text in selected:
             self.app.favorites_manager.remove_word(word_text)
-        
-        self.app.favorites_manager.dirty_flag = True
+        # remove_word 已会标记为脏（DirtyTracker），不应直接赋值只读属性
+        # 直接保存一次以持久化修改
         self.app.favorites_manager.save_favorites()
         
         self._load_favorites()

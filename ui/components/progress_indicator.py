@@ -1,7 +1,7 @@
 """进度指示器组件"""
 import tkinter as tk
 from tkinter import ttk
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Callable
 
 if TYPE_CHECKING:
     from ui.core.style_manager import StyleManager
@@ -106,27 +106,32 @@ class ProgressIndicator(CTFrame):
         self.configure(bg=colors["bg_primary"])
         self._stage_label.configure(bg=colors["bg_primary"], fg=colors["fg_primary"])
         self._percent_label.configure(bg=colors["bg_primary"], fg=colors["accent"])
-        
-        # 更新右侧框架
+        # 更新右侧框架（支持 CTFrame/CTLabel 和普通 tk.Frame/tk.Label）
         for child in self.winfo_children():
-            if isinstance(child, tk.Frame):
-                child.configure(bg=colors["bg_primary"])
-                for subchild in child.winfo_children():
-                    if isinstance(subchild, tk.Label):
-                        subchild.configure(bg=colors["bg_primary"])
-
-        def apply_translation(self, translate_func: Callable[[str, str], str]):
-            """应用翻译：更新阶段文本等可本地化字符串"""
             try:
-                try:
-                    self._stage_label.configure(text=translate_func('learning.stage.ready', '准备开始'))
-                except Exception:
-                    pass
-                try:
-                    # 百分比用数字，无需翻译，但当重置时保证显示本地格式
-                    if getattr(self, '_total', 0) == 0:
-                        self._percent_label.configure(text="0%")
-                except Exception:
-                    pass
+                if isinstance(child, (CTFrame, tk.Frame)):
+                    child.configure(bg=colors["bg_primary"])
             except Exception:
                 pass
+            for subchild in child.winfo_children():
+                try:
+                    if isinstance(subchild, (CTLabel, tk.Label)):
+                        subchild.configure(bg=colors["bg_primary"])
+                except Exception:
+                    pass
+
+    def apply_translation(self, translate_func: Callable[[str, str], str]):
+        """应用翻译：更新阶段文本等可本地化字符串"""
+        try:
+            try:
+                self._stage_label.configure(text=translate_func('learning.stage.ready', '准备开始'))
+            except Exception:
+                pass
+            try:
+                # 百分比用数字，无需翻译，但当重置时保证显示本地格式
+                if getattr(self, '_total', 0) == 0:
+                    self._percent_label.configure(text="0%")
+            except Exception:
+                pass
+        except Exception:
+            pass

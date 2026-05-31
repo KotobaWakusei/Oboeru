@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import ttk
 from ui.core.base_page import BasePage
+from ui.customtinker import CTFrame, CTLabel
 from datetime import datetime
 
 
@@ -36,7 +37,7 @@ class StatisticsPage(BasePage):
         colors = self.colors
         
         # 外层容器
-        self._outer_frame = tk.Frame(self._container, bg=colors["bg_primary"])
+        self._outer_frame = CTFrame(self._container, style_manager=self._style_manager, bg=colors["bg_primary"])
         self._outer_frame.grid(row=0, column=0, sticky="nsew")
         self._outer_frame.columnconfigure(0, weight=1)
         self._outer_frame.rowconfigure(0, weight=1)
@@ -55,7 +56,7 @@ class StatisticsPage(BasePage):
         )
         
         # 内层容器
-        self._scroll_frame = tk.Frame(self._canvas, bg=colors["bg_primary"])
+        self._scroll_frame = CTFrame(self._canvas, style_manager=self._style_manager, bg=colors["bg_primary"])
         
         # 配置滚动
         self._canvas.configure(yscrollcommand=self._scrollbar.set)
@@ -117,20 +118,22 @@ class StatisticsPage(BasePage):
         """创建标题区域"""
         colors = self.colors
         
-        header = tk.Frame(self._scroll_frame, bg=colors["bg_primary"])
+        header = CTFrame(self._scroll_frame, style_manager=self._style_manager, bg=colors["bg_primary"])
         header.pack(fill=tk.X, pady=(0, 12))
-        
-        title = tk.Label(
+
+        title = CTLabel(
             header,
+            style_manager=self._style_manager,
             text="📊 学习统计",
             font=self._style_manager.get_font("title"),
             bg=colors["bg_primary"],
             fg=colors["fg_primary"]
         )
         title.pack(anchor="w")
-        
-        subtitle = tk.Label(
+
+        subtitle = CTLabel(
             header,
+            style_manager=self._style_manager,
             text="查看您的学习进度和成就",
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_primary"],
@@ -142,11 +145,11 @@ class StatisticsPage(BasePage):
         """创建概览统计"""
         colors = self.colors
         
-        card = tk.Frame(self._scroll_frame, bg=colors["bg_card"])
+        card = CTFrame(self._scroll_frame, style_manager=self._style_manager, bg=colors["bg_card"])
         card.configure(highlightbackground=colors["border"], highlightthickness=1)
         card.pack(fill=tk.X, pady=(0, 12))
-        
-        content = tk.Frame(card, bg=colors["bg_card"])
+
+        content = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         content.pack(fill=tk.X, padx=12, pady=12)
         
         for i in range(4):
@@ -162,29 +165,32 @@ class StatisticsPage(BasePage):
         ]
         
         for i, (icon, label, value, unit) in enumerate(items):
-            frame = tk.Frame(content, bg=colors["bg_card"])
+            frame = CTFrame(content, style_manager=self._style_manager, bg=colors["bg_card"])
             frame.grid(row=0, column=i, padx=8, pady=8)
-            
-            icon_label = tk.Label(
+
+            icon_label = CTLabel(
                 frame,
+                style_manager=self._style_manager,
                 text=icon,
                 font=("Segoe UI", 18),
                 bg=colors["bg_card"],
                 fg=colors["accent"]
             )
             icon_label.pack()
-            
-            value_label = tk.Label(
+
+            value_label = CTLabel(
                 frame,
+                style_manager=self._style_manager,
                 text=str(value),
                 font=("Segoe UI", 20, "bold"),
                 bg=colors["bg_card"],
                 fg=colors["fg_primary"]
             )
             value_label.pack()
-            
-            label_text = tk.Label(
+
+            label_text = CTLabel(
                 frame,
+                style_manager=self._style_manager,
                 text=f"{label} {unit}",
                 font=self._style_manager.get_font("caption"),
                 bg=colors["bg_card"],
@@ -196,15 +202,16 @@ class StatisticsPage(BasePage):
         """创建图表区域"""
         colors = self.colors
         
-        card = tk.Frame(self._scroll_frame, bg=colors["bg_card"])
+        card = CTFrame(self._scroll_frame, style_manager=self._style_manager, bg=colors["bg_card"]) 
         card.configure(highlightbackground=colors["border"], highlightthickness=1)
         card.pack(fill=tk.BOTH, expand=True, pady=(0, 12))
-        
-        header = tk.Frame(card, bg=colors["bg_secondary"])
+
+        header = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_secondary"]) 
         header.pack(fill=tk.X, padx=1, pady=1)
-        
-        tk.Label(
+
+        CTLabel(
             header,
+            style_manager=self._style_manager,
             text="📈 每日学习趋势",
             font=self._style_manager.get_font("subheading"),
             bg=colors["bg_secondary"],
@@ -212,8 +219,8 @@ class StatisticsPage(BasePage):
             padx=12,
             pady=8
         ).pack(anchor="w")
-        
-        content = tk.Frame(card, bg=colors["bg_card"])
+
+        content = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         content.pack(fill=tk.BOTH, expand=True, padx=12, pady=10)
         
         self._create_bar_chart(content)
@@ -225,8 +232,9 @@ class StatisticsPage(BasePage):
         daily_data = self._get_daily_data()
         
         if not daily_data:
-            tk.Label(
+            CTLabel(
                 parent,
+                style_manager=self._style_manager,
                 text="暂无学习数据",
                 font=self._style_manager.get_font("body"),
                 bg=colors["bg_card"],
@@ -237,39 +245,42 @@ class StatisticsPage(BasePage):
         max_value = max(d["words"] for d in daily_data) if daily_data else 1
         max_value = max(max_value, 1)
         
-        chart_frame = tk.Frame(parent, bg=colors["bg_card"])
+        chart_frame = CTFrame(parent, style_manager=self._style_manager, bg=colors["bg_card"]) 
         chart_frame.pack(fill=tk.BOTH, expand=True)
-        
+
         for i, data in enumerate(daily_data):
-            col_frame = tk.Frame(chart_frame, bg=colors["bg_card"])
+            col_frame = CTFrame(chart_frame, style_manager=self._style_manager, bg=colors["bg_card"]) 
             col_frame.pack(side=tk.LEFT, expand=True, fill=tk.BOTH, padx=3)
-            
+
             height_ratio = data["words"] / max_value if max_value > 0 else 0
-            
-            bar_container = tk.Frame(col_frame, bg=colors["bg_card"])
+
+            bar_container = CTFrame(col_frame, style_manager=self._style_manager, bg=colors["bg_card"]) 
             bar_container.pack(fill=tk.BOTH, expand=True)
-            
+
             bar_height = int(150 * height_ratio)
-            bar = tk.Frame(
+            bar = CTFrame(
                 bar_container,
+                style_manager=self._style_manager,
                 bg=colors["accent"],
                 width=35,
                 height=max(bar_height, 4)
             )
             bar.pack(side=tk.BOTTOM, pady=4)
             bar.pack_propagate(False)
-            
-            value_label = tk.Label(
+
+            value_label = CTLabel(
                 bar_container,
+                style_manager=self._style_manager,
                 text=str(data["words"]),
                 font=self._style_manager.get_font("caption"),
                 bg=colors["bg_card"],
                 fg=colors["fg_primary"]
             )
             value_label.pack(side=tk.BOTTOM)
-            
-            date_label = tk.Label(
+
+            date_label = CTLabel(
                 col_frame,
+                style_manager=self._style_manager,
                 text=data["date"],
                 font=self._style_manager.get_font("small"),
                 bg=colors["bg_card"],
@@ -281,15 +292,16 @@ class StatisticsPage(BasePage):
         """创建最近学习记录"""
         colors = self.colors
         
-        card = tk.Frame(self._scroll_frame, bg=colors["bg_card"])
+        card = CTFrame(self._scroll_frame, style_manager=self._style_manager, bg=colors["bg_card"])
         card.configure(highlightbackground=colors["border"], highlightthickness=1)
         card.pack(fill=tk.X)
-        
-        header = tk.Frame(card, bg=colors["bg_secondary"])
+
+        header = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_secondary"])
         header.pack(fill=tk.X, padx=1, pady=1)
-        
-        tk.Label(
+
+        CTLabel(
             header,
+            style_manager=self._style_manager,
             text="📝 最近学习记录",
             font=self._style_manager.get_font("subheading"),
             bg=colors["bg_secondary"],
@@ -297,15 +309,16 @@ class StatisticsPage(BasePage):
             padx=12,
             pady=8
         ).pack(anchor="w")
-        
-        content = tk.Frame(card, bg=colors["bg_card"])
+
+        content = CTFrame(card, style_manager=self._style_manager, bg=colors["bg_card"])
         content.pack(fill=tk.X, padx=12, pady=10)
         
         sessions = self.app.progress_manager.study_sessions[-10:]
         
         if not sessions:
-            tk.Label(
+            CTLabel(
                 content,
+                style_manager=self._style_manager,
                 text="暂无学习记录",
                 font=self._style_manager.get_font("body"),
                 bg=colors["bg_card"],
@@ -313,15 +326,16 @@ class StatisticsPage(BasePage):
             ).pack(pady=8)
             return
         
-        header_frame = tk.Frame(content, bg=colors["bg_card"])
+        header_frame = CTFrame(content, style_manager=self._style_manager, bg=colors["bg_card"])
         header_frame.pack(fill=tk.X)
         
         headers = ["日期", "学习词数", "复习词数", "准确率", "学习时间"]
         widths = [120, 60, 60, 60, 80]
         
         for h, w in zip(headers, widths):
-            tk.Label(
+            CTLabel(
                 header_frame,
+                style_manager=self._style_manager,
                 text=h,
                 font=self._style_manager.get_font("caption"),
                 bg=colors["bg_card"],
@@ -330,13 +344,13 @@ class StatisticsPage(BasePage):
                 anchor="w"
             ).pack(side=tk.LEFT, padx=4)
         
-        sep = tk.Frame(content, bg=colors["border"], height=1)
+        sep = CTFrame(content, style_manager=self._style_manager, bg=colors["border"], height=1)
         sep.pack(fill=tk.X, pady=4)
         
         for session in reversed(sessions):
-            row = tk.Frame(content, bg=colors["bg_card"])
+            row = CTFrame(content, style_manager=self._style_manager, bg=colors["bg_card"])
             row.pack(fill=tk.X, pady=2)
-            
+
             values = [
                 session.date[:16] if len(session.date) > 16 else session.date,
                 str(session.words_studied),
@@ -344,10 +358,11 @@ class StatisticsPage(BasePage):
                 f"{session.accuracy_rate:.0%}",
                 f"{session.study_duration // 60}分钟"
             ]
-            
+
             for v, w in zip(values, widths):
-                tk.Label(
+                CTLabel(
                     row,
+                    style_manager=self._style_manager,
                     text=v,
                     font=self._style_manager.get_font("caption"),
                     bg=colors["bg_card"],
@@ -415,6 +430,15 @@ class StatisticsPage(BasePage):
         """应用主题"""
         super().apply_theme()
         colors = self.colors
-        self._outer_frame.configure(bg=colors["bg_primary"])
-        self._canvas.configure(bg=colors["bg_primary"])
-        self._scroll_frame.configure(bg=colors["bg_primary"])
+        try:
+            self._outer_frame.configure(bg=colors["bg_primary"])
+        except Exception:
+            pass
+        try:
+            self._canvas.configure(bg=colors["bg_primary"])
+        except Exception:
+            pass
+        try:
+            self._scroll_frame.configure(bg=colors["bg_primary"])
+        except Exception:
+            pass

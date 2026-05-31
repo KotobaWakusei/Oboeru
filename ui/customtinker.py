@@ -79,7 +79,28 @@ class CTButton(tk.Frame):
         colors = style_manager.colors if style_manager else {}
         self._colors = colors
 
-        # 映射 style 名称到颜色语义
+        self._style_map = {}
+        self._refresh_style_map()
+
+        self._padding = padding
+
+        # 内部 label
+        self._label = CTLabel(self, style_manager=style_manager, text=text, cursor="hand2")
+        self._label.pack(fill=tk.BOTH, expand=True)
+
+        # 同步默认样式
+        self._apply_style(self._style_name)
+
+        # 事件绑定
+        for widget in (self, self._label):
+            widget.bind("<Enter>", self._on_enter)
+            widget.bind("<Leave>", self._on_leave)
+            widget.bind("<Button-1>", self._on_press)
+            widget.bind("<ButtonRelease-1>", self._on_release)
+
+    def _refresh_style_map(self):
+        """Refresh style colors from the current theme."""
+        colors = self._colors
         self._style_map = {
             "Primary.TButton": {
                 "bg": colors.get("accent", "#0078d7"),
@@ -103,47 +124,77 @@ class CTButton(tk.Frame):
             },
         }
 
-        self._padding = padding
-
-        # 内部 label
-        self._label = tk.Label(self, text=text)
-        self._label.pack(fill=tk.BOTH, expand=True)
-
-        # 同步默认样式
-        self._apply_style(self._style_name)
-
-        # 事件绑定
-        self._label.bind("<Enter>", self._on_enter)
-        self._label.bind("<Leave>", self._on_leave)
-        self._label.bind("<Button-1>", self._on_press)
-        self._label.bind("<ButtonRelease-1>", self._on_release)
-
     def _apply_style(self, style_name: str):
         cfg = self._style_map.get(style_name, {})
         bg = cfg.get("bg", self._colors.get("bg_secondary", "#333"))
         fg = cfg.get("fg", self._colors.get("fg_primary", "#fff"))
 
         self.configure(bg=bg)
-        self._label.configure(bg=bg, fg=fg, font=(self._style_manager._fonts.get("button") if getattr(self._style_manager, "_fonts", None) else None))
+        self._label.configure(
+            bg=bg,
+            fg=fg,
+            font=(
+                self._style_manager._fonts.get("button")
+                if getattr(self._style_manager, "_fonts", None)
+                else None
+            ),
+        )
         # 内部 padding
         padx, pady = self._padding
         self._label.configure(padx=padx, pady=pady)
+
+    def _lerp_color(self, c1, c2, t):
+        def _h(hx):
+            hx = hx.lstrip("#")
+            return tuple(int(hx[i:i+2], 16) for i in (0, 2, 4))
+        def _f(r, g, b):
+            return f"#{int(r):02x}{int(g):02x}{int(b):02x}"
+        r1, g1, b1 = _h(c1)
+        r2, g2, b2 = _h(c2)
+        return _f(r1 + (r2 - r1) * t, g1 + (g2 - g1) * t, b1 + (b2 - b1) * t)
+
+    def _smooth_bg(self, target_bg, steps=8):
+        try:
+            current = self._label.cget("bg") or self._colors.get("bg_secondary", "#333")
+        except Exception:
+            current = self._colors.get("bg_secondary", "#333")
+        tag = object()
+        self._hover_tag = tag
+
+        def tick(i):
+            if getattr(self, '_hover_tag', None) is not tag:
+                return
+            if i < steps:
+                t = (i + 1) / steps
+                color = self._lerp_color(current, target_bg, t)
+                try:
+                    self.configure(bg=color)
+                    self._label.configure(bg=color)
+                except Exception:
+                    pass
+                self.after(16, tick, i + 1)
+            else:
+                try:
+                    self.configure(bg=target_bg)
+                    self._label.configure(bg=target_bg)
+                except Exception:
+                    pass
+
+        tick(0)
 
     def _on_enter(self, event=None):
         if self._state == "disabled":
             return
         cfg = self._style_map.get(self._style_name, {})
         hover = cfg.get("hover") or cfg.get("bg")
-        try:
-            self.configure(bg=hover)
-            self._label.configure(bg=hover)
-        except Exception:
-            pass
+        self._smooth_bg(hover, steps=8)
 
     def _on_leave(self, event=None):
         if self._state == "disabled":
             return
-        self._apply_style(self._style_name)
+        cfg = self._style_map.get(self._style_name, {})
+        normal = cfg.get("bg", self._colors.get("bg_secondary", "#333"))
+        self._smooth_bg(normal, steps=6)
 
     def _on_press(self, event=None):
         if self._state == "disabled":
@@ -164,6 +215,44 @@ class CTButton(tk.Frame):
         except Exception:
             pass
 
+    def _smooth_style_transition(self, old_style, new_style, steps=12):
+        old_cfg = self._style_map.get(old_style, {})
+        new_cfg = self._style_map.get(new_style, {})
+        start_bg = old_cfg.get("bg", self._colors.get("bg_secondary", "#333"))
+        end_bg = new_cfg.get("bg", start_bg)
+        start_fg = old_cfg.get("fg", self._colors.get("fg_primary", "#fff"))
+        end_fg = new_cfg.get("fg", start_fg)
+        tag = object()
+        self._style_tag = tag
+
+        def _lerp(c1, c2, t):
+            def _h(hx):
+                hx = hx.lstrip("#")
+                return tuple(int(hx[i:i+2], 16) for i in (0, 2, 4))
+            def _f(r, g, b):
+                return f"#{int(r):02x}{int(g):02x}{int(b):02x}"
+            r1, g1, b1 = _h(c1)
+            r2, g2, b2 = _h(c2)
+            return _f(r1 + (r2 - r1) * t, g1 + (g2 - g1) * t, b1 + (b2 - b1) * t)
+
+        def tick(i):
+            if getattr(self, '_style_tag', None) is not tag:
+                return
+            if i < steps:
+                t = (i + 1) / steps
+                bg = _lerp(start_bg, end_bg, t)
+                fg = _lerp(start_fg, end_fg, t)
+                try:
+                    self.configure(bg=bg)
+                    self._label.configure(bg=bg, fg=fg)
+                except Exception:
+                    pass
+                self.after(16, tick, i + 1)
+            else:
+                self._apply_style(new_style)
+
+        tick(0)
+
     def configure(self, **kwargs):
         # 支持 text, command, state, style
         if "text" in kwargs:
@@ -177,17 +266,23 @@ class CTButton(tk.Frame):
                 # 变灰
                 try:
                     self._label.configure(fg=self._colors.get("fg_secondary", "#888"))
+                    self._label.configure(cursor="")
                 except Exception:
                     pass
             else:
                 try:
                     self._label.configure(fg=self._style_map.get(self._style_name, {}).get("fg", self._colors.get("fg_primary")))
+                    self._label.configure(cursor="hand2")
                 except Exception:
                     pass
         if "style" in kwargs:
             style = kwargs.pop("style")
+            old_style = self._style_name
             self._style_name = style
-            self._apply_style(style)
+            if old_style and old_style != style:
+                self._smooth_style_transition(old_style, style)
+            else:
+                self._apply_style(style)
 
         # 处理其余 Frame 属性
         try:
@@ -207,37 +302,76 @@ class CTButton(tk.Frame):
         # 在主题切换时重新应用风格
         if getattr(self, "_style_manager", None):
             self._colors = self._style_manager.colors
+            self._refresh_style_map()
             self._apply_style(self._style_name)
 
 
 class CTCard(CTFrame):
-    """卡片容器：带边框和可选标题，支持轻量悬停效果"""
+    """卡片容器：带边框和可选标题，支持轻量悬停效果（带动画）"""
     def __init__(self, parent, style_manager: Optional[Any] = None, title: str = "", **kwargs):
         colors = style_manager.colors if style_manager else {}
         super().__init__(parent, style_manager=style_manager, bg=colors.get("bg_card") if style_manager else None, **kwargs)
         self._style_manager = style_manager
-        self.configure(highlightbackground=colors.get("border"), highlightthickness=1)
+        self._border_default = colors.get("border")
+        self.configure(highlightbackground=self._border_default, highlightthickness=1)
         if title:
             title_frame = CTFrame(self, style_manager=style_manager, bg=colors.get("bg_secondary"))
             title_frame.pack(fill=tk.X, padx=1, pady=1)
             title_label = CTLabel(title_frame, style_manager=style_manager, text=title, fg=colors.get("accent"))
             title_label.pack(fill=tk.X)
 
-        # 绑定悬停，高亮边框
+        self._hover_tag = None
         self.bind("<Enter>", self._on_enter)
         self.bind("<Leave>", self._on_leave)
+
+    def _smooth_border(self, target_color, steps=8):
+        try:
+            current = self.cget("highlightbackground") or self._border_default
+        except Exception:
+            current = self._border_default
+        tag = object()
+        self._hover_tag = tag
+
+        def _lerp(c1, c2, t):
+            def _h(hx):
+                hx = hx.lstrip("#")
+                return tuple(int(hx[i:i+2], 16) for i in (0, 2, 4))
+            def _f(r, g, b):
+                return f"#{int(r):02x}{int(g):02x}{int(b):02x}"
+            r1, g1, b1 = _h(c1)
+            r2, g2, b2 = _h(c2)
+            return _f(r1 + (r2 - r1) * t, g1 + (g2 - g1) * t, b1 + (b2 - b1) * t)
+
+        def tick(i):
+            if getattr(self, '_hover_tag', None) is not tag:
+                return
+            if i < steps:
+                t = (i + 1) / steps
+                color = _lerp(current, target_color, t)
+                try:
+                    self.configure(highlightbackground=color)
+                except Exception:
+                    pass
+                self.after(16, tick, i + 1)
+            else:
+                try:
+                    self.configure(highlightbackground=target_color)
+                except Exception:
+                    pass
+
+        tick(0)
 
     def _on_enter(self, event=None):
         try:
             colors = self._style_manager.colors
-            self.configure(highlightbackground=colors.get("accent"))
+            self._smooth_border(colors.get("accent"), steps=8)
         except Exception:
             pass
 
     def _on_leave(self, event=None):
         try:
             colors = self._style_manager.colors
-            self.configure(highlightbackground=colors.get("border"))
+            self._smooth_border(colors.get("border"), steps=6)
         except Exception:
             pass
 

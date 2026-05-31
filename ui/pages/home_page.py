@@ -306,7 +306,7 @@ class HomePage(BasePage):
         sessions = [s for s in progress.study_sessions if s.date.startswith(today)]
         
         studied = sum(s.words_studied for s in sessions)
-        mastered = sum(s.words_studied - s.words_reviewed for s in sessions)
+        mastered = sum(s.words_mastered for s in sessions)
         review = sum(s.words_reviewed for s in sessions)
         accuracy = sum(s.accuracy_rate for s in sessions) / len(sessions) * 100 if sessions else 0
         
@@ -350,7 +350,7 @@ class HomePage(BasePage):
             if os.path.exists(vocab_file):
                 success, result = self.app.vocabulary_manager.load_from_file(vocab_file)
                 if not success:
-                    self.show_message(f"加载词库失败: {result}", "error")
+                    self.show_message(self._t('home.message.load_vocab_failed', '加载词库失败: {error}').format(error=result), "error")
                     return
             else:
                 self.show_message(self._t('home.message.no_vocab_loaded', '请先在设置中加载词库'), "warning")

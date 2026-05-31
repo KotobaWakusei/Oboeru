@@ -1,7 +1,7 @@
 """导航栏组件"""
 import tkinter as tk
 from tkinter import ttk
-from typing import Callable, List, Dict, TYPE_CHECKING
+from typing import Callable, List, Dict, Optional, TYPE_CHECKING
 from ui.customtinker import CTFrame, CTLabel, CTButton
 
 if TYPE_CHECKING:
@@ -25,6 +25,9 @@ class NavBar(CTFrame):
         self._on_navigate = on_navigate
         self._items = items
         self._nav_buttons: Dict[str, ttk.Button] = {}
+        self._center_frame: CTFrame
+        self._left_frame: CTFrame
+        self._right_frame: CTFrame
         
         self._create_widgets()
     
@@ -36,18 +39,23 @@ class NavBar(CTFrame):
             bg=colors["bg_secondary"],
             height=60
         )
-        self.pack_propagate(False)
+        self.grid_propagate(False)
         
         # 内部容器
         inner = CTFrame(self, style_manager=self._style_manager, bg=colors["bg_secondary"])
-        inner.pack(fill=tk.BOTH, expand=True, padx=20, pady=10)
+        inner.grid(row=0, column=0, sticky="nsew", padx=16, pady=9)
+        inner.columnconfigure(1, weight=1)
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(0, weight=1)
         
         # 左侧 - Logo
-        left_frame = CTFrame(inner, style_manager=self._style_manager, bg=colors["bg_secondary"])
-        left_frame.pack(side=tk.LEFT)
+        self._left_frame = CTFrame(
+            inner, style_manager=self._style_manager, bg=colors["bg_secondary"]
+        )
+        self._left_frame.grid(row=0, column=0, sticky="w")
 
         logo = CTLabel(
-            left_frame,
+            self._left_frame,
             style_manager=self._style_manager,
             text="🎯",
             font=("Segoe UI", 24),
@@ -57,7 +65,7 @@ class NavBar(CTFrame):
         logo.pack(side=tk.LEFT, padx=(0, 10))
         
         self._title_label = CTLabel(
-            left_frame,
+            self._left_frame,
             style_manager=self._style_manager,
             text="智能背单词",
             font=self._style_manager.get_font("heading"),
@@ -67,23 +75,53 @@ class NavBar(CTFrame):
         self._title_label.pack(side=tk.LEFT)
         
         # 中间 - 导航按钮
-        center_frame = CTFrame(inner, style_manager=self._style_manager, bg=colors["bg_secondary"])
-        center_frame.pack(side=tk.LEFT, expand=True)
+        self._center_frame = CTFrame(
+            inner, style_manager=self._style_manager, bg=colors["bg_secondary"]
+        )
+        self._center_frame.grid(row=0, column=1)
         
         for item in self._items:
             btn = CTButton(
-                center_frame,
+                self._center_frame,
                 style_manager=self._style_manager,
                 text=f"{item['icon']} {item.get('title', '')}",
                 command=lambda pid=item['id']: self._on_navigate(pid),
-                style="Nav.TButton"
+                style="Nav.TButton",
+                padding=(10, 7),
             )
             btn.pack(side=tk.LEFT, padx=5)
             self._nav_buttons[item['id']] = btn
         
         # 右侧 - 可扩展区域
         self._right_frame = CTFrame(inner, style_manager=self._style_manager, bg=colors["bg_secondary"])
-        self._right_frame.pack(side=tk.RIGHT)
+        self._right_frame.grid(row=0, column=2, sticky="e")
+        self.bind("<Configure>", self._on_resize)
+
+    def refresh_layout(self, width: Optional[int] = None):
+        """Refresh title and button labels for the current width."""
+        if width is None:
+            width = self.winfo_width()
+        if width <= 1:
+            width = self.winfo_toplevel().winfo_width()
+
+        title_text = "智能背单词"
+        if width < 780:
+            title_text = "Oboeru"
+        self._title_label.configure(text=title_text)
+
+        compact = width < 700
+        for item in self._items:
+            pid = item["id"]
+            icon = item.get("icon", "")
+            title = item.get("title", "")
+            if pid in self._nav_buttons:
+                self._nav_buttons[pid].configure(
+                    text=icon if compact else f"{icon} {title}"
+                )
+
+    def _on_resize(self, event):
+        """Keep the navbar readable on narrow windows."""
+        self.refresh_layout(event.width)
     
     def set_active(self, page_id: str):
         """设置当前激活的导航项"""
@@ -114,34 +152,26 @@ class NavBar(CTFrame):
                 default = item.get('title', '')
                 try:
                     translated = translate_func(f'nav.{pid}', default)
-                    if pid in self._nav_buttons:
-                        self._nav_buttons[pid].configure(text=f"{icon} {translated}")
+                    item['title'] = translated
                 except Exception:
                     pass
+            self.refresh_layout()
         except Exception:
             pass
     
     def apply_theme(self):
         """应用主题"""
         colors = self._style_manager.colors
-        
         self.configure(bg=colors["bg_secondary"])
-        
-        for child in self.winfo_children():
-            self._update_colors(child, colors)
-    
-    def _update_colors(self, widget: tk.Widget, colors: dict):
-        """递归更新颜色"""
         try:
-            widget.configure(bg=colors["bg_secondary"])
+            self._left_frame.configure(bg=colors["bg_secondary"])
+            self._center_frame.configure(bg=colors["bg_secondary"])
+            self._right_frame.configure(bg=colors["bg_secondary"])
+            self._title_label.configure(fg=colors["fg_primary"], bg=colors["bg_secondary"])
         except Exception:
             pass
-        
-        for child in widget.winfo_children():
-            if isinstance(child, tk.Label):
-                try:
-                    child.configure(bg=colors["bg_secondary"])
-                except Exception:
-                    pass
-            elif isinstance(child, tk.Frame):
-                self._update_colors(child, colors)
+        for button in self._nav_buttons.values():
+            try:
+                button.apply_theme()
+            except Exception:
+                pass

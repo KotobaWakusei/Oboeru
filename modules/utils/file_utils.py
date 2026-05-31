@@ -1,9 +1,9 @@
 """文件操作工具"""
 import os
-import json
 import tempfile
 import shutil
-from typing import Any, Callable, Optional, Tuple
+import uuid
+from typing import Callable, Optional, Tuple
 from contextlib import contextmanager
 
 
@@ -40,15 +40,13 @@ def safe_save_file(
         if create_backup and os.path.exists(file_path):
             backup_path = _create_backup(file_path, backup_dir)
         
-        # 原子写入
-        temp_file = file_path + '.tmp'
+        # 原子写入：临时文件放在同一目录，保证 os.replace 不跨文件系统。
+        temp_file = f"{file_path}.{uuid.uuid4().hex}.tmp"
         with open(temp_file, 'w', encoding=encoding) as f:
             f.write(content)
         
         # 原子替换
-        if os.path.exists(file_path):
-            os.remove(file_path)
-        os.rename(temp_file, file_path)
+        os.replace(temp_file, file_path)
         
         return True, backup_path or ""
         
@@ -79,14 +77,15 @@ def atomic_write(
     Returns:
         Tuple[bool, str]: (成功标志, 错误信息)
     """
-    temp_file = file_path + '.tmp'
+    dir_name = os.path.dirname(file_path)
+    if dir_name:
+        os.makedirs(dir_name, exist_ok=True)
+    temp_file = f"{file_path}.{uuid.uuid4().hex}.tmp"
     
     try:
         write_func(temp_file)
         
-        if os.path.exists(file_path):
-            os.remove(file_path)
-        os.rename(temp_file, file_path)
+        os.replace(temp_file, file_path)
         
         return True, ""
         

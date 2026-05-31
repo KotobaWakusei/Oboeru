@@ -50,10 +50,6 @@ class Logger:
                 # 如果无法创建目录，则继续（FileHandler 在无法写入时会抛出错误）
                 pass
 
-        # 文件处理器
-        file_handler = logging.FileHandler(self.log_file, encoding='utf-8')
-        file_handler.setLevel(logging.DEBUG)
-        
         # 控制台处理器
         console_handler = logging.StreamHandler()
         console_handler.setLevel(logging.INFO)
@@ -63,12 +59,26 @@ class Logger:
             '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
             datefmt='%Y-%m-%d %H:%M:%S'
         )
-        
-        file_handler.setFormatter(formatter)
         console_handler.setFormatter(formatter)
-        
-        self.logger.addHandler(file_handler)
         self.logger.addHandler(console_handler)
+
+        # 文件处理器在受限环境中可能不可写；失败时退回纯控制台日志。
+        try:
+            file_handler = logging.FileHandler(self.log_file, encoding='utf-8')
+            file_handler.setLevel(logging.DEBUG)
+            file_handler.setFormatter(formatter)
+            self.logger.addHandler(file_handler)
+        except Exception:
+            console_handler.handle(
+                logging.makeLogRecord(
+                    {
+                        "name": self.logger.name,
+                        "levelno": logging.WARNING,
+                        "levelname": "WARNING",
+                        "msg": f"日志文件不可写，已退回控制台输出: {self.log_file}",
+                    }
+                )
+            )
     
     def debug(self, message: str) -> None:
         """记录调试信息"""

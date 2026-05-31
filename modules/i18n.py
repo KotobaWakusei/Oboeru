@@ -1,25 +1,24 @@
-"""国际化/语言管理器（轻量）
+"""国际化/语言管理器（增强版）
 
-负责从 `data/locales` 目录加载语言文件（JSON），并提供查询可用语言、切换语言、获取翻译的接口。
-语言文件示例结构：
-{
-  "language_code": "en",
-  "language_name": "English",
-  "strings": {
-    "settings.ui_language": "Interface language",
-    ...
-  }
-}
+支持：
+- 从 data/locales 加载 JSON 语言文件
+- 系统语言自动检测（locale.getdefaultlocale）
+- 回退链：当前语言 → en → key 本身
+- 运行时动态新增语言
 """
 import os
 import json
+import locale as std_locale
 from typing import Dict, Optional, Tuple, List
 
 from .utils.constants import Constants
 
 
+FALLBACK_LANGUAGE = "en"
+
+
 class LanguageManager:
-    """管理本地化语言文件并提供简单的翻译查询。"""
+    """管理本地化语言文件并提供翻译查询。"""
 
     def __init__(self, config=None, locales_dir: Optional[str] = None):
         self._config = config
@@ -30,10 +29,8 @@ class LanguageManager:
         self._languages: Dict[str, Dict] = {}
         self._current: Optional[str] = None
 
-        # 加载现有语言
         self.reload()
 
-        # 如果配置里有语言优先使用它
         preferred = None
         try:
             preferred = self._config.get("language") if self._config else None
@@ -43,14 +40,29 @@ class LanguageManager:
         if preferred and preferred in self._languages:
             self.set_language(preferred, save=False)
         else:
-            # 使用第一个语言作为默认（若无则 None）
-            codes = list(self._languages.keys())
-            if codes:
-                default_code = codes[0]
-                self.set_language(default_code, save=False)
+            # 尝试自动检测系统语言
+            sys_lang = self._detect_system_language()
+            if sys_lang and sys_lang in self._languages:
+                self.set_language(sys_lang, save=False)
+            else:
+                codes = list(self._languages.keys())
+                if codes:
+                    self.set_language(codes[0], save=False)
+
+    @staticmethod
+    def _detect_system_language() -> Optional[str]:
+        """检测系统语言，返回语言代码（如 'zh', 'en', 'ja'）。"""
+        try:
+            code, _ = std_locale.getdefaultlocale()
+            if code:
+                lang = code.split("_")[0].lower()
+                return lang
+        except Exception:
+            pass
+        return None
 
     def reload(self):
-        """重新加载 `locales_dir` 下的所有 .json 语言文件"""
+        """重新加载 locales_dir 下的所有 .json 语言文件"""
         self._languages.clear()
         try:
             for fname in sorted(os.listdir(self._locales_dir)):
@@ -65,21 +77,17 @@ class LanguageManager:
                     strings = data.get('strings', {}) or {}
                     self._languages[code] = {"name": name, "strings": strings, "file": path}
                 except Exception:
-                    # 忽略无法解析的文件
                     continue
         except FileNotFoundError:
-            # 目录不存在则忽略（会在创建时被创建）
             pass
 
     def get_available_languages(self) -> List[Tuple[str, str]]:
-        """返回列表：(code, display_name)"""
         return [(code, info['name']) for code, info in self._languages.items()]
 
     def get_language_display(self, code: str) -> Optional[str]:
         return self._languages.get(code, {}).get('name')
 
     def set_language(self, code: str, save: bool = True) -> bool:
-        """切换当前语言；若 `save` 且配置存在则写入配置。"""
         if code not in self._languages:
             return False
         self._current = code
@@ -95,12 +103,27 @@ class LanguageManager:
         return self._current
 
     def translate(self, key: str, default: Optional[str] = None) -> str:
-        """根据当前语言返回翻译；支持简单的 key（不做复杂占位）。"""
-        if not self._current:
+        """返回翻译，回退链：当前语言 → en → key/defalut"""
+        if not self._languages:
             return default or key
-        strings = self._languages.get(self._current, {}).get('strings', {})
-        return strings.get(key, default or key)
+
+        # 1. 当前语言查找
+        if self._current:
+            strings = self._languages.get(self._current, {}).get('strings', {})
+            val = strings.get(key)
+            if val is not None:
+                return val
+
+        # 2. 回退到英语
+        if self._current != FALLBACK_LANGUAGE:
+            strings = self._languages.get(FALLBACK_LANGUAGE, {}).get('strings', {})
+            val = strings.get(key)
+            if val is not None:
+                return val
+
+        # 3. 返回默认值
+        return default or key
 
     def add_language_from_dict(self, code: str, name: str, strings: Dict[str, str]) -> None:
-        """运行时新增语言（不会持久化）"""
+        """运行时新增语言（不会持久化到磁盘）"""
         self._languages[code] = {"name": name, "strings": strings, "file": None}

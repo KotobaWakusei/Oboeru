@@ -24,6 +24,7 @@ class WordCard(CTFrame):
         self._style_manager = style_manager
         self._on_click = on_click
         self._is_interactive = False
+        self._base_word_font_size = 36
         
         self._create_widgets()
     
@@ -46,7 +47,7 @@ class WordCard(CTFrame):
             self._content,
             style_manager=self._style_manager,
             text="",
-            font=("Segoe UI", 36, "bold"),
+            font=("Segoe UI", self._base_word_font_size, "bold"),
             bg=colors["bg_card"],
             fg=colors["accent"]
         )
@@ -65,21 +66,36 @@ class WordCard(CTFrame):
     
     def set_word(self, word: str, pos: str = ""):
         """设置单词"""
+        self._apply_word_font(word)
         self._word_label.configure(text=word)
         self._pos_label.configure(text=pos)
+
+    def _apply_word_font(self, word: str):
+        """Fit long words into the card without layout overflow."""
+        length = len(word or "")
+        size = self._base_word_font_size
+        if length > 24:
+            size = 22
+        elif length > 18:
+            size = 26
+        elif length > 12:
+            size = 30
+        self._word_label.configure(font=("Segoe UI", size, "bold"))
     
     def set_interactive(self, interactive: bool = True):
         """设置是否可交互"""
         self._is_interactive = interactive
         
         if interactive:
-            self._word_label.configure(cursor="hand2")
-            self._word_label.bind("<Button-1>", self._handle_click)
-            self._word_label.bind("<Double-Button-1>", self._handle_click)
+            for widget in (self, self._content, self._word_label, self._pos_label):
+                widget.configure(cursor="hand2")
+                widget.bind("<Button-1>", self._handle_click)
+                widget.bind("<Double-Button-1>", self._handle_click)
         else:
-            self._word_label.configure(cursor="")
-            self._word_label.unbind("<Button-1>")
-            self._word_label.unbind("<Double-Button-1>")
+            for widget in (self, self._content, self._word_label, self._pos_label):
+                widget.configure(cursor="")
+                widget.unbind("<Button-1>")
+                widget.unbind("<Double-Button-1>")
     
     def _handle_click(self, event):
         """处理点击"""
@@ -88,6 +104,7 @@ class WordCard(CTFrame):
     
     def set_font_size(self, size: int):
         """设置字体大小"""
+        self._base_word_font_size = size
         self._word_label.configure(font=("Segoe UI", size, "bold"))
     
     def clear(self):
@@ -97,6 +114,7 @@ class WordCard(CTFrame):
     
     def set_placeholder(self, text: str = "点击「开始学习」开始"):
         """设置占位文本"""
+        self._apply_word_font(text)
         self._word_label.configure(text=text)
         self._pos_label.configure(text="")
     

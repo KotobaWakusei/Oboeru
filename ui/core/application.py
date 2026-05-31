@@ -7,11 +7,13 @@ import os
 
 from .style_manager import StyleManager
 from .page_manager import PageManager
+from ui.customtinker import CTFrame, CTLabel
 from modules.config_manager import ConfigManager
 from modules.vocabulary_manager import VocabularyManager
 from modules.favorites_manager import FavoritesManager
 from modules.ai_manager import AIManager
 from modules.logger import get_logger
+from modules.animation import Animator
 
 
 class Application:
@@ -72,6 +74,7 @@ class Application:
         # 消息提示
         self._message_label: Optional[tk.Label] = None
         self._message_timer: Optional[str] = None
+        self._animator = Animator(self._root)
         
         # 初始化应用
         self._setup_window()
@@ -254,11 +257,6 @@ class Application:
     def apply_translation(self):
         """应用当前语言翻译到所有页面和导航。"""
         try:
-            self._apply_navbar_layout(self._root.winfo_width())
-        except Exception:
-            pass
-
-        try:
             self._page_manager.apply_translation_to_all()
         except Exception:
             pass
@@ -272,7 +270,7 @@ class Application:
 
         try:
             # 更新收藏统计文本
-            if hasattr(self, '_favorites_count_label'):
+            if hasattr(self, '_favorites_count'):
                 self.update_favorites_count()
         except Exception:
             pass
@@ -292,6 +290,7 @@ class Application:
             if getattr(self, '_navbar', None) and hasattr(self._navbar, 'apply_translation'):
                 try:
                     self._navbar.apply_translation(self.translate)
+                    self._navbar.refresh_layout(self._root.winfo_width())
                 except Exception:
                     pass
         except Exception:
@@ -324,8 +323,9 @@ class Application:
         colors = self._style_manager.colors
         
         # 主容器
-        self._main_container = tk.Frame(
+        self._main_container = CTFrame(
             self._root, 
+            style_manager=self._style_manager,
             bg=colors["bg_primary"]
         )
         self._main_container.pack(fill=tk.BOTH, expand=True)
@@ -338,8 +338,9 @@ class Application:
         self._create_navbar()
         
         # 页面容器
-        self._page_container = tk.Frame(
+        self._page_container = CTFrame(
             self._main_container,
+            style_manager=self._style_manager,
             bg=colors["bg_primary"]
         )
         self._page_container.grid(row=1, column=0, sticky="nsew")
@@ -375,18 +376,7 @@ class Application:
         self._navbar.grid(row=0, column=0, sticky="ew")
         self._navbar.grid_propagate(False)
 
-        # 收藏数量显示（放到右侧扩展区）
-        self._favorites_count_label = CTLabel(
-            self._navbar,
-            style_manager=self._style_manager,
-            text=f"❤️ {len(self._favorites_manager)}",
-            font=self._style_manager.get_font("caption"),
-            bg=colors["bg_secondary"],
-            fg=colors["accent"]
-        )
-        self._navbar.add_right_widget(self._favorites_count_label)
-
-        # 兼容旧逻辑：保留引用
+        self._favorites_count = len(self._favorites_manager)
         self._nav_buttons = getattr(self._navbar, "_nav_buttons", {})
         self._navbar_resize_timer = None
         self._last_navbar_width = 0
@@ -415,32 +405,8 @@ class Application:
     def _apply_navbar_layout(self, width: int):
         """应用导航栏布局"""
         try:
-            if width < 700:
-                # 小窗口：只显示图标
-                short_labels = {
-                    "home": "🏠",
-                    "learning": "📚",
-                    "vocabulary": "📖",
-                    "favorites": "❤️",
-                    "statistics": "📊",
-                    "settings": "⚙️",
-                }
-                for page_id, text in short_labels.items():
-                    if page_id in self._nav_buttons:
-                        self._nav_buttons[page_id].configure(text=text)
-            else:
-                # 大窗口：显示完整文字
-                full_labels = {
-                    "home": f"🏠 {self.translate('nav.home', '首页')}",
-                    "learning": f"📚 {self.translate('nav.learning', '学习')}",
-                    "vocabulary": f"📖 {self.translate('nav.vocabulary', '词汇表')}",
-                    "favorites": f"❤️ {self.translate('nav.favorites', '收藏')}",
-                    "statistics": f"📊 {self.translate('nav.statistics', '统计')}",
-                    "settings": f"⚙️ {self.translate('nav.settings', '设置')}",
-                }
-                for page_id, text in full_labels.items():
-                    if page_id in self._nav_buttons:
-                        self._nav_buttons[page_id].configure(text=text)
+            if getattr(self, "_navbar", None) and hasattr(self._navbar, "refresh_layout"):
+                self._navbar.refresh_layout(width)
         except Exception:
             pass
     
@@ -448,20 +414,22 @@ class Application:
         """创建状态栏"""
         colors = self._style_manager.colors
         
-        status_bar = tk.Frame(
+        status_bar = CTFrame(
             self._main_container,
+            style_manager=self._style_manager,
             bg=colors["bg_secondary"],
             height=35
         )
         status_bar.grid(row=2, column=0, sticky="ew")
         status_bar.grid_propagate(False)
         
-        status_inner = tk.Frame(status_bar, bg=colors["bg_secondary"])
+        status_inner = CTFrame(status_bar, style_manager=self._style_manager, bg=colors["bg_secondary"])
         status_inner.pack(fill=tk.BOTH, expand=True, padx=15)
         
         # 状态文本
-        self._status_label = tk.Label(
+        self._status_label = CTLabel(
             status_inner,
+            style_manager=self._style_manager,
             text=self.translate('status.ready', '准备就绪'),
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_secondary"],
@@ -470,8 +438,9 @@ class Application:
         self._status_label.pack(side=tk.LEFT, pady=8)
         
         # 进度文本
-        self._progress_label = tk.Label(
+        self._progress_label = CTLabel(
             status_inner,
+            style_manager=self._style_manager,
             text="",
             font=self._style_manager.get_font("caption"),
             bg=colors["bg_secondary"],
@@ -512,37 +481,13 @@ class Application:
     def _on_theme_changed(self):
         """主题变化回调"""
         colors = self._style_manager.colors
-        
-        # 更新主容器
         self._main_container.configure(bg=colors["bg_primary"])
         self._page_container.configure(bg=colors["bg_primary"])
-        
-        # 更新导航栏
-        for widget in self._main_container.winfo_children():
-            if isinstance(widget, tk.Frame):
-                self._update_frame_colors(widget, colors)
-        
-        # 更新所有页面
-        self._page_manager.apply_theme_to_all()
-    
-    def _update_frame_colors(self, frame: tk.Frame, colors: dict):
-        """递归更新框架颜色"""
         try:
-            frame.configure(bg=colors.get("bg_secondary", colors["bg_primary"]))
+            self._navbar.apply_theme()
         except Exception:
             pass
-        
-        for child in frame.winfo_children():
-            if isinstance(child, tk.Label):
-                try:
-                    bg = child.cget("bg")
-                    if bg in [self._style_manager.THEMES.get(self._style_manager.current_theme, {}).get("bg_secondary"),
-                              self._style_manager.THEMES.get(self._style_manager.current_theme, {}).get("bg_primary")]:
-                        child.configure(bg=colors.get("bg_secondary", colors["bg_primary"]))
-                except Exception:
-                    pass
-            elif isinstance(child, tk.Frame):
-                self._update_frame_colors(child, colors)
+        self._page_manager.apply_theme_to_all()
     
     def navigate_to(self, page_id: str, **kwargs):
         """导航到指定页面"""
@@ -585,31 +530,10 @@ class Application:
     def update_favorites_count(self, count: int = None):
         """更新收藏数量"""
         if count is None:
-            try:
-                count = len(self._favorites_manager)
-            except Exception:
-                count = 0
+            count = len(self._favorites_manager)
+        self._favorites_count = count
         try:
-            # 如果数量为 0，则隐藏该组件，避免右上角常驻无意义显示
-            if count is None or count == 0:
-                try:
-                    if getattr(self, '_favorites_count_label', None):
-                        self._favorites_count_label.pack_forget()
-                except Exception:
-                    pass
-            else:
-                # 确保已加入到 navbar 的右侧区域
-                if getattr(self, '_favorites_count_label', None):
-                    try:
-                        self._favorites_count_label.configure(text=f"❤️ {count}")
-                    except Exception:
-                        pass
-                    try:
-                        # 如果当前未被管理，则重新添加到 navbar 右侧
-                        if getattr(self, '_navbar', None) and not self._favorites_count_label.winfo_ismapped():
-                            self._navbar.add_right_widget(self._favorites_count_label)
-                    except Exception:
-                        pass
+            self._page_manager.apply_theme()
         except Exception:
             pass
 
@@ -681,17 +605,24 @@ class Application:
         except Exception:
             pass
 
+        # 彻底移除退出学习按钮，防止主界面残留
         try:
             if getattr(self, '_learning_exit_btn', None):
                 try:
                     self._learning_exit_btn.place_forget()
                 except Exception:
-                    try:
-                        self._learning_exit_btn.pack_forget()
-                    except Exception:
-                        pass
+                    pass
+                try:
+                    self._learning_exit_btn.pack_forget()
+                except Exception:
+                    pass
+                try:
+                    self._learning_exit_btn.destroy()
+                except Exception:
+                    pass
+                self._learning_exit_btn = None
         except Exception:
-            pass
+            self._learning_exit_btn = None
 
     def _on_learning_exit_requested(self):
         """退出学习按钮被点击时的回调；委托给当前页面处理"""
@@ -712,25 +643,33 @@ class Application:
             pass
     
     def show_message(self, message: str, msg_type: str = "info"):
-        """显示消息提示"""
+        """显示消息提示（带滑动动画）"""
         colors = self._style_manager.colors
-        
+
         if self._message_timer is not None:
             try:
                 self._root.after_cancel(self._message_timer)
             except Exception:
                 pass
-        
-        # 创建消息标签（如果没有）
+
         if not self._message_label:
-            self._message_label = tk.Label(
-                self._page_container,
-                font=self._style_manager.get_font("body"),
-                padx=20,
-                pady=10
-            )
-        
-        # 设置颜色
+            try:
+                from ui.customtinker import CTLabel
+                self._message_label = CTLabel(
+                    self._page_container,
+                    style_manager=self._style_manager,
+                    font=self._style_manager.get_font("body"),
+                    padx=20,
+                    pady=10,
+                )
+            except Exception:
+                self._message_label = tk.Label(
+                    self._page_container,
+                    font=self._style_manager.get_font("body"),
+                    padx=20,
+                    pady=10
+                )
+
         if msg_type == "success":
             bg_color = colors["success"]
         elif msg_type == "error":
@@ -739,19 +678,42 @@ class Application:
             bg_color = colors["warning"]
         else:
             bg_color = colors["accent"]
-        
-        self._message_label.configure(
-            text=message,
-            bg=bg_color,
-            fg="#ffffff"
-        )
-        self._message_label.place(relx=0.5, rely=0.05, anchor="n")
-        
-        # 3秒后自动隐藏
+
+        self._message_label.configure(text=message, bg=bg_color, fg="#ffffff")
+        self._message_label.place(relx=0.5, rely=-0.1, anchor="n")
+
+        def slide_in(i):
+            rely = -0.1 + (0.15 * (i + 1) / 10)
+            try:
+                self._message_label.place(relx=0.5, rely=rely, anchor="n")
+            except Exception:
+                pass
+
+        self._animator.animate(10, lambda: None, slide_in)
+
         self._message_timer = self._root.after(
-            3000, 
-            lambda: self._message_label.place_forget() if self._message_label else None
+            3000,
+            lambda: self._hide_message_animated()
         )
+
+    def _hide_message_animated(self):
+        if not self._message_label:
+            return
+
+        def slide_out(i):
+            rely = 0.05 - (0.15 * (i + 1) / 8)
+            try:
+                self._message_label.place(relx=0.5, rely=rely, anchor="n")
+            except Exception:
+                pass
+
+        def done():
+            try:
+                self._message_label.place_forget()
+            except Exception:
+                pass
+
+        self._animator.animate(8, done, slide_out)
     
     def save_config(self):
         """保存配置"""
@@ -769,13 +731,7 @@ class Application:
         self._closing = True
         self._logger.info("应用程序正在关闭")
         
-        # 停止TTS
-        self._tts_manager.stop()
-        
-        # 停止AI线程池
-        self._ai_manager.shutdown()
-        
-        # 确认退出
+        # 确认退出（先询问用户，确认后再关闭后台资源）
         if self._config.get_bool("confirm_before_exit", True):
             message = self.translate('confirm.exit_program', '确定要退出程序吗？')
             if self._today_words:
@@ -795,18 +751,30 @@ class Application:
                 self._logger.info("用户按Ctrl+C，强制退出")
                 self._root.destroy()
                 return
-        
-        # 清理资源
+        # 在用户确认后再停止后台资源并清理
         try:
+            # 停止TTS
+            try:
+                self._tts_manager.stop()
+            except Exception:
+                pass
+
+            # 停止AI线程池
+            try:
+                self._ai_manager.shutdown()
+            except Exception:
+                pass
+
+            # 清理资源
             if self._favorites_manager.dirty_flag:
                 self._favorites_manager.save_favorites()
-            
+
             if self._progress_manager.session_start_time is not None:
                 self._progress_manager.end_session(
                     words_studied=len(self._today_words),
                     words_reviewed=len(self._unknown_words)
                 )
-            
+
             self._logger.info("应用程序正常退出")
             self._root.destroy()
         except Exception as e:

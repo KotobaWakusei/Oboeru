@@ -65,9 +65,34 @@ class BasePage(ABC, CTFrame):
         pass
     
     def on_enter(self, **kwargs):
-        """页面进入时调用"""
+        """页面进入时调用（带动画）"""
         self._is_visible = True
         self.refresh()
+        self._animate_page_entry()
+
+    def _animate_page_entry(self):
+        steps = 10
+        tag = object()
+        self._page_entry_tag = tag
+
+        def tick(i):
+            if getattr(self, '_page_entry_tag', None) is not tag:
+                return
+            if i < steps:
+                t = (i + 1) / steps
+                pad = int(25 * (1 - t))
+                try:
+                    self._container.pack_configure(pady=(pad, 15))
+                except Exception:
+                    pass
+                self.after(16, tick, i + 1)
+            else:
+                try:
+                    self._container.pack_configure(pady=(15, 15))
+                except Exception:
+                    pass
+
+        tick(0)
     
     def on_leave(self):
         """页面离开时调用"""

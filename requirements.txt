@@ -1,3 +1,4 @@
-Pillow>=10.0.0
-edge-tts>=0.10.0
-gtts>=2.3.0
+Pillow==10.0.0
+edge-tts==0.10.5
+gtts==2.3.2
+
